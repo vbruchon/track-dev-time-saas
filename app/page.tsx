@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="flex flex-col mx-auto items-center h-full">
       <div className="flex items-center gap-2 py-6">
