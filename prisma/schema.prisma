@@ -1,7 +1,9 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated"
 }
 
 datasource db {
@@ -10,18 +12,24 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(uuid()) @db.Uuid
+  id    String  @id @default(uuid())
   email String  @unique
   name  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  sessions DevSession[]
+  devSessions   DevSession[]
+  sessions      Session[]
+  emailVerified Boolean
+  image         String?
+  accounts      Account[]
+
+  @@map("user")
 }
 
 model DevSession {
-  id        String    @id @default(uuid()) @db.Uuid
+  id        String    @id @default(uuid())
   startedAt DateTime
   endedAt   DateTime?
   duration  Int?
@@ -30,16 +38,61 @@ model DevSession {
 
   pauses Pause[]
 
-  userId String @db.Uuid
+  userId String
   user   User   @relation(fields: [userId], references: [id])
 }
 
 model Pause {
-  id        String    @id @default(uuid()) @db.Uuid
+  id        String    @id @default(uuid())
   startedAt DateTime
   endedAt   DateTime?
   duration  Int?
 
-  sessionId String     @db.Uuid
+  sessionId String
   session   DevSession @relation(fields: [sessionId], references: [id])
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
 }

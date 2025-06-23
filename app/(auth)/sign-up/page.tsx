@@ -24,7 +24,7 @@ export default function SignUpPage() {
       <CardFooter>
         <p className="text-muted-foreground w-full text-center text-xs mt-4">
           Already have an account?{" "}
-          <Link className="text-indigo-500" href="/auth/sign-in">
+          <Link className="text-indigo-500" href="/sign-in">
             Sign In.
           </Link>
         </p>
