@@ -1,6 +1,8 @@
 import { headers } from "next/headers";
 import { unauthorized } from "next/navigation";
 import { auth } from "./auth";
+import { NextRequest } from "next/server";
+import { prisma } from "./prisma";
 
 export const getSession = async () => {
   const session = await auth.api.getSession({
@@ -22,6 +24,20 @@ export const getRequiredUser = async () => {
   const user = await getUser();
 
   if (!user) unauthorized();
+
+  return user;
+};
+
+export const getUserFromRequest = async (req: NextRequest) => {
+  const apiKey = req.headers.get("x-api-key");
+
+  if (!apiKey) return null;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      apiKey,
+    },
+  });
 
   return user;
 };

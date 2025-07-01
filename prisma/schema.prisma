@@ -12,20 +12,34 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(uuid())
-  email String  @unique
-  name  String?
+  id     String  @id @default(uuid())
+  email  String  @unique
+  name   String?
+  image  String?
+  apiKey String? @unique
 
+  emailVerified Boolean
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+  projects Project[]
+
+  @@map("user")
+}
+
+model Project {
+  id        String   @id @default(uuid())
+  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  devSessions   DevSession[]
-  sessions      Session[]
-  emailVerified Boolean
-  image         String?
-  accounts      Account[]
+  userId      String
+  user        User         @relation(fields: [userId], references: [id])
+  devSessions DevSession[]
 
-  @@map("user")
+  @@unique([userId, name])
 }
 
 model DevSession {
@@ -38,8 +52,10 @@ model DevSession {
 
   pauses Pause[]
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id])
+
+  @@unique([projectId, startedAt])
 }
 
 model Pause {
