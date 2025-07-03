@@ -45,7 +45,7 @@ export function UserMenu({ user }: { user: User | null }) {
           <UserIcon className="mr-2 size-5 hover:text-muted-foreground" />
           Account
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem asChild>
           <ThemeToggleMenu />
         </DropdownMenuItem>
         <DropdownMenuSeparator />
