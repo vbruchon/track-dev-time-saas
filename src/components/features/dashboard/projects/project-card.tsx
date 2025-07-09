@@ -12,17 +12,20 @@ interface ProjectCardProps {
   project: ProjectWithSessions;
 }
 
+export const formatDuration = (seconds: number) => {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  if (h <= 0) {
+    return `${m}min`;
+  }
+  return `${h}h ${m}min`;
+};
+
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const totalDuration = project.devSessions.reduce(
     (acc, session) => acc + (session.duration ?? 0),
     0
   );
-
-  const formatDuration = (seconds: number) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    return `${h}h ${m}min`;
-  };
 
   return (
     <Link

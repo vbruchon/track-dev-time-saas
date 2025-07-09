@@ -21,10 +21,6 @@ export function SidebarMenuLinkItem({
   const LucideIcon = Icons.icons[icon as keyof typeof Icons.icons];
   const pathname = usePathname();
 
-  console.log(
-    Object.keys(Icons.icons).filter((k) => k.toLowerCase().includes("home"))
-  );
-
   return (
     <SidebarMenuItem>
       <SidebarMenuButton tooltip={title} isActive={pathname === url} asChild>

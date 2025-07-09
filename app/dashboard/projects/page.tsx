@@ -1,6 +1,6 @@
+import { ProjectCard } from "@/components/features/dashboard/projects/project-card";
 import { getRequiredUser } from "@/lib/auth-session";
 import { prisma } from "@/lib/prisma";
-import { ProjectCard } from "./_components/project-card";
 
 export default async function ProjectsPage() {
   const user = await getRequiredUser();
