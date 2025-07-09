@@ -1,7 +1,11 @@
 import { getRequiredUser } from "@/lib/auth-session";
-import { ProjectWithSessions } from "@/utils/[projectId]/get-project-stats";
+import {
+  getProjectStats,
+  ProjectWithSessions,
+} from "@/utils/[projectId]/get-project-stats";
 import { prisma } from "@/lib/prisma";
 import { ProjectHeader } from "@/components/features/dashboard/projects/[projectId]/project-header";
+import { StatsOverviewSection } from "@/components/features/dashboard/projects/[projectId]/stats-overview-section";
 
 export default async function ProjectIdPage({
   params,
@@ -28,6 +32,8 @@ export default async function ProjectIdPage({
     orderBy: { startedAt: "desc" },
   });
 
+  const projectStats = getProjectStats(project);
+
   return (
     <>
       <ProjectHeader
@@ -36,6 +42,7 @@ export default async function ProjectIdPage({
         createdAt={project.createdAt}
         lastSession={lastDevSession}
       />
+      <StatsOverviewSection stats={projectStats} />
     </>
   );
 }
