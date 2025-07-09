@@ -6,6 +6,7 @@ import {
 import { prisma } from "@/lib/prisma";
 import { ProjectHeader } from "@/components/features/dashboard/projects/[projectId]/project-header";
 import { StatsOverviewSection } from "@/components/features/dashboard/projects/[projectId]/stats-overview-section";
+import { ProjectChartsSection } from "@/components/features/dashboard/projects/[projectId]/project-chart-section";
 
 export default async function ProjectIdPage({
   params,
@@ -43,6 +44,7 @@ export default async function ProjectIdPage({
         lastSession={lastDevSession}
       />
       <StatsOverviewSection stats={projectStats} />
+      <ProjectChartsSection devSessions={project.devSessions} />
     </>
   );
 }
