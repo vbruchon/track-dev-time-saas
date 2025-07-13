@@ -1,4 +1,4 @@
-import { DevSession, Pause, Project } from "@/generated";
+import { Category, DevSession, Pause, Project, Technology } from "@/generated";
 
 export type DevSessionWithPauses = DevSession & {
   pauses: Pause[];
@@ -6,6 +6,8 @@ export type DevSessionWithPauses = DevSession & {
 
 export type ProjectWithSessions = Project & {
   devSessions: DevSessionWithPauses[];
+  technologies: Technology[];
+  categories: Category[];
 };
 
 export type ProjectStats = {
@@ -15,7 +17,6 @@ export type ProjectStats = {
   longestSessionDuration: number;
   averagePausesPerSession: number;
   totalPauseDuration: number;
-  // totalPausesCount: number;
   averagePausesDuration: number;
   productivityRatio: number;
 };

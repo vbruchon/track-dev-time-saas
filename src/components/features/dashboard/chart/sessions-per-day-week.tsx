@@ -7,7 +7,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   countSessionsPerWeekday,
   PartialSession,
@@ -35,21 +34,16 @@ export const SessionsPerWeekdayChart = ({ devSessions }: Props) => {
   }));
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Day when you code</CardTitle>
-      </CardHeader>
-      <CardContent className="h-full">
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={data}>
-            <XAxis dataKey="day" ticks={allDays} />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
+    <div className="h-[300x]">
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={data}>
+          <XAxis dataKey="day" ticks={allDays} />
+          <YAxis allowDecimals={false} />
+          <Tooltip />
 
-            <Bar dataKey="count" fill="var(--primary)" />
-          </BarChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+          <Bar dataKey="count" fill="var(--primary)" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };

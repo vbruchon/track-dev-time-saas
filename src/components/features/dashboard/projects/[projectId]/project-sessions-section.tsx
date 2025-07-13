@@ -2,7 +2,7 @@ import { TableOfContents } from "lucide-react";
 import { SectionWrapper } from "./section-wrapper";
 import { DataTable } from "@/components/features/dashboard/data-table";
 import { sessionsColumns } from "./sessions-column";
-import { PartialSession } from "./project-time-chart";
+import { PartialSession } from "../../chart/project-time-chart";
 
 export function ProjectSessionsSection({
   devSessions,

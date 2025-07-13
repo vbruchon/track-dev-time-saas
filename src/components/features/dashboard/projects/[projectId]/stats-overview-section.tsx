@@ -1,7 +1,7 @@
 "use client";
 import { getStatsData } from "@/utils/[projectId]/stats-data";
 import { formatDuration } from "../project-card";
-import { StatCard } from "./stat-card";
+import { StatCard } from "../../stat-card";
 import { ProjectStats } from "@/utils/[projectId]/get-project-stats";
 import { SectionWrapper } from "./section-wrapper";
 import { Activity } from "lucide-react";
@@ -19,7 +19,7 @@ export const StatsOverviewSection = ({ stats }: StatsOverviewProps) => {
         {statsData.map(({ label, value, icon: Icon, className, format }) => (
           <StatCard
             key={label}
-            label={label}
+            title={label}
             value={
               format === "duration"
                 ? formatDuration(value as number)

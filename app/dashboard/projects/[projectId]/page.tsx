@@ -3,11 +3,12 @@ import {
   getProjectStats,
   ProjectWithSessions,
 } from "@/utils/[projectId]/get-project-stats";
-import { prisma } from "@/lib/prisma";
 import { ProjectHeader } from "@/components/features/dashboard/projects/[projectId]/project-header";
 import { StatsOverviewSection } from "@/components/features/dashboard/projects/[projectId]/stats-overview-section";
 import { ProjectChartsSection } from "@/components/features/dashboard/projects/[projectId]/project-chart-section";
 import { ProjectSessionsSection } from "@/components/features/dashboard/projects/[projectId]/project-sessions-section";
+import { getProjectWithSessions } from "@/lib/queries/dashboard/projects/get-project-with-sessions";
+import { getLastDevSessionByProject } from "@/lib/queries/dashboard/dev-sessions/get-last-dev-session-by-project";
 
 export default async function ProjectIdPage({
   params,
@@ -16,24 +17,13 @@ export default async function ProjectIdPage({
 }) {
   const { projectId } = await params;
   const user = await getRequiredUser();
+  const project: ProjectWithSessions = await getProjectWithSessions(
+    projectId,
+    user.id
+  );
+  console.log(project.technologies);
 
-  const project: ProjectWithSessions = await prisma.project.findUniqueOrThrow({
-    where: { id: projectId, userId: user.id },
-    include: {
-      devSessions: {
-        include: { pauses: true },
-        orderBy: {
-          startedAt: "desc",
-        },
-      },
-    },
-  });
-
-  const lastDevSession = await prisma.devSession.findFirst({
-    where: { projectId: project.id },
-    orderBy: { startedAt: "desc" },
-  });
-
+  const lastDevSession = await getLastDevSessionByProject(projectId);
   const projectStats = getProjectStats(project);
 
   return (
@@ -43,6 +33,8 @@ export default async function ProjectIdPage({
         projectName={project.name}
         createdAt={project.createdAt}
         lastSession={lastDevSession}
+        technologies={project.technologies}
+        categories={project.categories}
       />
       <StatsOverviewSection stats={projectStats} />
       <ProjectChartsSection devSessions={project.devSessions} />
