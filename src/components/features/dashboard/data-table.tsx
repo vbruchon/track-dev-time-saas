@@ -18,22 +18,29 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PaginationButton } from "./pagination-button";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  showPagination?: boolean;
+  element?: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  showPagination = true,
+  element,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    ...(showPagination
+      ? { getPaginationRowModel: getPaginationRowModel() }
+      : {}),
   });
 
   return (
@@ -83,14 +90,19 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  You haven’t tracked any {element} yet. To get started, please
+                  check our{" "}
+                  <Link href="/dashboard/docs" className="text-indigo-500">
+                    documentation
+                  </Link>{" "}
+                  to track your first {element}.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
       </div>
-      <PaginationButton table={table} />
+      {showPagination && <PaginationButton table={table} />}{" "}
     </div>
   );
 }

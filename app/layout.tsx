@@ -33,6 +33,7 @@ export default function RootLayout({
           `${geistSans.variable} ${geistMono.variable} antialiased`,
           "min-h-full"
         )}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

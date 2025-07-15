@@ -41,3 +41,9 @@ export const getUserFromRequest = async (req: NextRequest) => {
 
   return user;
 };
+
+export const getUserId = async () => {
+  const user = await getRequiredUser();
+
+  return user.id;
+};
