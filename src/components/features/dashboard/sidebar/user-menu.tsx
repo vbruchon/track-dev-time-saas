@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggleMenu } from "@/components/features/theme/theme-toggle-menu";
+import Link from "next/link";
 
 export function UserMenu({ user }: { user: User | null }) {
   return (
@@ -41,9 +42,11 @@ export function UserMenu({ user }: { user: User | null }) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <UserIcon className="mr-2 size-5 hover:text-muted-foreground" />
-          Account
+        <DropdownMenuItem asChild>
+          <Link href={"/dashboard/account"}>
+            <UserIcon className="mr-2 size-5 hover:text-muted-foreground" />
+            Account
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <ThemeToggleMenu />

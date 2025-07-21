@@ -9,6 +9,35 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  user: {
+    changeEmail: {
+      enabled: true,
+      sendChangeEmailVerification: async (
+        { user, newEmail, url, token },
+        request
+      ) => {
+        await resend.emails.send({
+          from: "contact@vivianb.fr",
+          to: user.email,
+          subject: "Confirm your email change request",
+          text: `
+Hi ${user.name ?? "there"},
+
+We received a request to change the email address for your Track Dev Time account to: ${newEmail}.
+
+If you made this request, please confirm it by clicking the link below:
+
+${url}
+
+If you did not request this change, you can safely ignore this email — your email address will remain unchanged.
+
+Thanks,  
+The Track Dev Time Team
+    `.trim(),
+        });
+      },
+    },
+  },
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url }) => {

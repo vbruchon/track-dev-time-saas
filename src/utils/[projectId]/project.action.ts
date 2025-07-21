@@ -11,6 +11,7 @@ const getProject = async (projectId: string) => {
   });
   return project;
 };
+
 export const deleteProject = async (projectId: string) => {
   const project = getProject(projectId);
 
