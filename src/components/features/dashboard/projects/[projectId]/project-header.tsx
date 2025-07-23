@@ -2,6 +2,8 @@ import { Calendar, Code2 } from "lucide-react";
 import { Category, DevSession, Technology } from "@/generated";
 import { DeleteButtonWithConfirmation } from "../../delete-button-with-confirmation";
 import { Badge } from "@/components/ui/badge";
+import { ManageCategoryDialog } from "./manage-category-dialog";
+import { ManageTechnologyDialog } from "./manage-technology-dialog";
 
 type ProjectHeaderProps = {
   projectName: string;
@@ -12,7 +14,7 @@ type ProjectHeaderProps = {
   categories: Category[];
 };
 
-export const ProjectHeader = ({
+export const ProjectHeader = async ({
   projectName,
   projectId,
   createdAt,
@@ -44,36 +46,50 @@ export const ProjectHeader = ({
       </div>
       <div className="space-y-4">
         {/* Categories */}
-        {categories.length > 0 && (
-          <div className="flex items-center gap-2 text-sm">
-            Categories:
-            <div className="flex flex-wrap items-center gap-2">
-              {categories.map((cat) => (
-                <Badge variant={"outline"} key={cat.id}>
-                  {cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}
-                </Badge>
-              ))}
+        <div className="flex items-center gap-2">
+          {categories.length > 0 && (
+            <div className="flex items-center gap-2 text-sm">
+              Categories:
+              <div className="flex flex-wrap items-center gap-2">
+                {categories.map((cat) => (
+                  <Badge variant={"outline"} key={cat.id}>
+                    {cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+          <ManageCategoryDialog
+            projectId={projectId}
+            projectCategories={categories}
+          />
+        </div>
 
         {/* Technologies */}
-        {technologies.length > 0 && (
+        <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 text-sm">
             Technologies:
-            <div className="flex flex-wrap items-center gap-2">
-              {technologies.map((tech) => (
-                <Badge
-                  variant={"outline"}
-                  key={tech.id}
-                  className="border-primary"
-                >
-                  {tech.name}
-                </Badge>
-              ))}
-            </div>
+            {technologies.length > 0 ? (
+              <div className="flex flex-wrap items-center gap-2">
+                {technologies.map((tech) => (
+                  <Badge
+                    variant={"outline"}
+                    key={tech.id}
+                    className="border-primary"
+                  >
+                    {tech.name}
+                  </Badge>
+                ))}
+              </div>
+            ) : (
+              <p>Add technology</p>
+            )}
           </div>
-        )}
+          <ManageTechnologyDialog
+            projectId={projectId}
+            projectTechnologies={technologies}
+          />
+        </div>
       </div>
     </div>
   );

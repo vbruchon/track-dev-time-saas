@@ -48,10 +48,17 @@ model Project {
   @@unique([userId, name])
 }
 
+enum Categories {
+  side_project
+  client
+  urgent
+  indie
+}
+
 model Category {
-  id       String    @id @default(uuid())
-  name     String    @unique
-  projects Project[] @relation("ProjectCategories")
+  id       String     @id @default(uuid())
+  name     Categories
+  projects Project[]  @relation("ProjectCategories")
 }
 
 model Technology {

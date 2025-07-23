@@ -21,7 +21,6 @@ export default async function ProjectIdPage({
     projectId,
     user.id
   );
-  console.log(project.technologies);
 
   const lastDevSession = await getLastDevSessionByProject(projectId);
   const projectStats = getProjectStats(project);
