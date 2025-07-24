@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { ToggleVisibilityButton } from "./toogle-visibility-button";
+import { ToggleVisibilityButton } from "../button/toogle-visibility-button";
 import { Control, FieldPath, FieldValues } from "react-hook-form";
 
 interface PasswordFieldProps<T extends FieldValues> {

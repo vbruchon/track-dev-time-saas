@@ -1,0 +1,131 @@
+# Documentation
+
+track-dev-time is a comprehensive tool designed to automatically track your development sessions and provide insightful analytics via a powerful SaaS dashboard.
+
+## Introduction
+
+track-dev-time combines a seamless CLI experience with a cloud-based dashboard to help developers monitor their coding habits effortlessly.
+
+- **Automatic Session Tracking:** As soon as you start your development environment (e.g., `npm run dev`), the CLI automatically tracks your coding sessions without any manual input.
+- **Smart Session Management:** It handles starting, pausing, and stopping sessions based on your development workflow.
+- **Data Synchronization & Analytics:** Session data is saved locally and synchronized with the SaaS platform, where you can view detailed statistics, trends, and motivational insights to improve your productivity.
+
+This tool is ideal for developers looking to understand how they spend their time coding, identify productivity patterns, and stay motivated through personalized goals and analytics.
+
+## Features
+
+- Automatic session tracking on dev server start
+- Intelligent session pause/resume management
+- Local JSON session storage with automatic sync to SaaS
+- Secure API key authentication
+- Cross-project synchronization
+- Dashboard with insights, trends, and motivational goals
+
+## Installation
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- An active internet connection to sync data with the SaaS dashboard
+
+### Installing the CLI
+
+You can install **track-dev-time** using any of the following package managers:
+
+**npm**
+
+```bash
+  npm install track-dev-time --save-dev
+```
+
+**pnpm**
+
+```bash
+  pnpm add -D track-dev-time
+```
+
+**yarn**
+
+```bash
+  yarn add track-dev-time --dev
+```
+
+### Setup
+
+Once installed, run the setup command to automatically configure your project:
+
+**npm**
+
+```bash
+  npx track-dev-time setup
+```
+
+**pnpm**
+
+```bash
+pnpm dlx track-dev-time setup
+```
+
+**yarn**
+
+```bash
+yarn track-dev-time setup
+```
+
+This will:
+
+- Update your package.json to run the tracker and dev server concurrently.
+- Add .track-dev-time/ to your .gitignore to exclude session files from version control.
+
+ℹ️ track-dev-time uses concurrently under the hood to run your server and tracker in parallel.
+No need to install it manually — it’s bundled with the CLI.
+
+## How It Works
+
+Once the package is installed and configured using the setup command, track-dev-time automatically hooks into your development workflow. Every time you run your project’s development script, time tracking is launched in parallel with your server.
+
+## Connecting the CLI to the Dashboard
+
+To enable synchronization between your local development sessions and the track-dev-time SaaS dashboard, you need to link your CLI installation to your account.
+
+### Step 1: Get your API key
+
+<ApiKeyForm />
+
+### Step 2: Authenticate the CLI
+
+In your terminal, run the following command inside your project directory:
+
+```bash
+track-dev-time auth --apikey <yourApiKey>
+```
+
+The API key is stored globally on your computer. Each time a session needs to be
+sent, the CLI will check the stored API key automatically.
+
+<ApiKeyInfoAlert />
+
+## Using the CLI before signing up for the SaaS
+
+If you use the track-dev-time CLI locally before registering on the dashboard, you can still synchronize your projects and sessions later. Run the following command inside each tracked project:
+
+```bash
+track-dev-time sync
+```
+
+## CLI Commands
+
+<CommandsCliTable />
+
+## More about the CLI
+
+This documentation covers how the CLI integrates with the SaaS dashboard.
+
+For detailed usage, advanced configuration, and all available commands of the CLI itself, please refer to the dedicated CLI documentation:
+
+👉 [track-dev-time CLI](https://www.npmjs.com/package/track-dev-time)
+
+## FAQ
+
+<FAQDocs />

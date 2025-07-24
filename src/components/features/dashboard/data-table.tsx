@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { PaginationButton } from "./pagination-button";
+import { PaginationButton } from "./button/pagination-button";
 import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {

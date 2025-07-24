@@ -1,7 +1,7 @@
 "use client";
 
 import { Sparkles } from "lucide-react";
-import { IconTooltipButton } from "../icon-tooltip-button";
+import { IconTooltipButton } from "./icon-tooltip-button";
 
 export const GenerateButton = ({
   onGenerate,

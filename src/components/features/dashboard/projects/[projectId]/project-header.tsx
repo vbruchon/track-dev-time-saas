@@ -1,6 +1,6 @@
 import { Calendar, Code2 } from "lucide-react";
 import { Category, DevSession, Technology } from "@/generated";
-import { DeleteButtonWithConfirmation } from "../../delete-button-with-confirmation";
+import { DeleteButtonWithConfirmation } from "../../button/delete-button-with-confirmation";
 import { Badge } from "@/components/ui/badge";
 import { ManageCategoryDialog } from "./manage-category-dialog";
 import { ManageTechnologyDialog } from "./manage-technology-dialog";

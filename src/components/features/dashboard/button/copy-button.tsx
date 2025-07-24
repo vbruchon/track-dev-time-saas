@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { IconTooltipButton } from "../icon-tooltip-button";
+import { IconTooltipButton } from "./icon-tooltip-button";
 
-export const CopyButton = ({ value }: { value: string }) => {
+export const CopyButton = ({
+  value,
+  className,
+}: {
+  value: string;
+  className?: string;
+}) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -24,6 +30,7 @@ export const CopyButton = ({ value }: { value: string }) => {
       }
       onClick={handleCopy}
       tooltip={isCopied ? "Copied to clipboard!" : "Copy to clipboard"}
+      className={className}
     />
   );
 };

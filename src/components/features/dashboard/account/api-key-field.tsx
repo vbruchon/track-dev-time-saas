@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { CopyButton } from "./copy-button";
-import { ToggleVisibilityButton } from "./toogle-visibility-button";
-import { GenerateButton } from "./generate-button";
+import { CopyButton } from "../button/copy-button";
+import { ToggleVisibilityButton } from "../button/toogle-visibility-button";
+import { GenerateButton } from "../button/generate-button";
 import { generateApiKey } from "@/lib/actions/generate-api-key.action";
 import Link from "next/link";
 import { Control } from "react-hook-form";

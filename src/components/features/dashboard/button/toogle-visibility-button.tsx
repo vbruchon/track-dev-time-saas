@@ -1,7 +1,7 @@
 "use client";
 
 import { Eye, EyeOff } from "lucide-react";
-import { IconTooltipButton } from "../icon-tooltip-button";
+import { IconTooltipButton } from "./icon-tooltip-button";
 
 type ToggleVisibilityButtonProps = {
   value: boolean;

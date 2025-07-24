@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
   },
+  pageExtensions: ["ts", "tsx"],
+  transpilePackages: ["next-mdx-remote"],
 };
 
 export default nextConfig;
