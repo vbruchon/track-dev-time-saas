@@ -4,10 +4,10 @@ import { getRequiredUser } from "@/lib/auth-session";
 import { prisma } from "@/lib/prisma";
 
 export default async function AccountPage() {
-  const user = await getRequiredUser();
-  const userWithMyElement = await prisma.user.findFirstOrThrow({
+  const requiredUser = await getRequiredUser();
+  const user = await prisma.user.findFirstOrThrow({
     where: {
-      id: user.id,
+      id: requiredUser.id,
     },
   });
   return (
@@ -15,7 +15,7 @@ export default async function AccountPage() {
       <h1 className="text-2xl font-bold tracking-tight">Account Settings</h1>
       <Card>
         <CardContent>
-          <AccountForm user={userWithMyElement} />
+          <AccountForm user={user} />
         </CardContent>
       </Card>
     </div>

@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default async function ProjectsPage() {
   const user = await getRequiredUser();
-
   const projects = await getAllProjects(user.id);
 
   return (

@@ -39,7 +39,7 @@ export const MDXComponents = {
   h3: ({ children, ...props }) => {
     const id = getId(children);
     return (
-      <h3 id={id} className="text-xl font-semibold mt-8 mb-6" {...props}>
+      <h3 id={id} className="text-xl font-semibold mt-8 mb-4" {...props}>
         {children}
       </h3>
     );
