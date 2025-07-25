@@ -27,7 +27,7 @@ export const ProjectHighlightCard = ({
           <CardAction className="mx-auto mt-auto mb-2">
             <Link
               href={`/dashboard/projects/${projectId}`}
-              className="flex items-center gap-2 text-blue-500"
+              className="flex items-center gap-2 text-primary"
             >
               <Eye className="w-4 h-4" />
               Go to project

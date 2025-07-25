@@ -13,7 +13,7 @@ export const StatCard = ({ title, value, icon, className }: StatCardProps) => {
   return (
     <Card className={cn(" shadow-sm", className)}>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-muted-foreground">
+        <CardTitle className="flex items-center gap-2">
           {icon && <span>{icon}</span>}
           {title}
         </CardTitle>

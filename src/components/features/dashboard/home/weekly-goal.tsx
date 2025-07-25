@@ -16,7 +16,7 @@ export const WeeklyGoal = async () => {
     <div className="relative  max-w-md sm:max-w-lg sm:flex sm:items-center ">
       <div className="flex flex-col gap-2 flex-1  sm:gap-4">
         <div className="flex gap-2">
-          <p className="text-muted-foreground text-sm whitespace-nowrap">
+          <p className="text-sm whitespace-nowrap">
             Weekly goal: {formattedTotal} / {formattedGoal}
           </p>
           <UpdateWeeklyGoal />

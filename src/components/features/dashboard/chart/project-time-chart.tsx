@@ -14,6 +14,8 @@ import { useMemo } from "react";
 
 import { DevSession } from "@/generated";
 import { groupSessions } from "@/utils/[projectId]/chart/group-sessions";
+import { formatDuration } from "../projects/project-card";
+import { CustomTooltip } from "./custom-tooltip";
 
 export type PartialSession = Omit<DevSession, "userId"> & {
   startedAt: Date;
@@ -34,16 +36,23 @@ export function ProjectTimeChart({ devSessions, tab }: Props) {
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={datasets[tab]}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" stroke="oklch(0.8452 0 0)" />
+        <XAxis dataKey="date" />
         <YAxis
           label={{
             value: "Hours",
             angle: -90,
             position: "insideLeft",
           }}
-          stroke="oklch(0.8452 0 0)"
         />
-        <Tooltip />
+        <Tooltip
+          content={
+            <CustomTooltip
+              valueFormatter={(value) => formatDuration(value * 3600)}
+              nameMap={{ duration: "Temps passé" }}
+            />
+          }
+        />
+
         <Line
           type="monotone"
           dataKey="duration"

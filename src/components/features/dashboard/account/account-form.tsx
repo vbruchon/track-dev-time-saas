@@ -137,7 +137,7 @@ export const AccountForm = ({ user }: AccountFormProps) => {
             control={form.control}
             name="weeklyGoal"
             render={({ field }) => (
-              <FormItem className="flex items-center gap-4">
+              <FormItem>
                 <FormLabel>Your Weekly Goal (hours)</FormLabel>
                 <EditableField
                   type="number"

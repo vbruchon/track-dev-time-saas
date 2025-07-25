@@ -39,7 +39,6 @@ export function TableOfContents() {
   }, []);
 
   const handleClick = (id: string) => () => {
-    // force l'état actif même si le hash ne change pas (cas du même lien)
     setActiveId(id);
   };
 
@@ -56,10 +55,10 @@ export function TableOfContents() {
               href={`#${id}`}
               onClick={handleClick(id)}
               className={cn(
-                "block border-l py-1.5 hover:text-accent-foreground transition-colors",
+                "block border-l py-1.5 hover:text-primary transition-colors",
                 activeId === id
                   ? "text-primary font-semibold border-primary"
-                  : "text-muted-foreground"
+                  : "text-foreground"
               )}
               style={{
                 paddingInlineStart: `${Math.max(level - 1, 0) * 0.75}rem`,

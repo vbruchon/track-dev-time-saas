@@ -28,7 +28,7 @@ export const MDXComponents = {
     return (
       <h2
         id={id}
-        className="scroll-mt-24 text-2xl font-bold mt-12 mb-4 text-foreground"
+        className="scroll-mt-24 text-2xl font-bold mt-12 mb-4"
         {...props}
       >
         {children}
@@ -83,7 +83,7 @@ export const MDXComponents = {
     </ul>
   ),
   li: ({ children, ...props }) => (
-    <li className="text-base text-muted-foreground" {...props}>
+    <li className="text-base" {...props}>
       {children}
     </li>
   ),
@@ -96,11 +96,7 @@ export const MDXComponents = {
       {children}
     </Link>
   ),
-  strong: ({ children, ...props }) => (
-    <strong className="text-muted-foreground" {...props}>
-      {children}
-    </strong>
-  ),
+  strong: ({ children, ...props }) => <strong {...props}>{children}</strong>,
   CommandsCliTable,
   FAQDocs,
   ApiKeyForm: ApiKeyFormServer,

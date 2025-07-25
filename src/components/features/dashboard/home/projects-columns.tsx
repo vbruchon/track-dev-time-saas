@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 import { DevSession, Project } from "@/generated";
 import { formatDuration } from "../projects/project-card";
-import { getDate, getTime } from "./recent-sessions-columns";
+import { getDate } from "./recent-sessions-columns";
 import { Eye } from "lucide-react";
 
 type ProjectTableType = Project & {
@@ -22,7 +22,7 @@ export const projectsColumns: ColumnDef<ProjectTableType>[] = [
         <div className="flex items-center gap-2">
           <span>{name}</span>
           {isTopProject && (
-            <span className="text-sm mx-auto text-green-600 font-semibold bg-muted-foreground px-2 py-0.5 rounded">
+            <span className="text-sm mx-auto border border-primary font-semibold bg-muted px-2 py-0.5 rounded">
               Top project
             </span>
           )}
@@ -87,7 +87,7 @@ export const projectsColumns: ColumnDef<ProjectTableType>[] = [
     cell: ({ row }) => (
       <div className="flex justify-center">
         <Link href={`/dashboard/projects/${row.original.id}`}>
-          <Eye className="size-4 text-muted-foreground hover:text-primary transition" />
+          <Eye className="size-4 text-foreground hover:text-primary transition" />
         </Link>
       </div>
     ),

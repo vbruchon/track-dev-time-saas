@@ -81,7 +81,7 @@ export const ApiKeyField = ({ control, initialApiKey }: ApiKeyFieldProps) => {
 
             <FormMessage />
 
-            <FormDescription className="text-muted-foreground text-xs ml-2 mt-2">
+            <FormDescription className="text-foreground text-xs ml-2 mt-2">
               Use this API key to link your CLI projects to your dashboard. For
               setup instructions, follow the{" "}
               <Link

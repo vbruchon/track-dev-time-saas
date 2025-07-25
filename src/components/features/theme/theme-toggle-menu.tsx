@@ -1,12 +1,12 @@
 "use client";
 
-import { ChevronRight, Laptop, Moon, Sun, SunMoon } from "lucide-react";
+import { Laptop, Moon, Sun, SunMoon } from "lucide-react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 
@@ -14,13 +14,12 @@ export const ThemeToggleMenu = () => {
   const { setTheme } = useTheme();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 w-full">
+    <DropdownMenuSub>
+      <DropdownMenuSubTrigger className="flex items-center gap-2 w-full">
         <SunMoon className="mr-2 size-5 hover:text-muted-foreground" />
         Theme
-        <ChevronRight className="ml-auto hover:text-muted-foreground" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side="right" className="min-w-50 ml-2">
+      </DropdownMenuSubTrigger>
+      <DropdownMenuSubContent className="min-w-50 ml-2">
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           <Moon className="mr-2 size-5 hover:text-muted-foreground" />
           Darkmode
@@ -34,7 +33,7 @@ export const ThemeToggleMenu = () => {
           <Laptop className="mr-2 size-5 hover:text-muted-foreground" />
           Systeme
         </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </DropdownMenuSubContent>
+    </DropdownMenuSub>
   );
 };

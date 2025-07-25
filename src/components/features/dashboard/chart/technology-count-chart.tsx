@@ -8,6 +8,7 @@ import {
   Bar,
   Cell,
 } from "recharts";
+import { CustomTooltip } from "./custom-tooltip";
 
 const COLORS = [
   "var(--chart-1)",
@@ -41,7 +42,15 @@ export const TechnologyCountChart = ({ data }: Props) => {
             width={150}
             tick={{ fontSize: 14 }}
           />
-          <Tooltip />
+          <Tooltip
+            content={
+              <CustomTooltip
+                nameMap={{ count: "Project" }}
+                valueFormatter={(value) => `${value}`}
+                labelClassName="text-primary font-semibold"
+              />
+            }
+          />
           <Bar dataKey="count" fill="#8884d8" barSize={20}>
             {(hasData ? data : fallbackData).map((entry, index) => (
               <Cell

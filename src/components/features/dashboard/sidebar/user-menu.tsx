@@ -20,11 +20,11 @@ import Link from "next/link";
 export function UserMenu({ user }: { user: User | null }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="inline-flex items-center w-full p-2 rounded-xl hover:bg-muted ">
+      <DropdownMenuTrigger className="inline-flex items-center w-full p-2 rounded-xl hover:bg-sidebar-accent ">
         <UserAvatar user={user} />
         <ChevronsUpDown className="ml-auto size-4" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent side="right" className="min-w-50">
+      <DropdownMenuContent side="right" className="!max-w-2xl">
         <DropdownMenuLabel className="flex items-center gap-2">
           <Avatar>
             <AvatarImage
@@ -42,7 +42,7 @@ export function UserMenu({ user }: { user: User | null }) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem className="!hover:bg-sidebar-accent" asChild>
           <Link href={"/dashboard/account"}>
             <UserIcon className="mr-2 size-5 hover:text-muted-foreground" />
             Account

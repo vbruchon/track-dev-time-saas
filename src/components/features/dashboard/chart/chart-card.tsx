@@ -17,9 +17,7 @@ export const ChartCard = ({
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle className="text-base text-muted-foreground">
-          {title}
-        </CardTitle>
+        <CardTitle className="text-base">{title}</CardTitle>
         <div className="mt-4">{headerContent}</div>
       </CardHeader>
       <CardContent className="h-[300px]">{children}</CardContent>

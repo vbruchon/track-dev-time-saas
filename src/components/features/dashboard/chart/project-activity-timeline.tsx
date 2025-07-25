@@ -9,6 +9,7 @@ import {
   Bar,
 } from "recharts";
 import { formatDuration } from "../projects/project-card";
+import { CustomTooltip } from "./custom-tooltip";
 
 const COLORS = [
   "var(--chart-1)",
@@ -45,10 +46,13 @@ export const ProjectActivityTimeline = ({ data, categories }: Props) => {
           <XAxis dataKey="date" />
           <YAxis tickFormatter={(val) => `${(val * 100).toFixed(0)}%`} />
           <Tooltip
-            formatter={(value: number) =>
-              typeof value === "number" ? formatDuration(value) : ""
+            content={
+              <CustomTooltip
+                valueFormatter={(value) => formatDuration(value * 3600)}
+              />
             }
           />
+
           <Legend />
           {categories.map((cat, i) => (
             <Bar

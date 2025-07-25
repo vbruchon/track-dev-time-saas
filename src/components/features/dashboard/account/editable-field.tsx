@@ -58,7 +58,7 @@ export const EditableField = ({
           })}
           onClick={() => setIsEditing(true)}
         >
-          <span className="truncate text-muted-foreground">
+          <span className="truncate">
             {value || placeholder || "Click to edit"}
           </span>
           {isEditable && (

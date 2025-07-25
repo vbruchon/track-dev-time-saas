@@ -11,6 +11,7 @@ import {
   countSessionsPerWeekday,
   PartialSession,
 } from "@/utils/[projectId]/chart/session-analytics";
+import { CustomTooltip } from "./custom-tooltip";
 
 type Props = {
   devSessions: PartialSession[];
@@ -39,7 +40,14 @@ export const SessionsPerWeekdayChart = ({ devSessions }: Props) => {
         <BarChart data={data}>
           <XAxis dataKey="day" ticks={allDays} />
           <YAxis allowDecimals={false} />
-          <Tooltip />
+          <Tooltip
+            content={
+              <CustomTooltip
+                valueFormatter={(value) => `${value}`}
+                nameMap={{ count: "Sessions" }}
+              />
+            }
+          />
 
           <Bar dataKey="count" fill="var(--primary)" />
         </BarChart>

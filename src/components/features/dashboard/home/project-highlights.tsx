@@ -34,18 +34,14 @@ export const ProjectHighlights = async () => {
         {topProject ? (
           <>
             <p className="font-semibold">{topProject.name}</p>
-            <p className="text-sm text-muted-foreground">
-              Total time: {topProject.totalTime}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Sessions: {topProject.sessions}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Last session: {topProject.lastSession}
-            </p>
+            <div className="space-y-2 mt-2">
+              <p className="text-sm">Total time: {topProject.totalTime}</p>
+              <p className="text-sm">Sessions: {topProject.sessions}</p>
+              <p className="text-sm">Last session: {topProject.lastSession}</p>
+            </div>
           </>
         ) : (
-          <p className="text-sm text-muted-foreground">No project data</p>
+          <p className="text-sm">No project data</p>
         )}
       </ProjectHighlightCard>
 
@@ -60,7 +56,7 @@ export const ProjectHighlights = async () => {
             <div className="flex gap-2 flex-wrap mt-1">
               <Badge
                 variant="outline"
-                className="flex items-center gap-1 px-2 py-1 text-xs"
+                className="flex items-center gap-1 px-2 py-1 text-sm"
               >
                 <Code2 className="w-4 h-4" />
                 {lastProjectCreated.devSessions.length} session
@@ -68,20 +64,18 @@ export const ProjectHighlights = async () => {
               </Badge>
               <Badge
                 variant="outline"
-                className="flex items-center gap-1 px-2 py-1 text-xs"
+                className="flex items-center gap-1 px-2 py-1 text-sm"
               >
                 <Clock className="w-4 h-4" />
                 {formatDuration(totalDuration)}
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-xs mt-2">
               Created at: {lastProjectCreated.createdAt.toLocaleDateString()}
             </p>
           </>
         ) : (
-          <p className="text-sm text-muted-foreground">
-            No project created yet
-          </p>
+          <p className="text-sm">No project created yet</p>
         )}
       </ProjectHighlightCard>
     </div>

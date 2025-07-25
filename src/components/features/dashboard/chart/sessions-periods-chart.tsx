@@ -13,6 +13,7 @@ import {
   PartialSession,
 } from "@/utils/[projectId]/chart/session-analytics";
 import { renderCustomizedLabel } from "@/utils/[projectId]/chart/render-customized-label";
+import { CustomTooltip } from "./custom-tooltip";
 
 const COLORS = [
   "var(--chart-1)",
@@ -44,7 +45,14 @@ export const SessionPeriodChart = ({ devSessions }: Props) => {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Tooltip />
+        <Tooltip
+          content={
+            <CustomTooltip
+              valueFormatter={(value) => `${value} session(s)`}
+              nameMap={{ count: "Sessions" }}
+            />
+          }
+        />
         <Legend verticalAlign="bottom" height={36} />
       </PieChart>
     </ResponsiveContainer>
