@@ -20,7 +20,7 @@ export const sendFeedBack = async (data: FeedbackFormSchemaType) => {
   const { feedback } = parsed.data;
   const userEmail = user?.email ?? "contact@vivianb.fr";
 
-  return await await resend.emails.send({
+  return await resend.emails.send({
     from: userEmail,
     to: "contact@vivianb.fr",
     subject: "New feedback from Track Dev Time",
