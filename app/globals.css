@@ -77,11 +77,12 @@
   --border: oklch(0.4461 0.0263 256.8018);
   --input: oklch(0.4461 0.0263 256.8018);
   --ring: oklch(0.7729 0.1535 163.2231);
-  --chart-1: oklch(0.7199 0.2427 142.2828);
-  --chart-2: oklch(0.7845 0.1325 181.912);
-  --chart-3: oklch(0.7227 0.192 149.5793);
-  --chart-4: oklch(0.6959 0.1491 162.4796);
-  --chart-5: oklch(0.596 0.1274 163.2254);
+  --chart-1: oklch(0.75 0.2 145); /* Vert clair saturé */
+  --chart-2: oklch(0.68 0.18 150); /* Vert moyen équilibré */
+  --chart-3: oklch(0.6 0.15 160); /* Vert un peu plus froid */
+  --chart-4: oklch(0.55 0.12 170); /* Touche d'émeraude/menthe */
+  --chart-5: oklch(0.5 0.1 180); /* Vert-bleu profond */
+
   --sidebar: oklch(0.2795 0.0368 260.031);
   --sidebar-foreground: oklch(0.8717 0.0093 258.3382);
   --sidebar-primary: oklch(0.7729 0.1535 163.2231);
