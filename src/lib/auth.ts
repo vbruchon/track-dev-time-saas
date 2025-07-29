@@ -4,6 +4,12 @@ import { prisma } from "./prisma";
 import { magicLink } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { resend } from "./resend";
+import { stripe } from "@better-auth/stripe";
+import Stripe from "stripe";
+
+const stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-06-30.basil",
+});
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -87,6 +93,28 @@ The Track Dev Time Team
         });
       },
     }),
+    stripe({
+      stripeClient,
+      stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET!,
+      createCustomerOnSignUp: true,
+      subscription: {
+        enabled: true,
+        authorizeReference: async ({ user, referenceId }) => {
+          return user.id === referenceId;
+        },
+        plans: [
+          {
+            name: "pro_monthly",
+            priceId: process.env.STRIPE_PRO_MONTHLY_PRICE_ID!,
+          },
+          {
+            name: "pro_yearly",
+            priceId: process.env.STRIPE_PRO_YEARLY_PRICE_ID!,
+          },
+        ],
+      },
+    }),
+
     nextCookies(),
   ],
 });

@@ -27,6 +27,8 @@ model User {
   sessions Session[]
   projects Project[]
 
+  stripeCustomerId String? @unique
+
   @@map("user")
 }
 
@@ -136,4 +138,24 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum SubscriptionPlan {
+  pro_monthly
+  pro_yearly
+}
+
+model Subscription {
+  id                   String           @id @default(uuid())
+  plan                 SubscriptionPlan
+  referenceId          String // par défaut userId
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  status               String
+  periodStart          DateTime?
+  periodEnd            DateTime?
+  cancelAtPeriodEnd    Boolean?
+  seats                Int?
+  trialStart           DateTime?
+  trialEnd             DateTime?
 }

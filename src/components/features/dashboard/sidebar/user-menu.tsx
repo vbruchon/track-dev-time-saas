@@ -17,7 +17,7 @@ import {
 import { ThemeToggleMenu } from "@/components/features/theme/theme-toggle-menu";
 import Link from "next/link";
 
-export function UserMenu({ user }: { user: User | null }) {
+export const UserMenu = ({ user }: { user: User }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="inline-flex items-center w-full p-2 rounded-xl hover:bg-sidebar-accent ">
@@ -58,4 +58,4 @@ export function UserMenu({ user }: { user: User | null }) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};

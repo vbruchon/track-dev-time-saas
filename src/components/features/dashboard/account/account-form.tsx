@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { User } from "@/generated";
+import { Subscription, User } from "@/generated";
 import { updateUserAccount } from "@/lib/actions/account.action";
 import {
   accountFormSchema,
@@ -25,12 +25,14 @@ import { LoadingButton } from "@/components/loading-button";
 import { UpdateUserCredentialsDialog } from "./update-user-credentials-dialog";
 import { StatusIndicatorTooltip } from "../status-indicator-tooltip";
 import { VerifyEmailButton } from "./verify-email-button";
+import { SubscriptionInfo } from "./subscribtion-info";
 
 type AccountFormProps = {
   user: User;
+  subscription: Subscription | null;
 };
 
-export const AccountForm = ({ user }: AccountFormProps) => {
+export const AccountForm = ({ user, subscription }: AccountFormProps) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -162,6 +164,7 @@ export const AccountForm = ({ user }: AccountFormProps) => {
       </Form>
       <UpdateUserCredentialsDialog type="email" currentEmail={user.email} />
       <UpdateUserCredentialsDialog type="password" />
+      <SubscriptionInfo subscription={subscription} />
     </>
   );
 };

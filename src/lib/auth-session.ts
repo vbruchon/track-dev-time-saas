@@ -21,7 +21,13 @@ export const getUser = async () => {
 };
 
 export const getRequiredUser = async () => {
-  const user = await getUser();
+  const userSession = await getUser();
+
+  if (!userSession) unauthorized();
+
+  const user = await prisma.user.findUnique({
+    where: { id: userSession.id },
+  });
 
   if (!user) unauthorized();
 

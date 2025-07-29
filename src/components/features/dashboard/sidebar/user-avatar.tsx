@@ -3,7 +3,7 @@ import { useSidebar } from "@/components/ui/sidebar";
 
 import { User } from "better-auth";
 
-export const UserAvatar = ({ user }: { user: User | null }) => {
+export const UserAvatar = ({ user }: { user: User }) => {
   const { state } = useSidebar();
   if (state === "expanded") {
     return (

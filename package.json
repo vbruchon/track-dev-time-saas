@@ -2,16 +2,19 @@
   "name": "track-dev-time-saas",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "concurrently -n server,track -c ,green \"next dev --turbopack\" \"track-dev-time start\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "trial:emails": "tsx src/lib/cron/send-trial-email.ts"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@better-auth/stripe": "^1.3.4",
     "@hookform/resolvers": "^5.1.1",
     "@mdx-js/react": "^3.1.0",
     "@prisma/client": "6.9.0",
@@ -25,10 +28,11 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tanstack/react-table": "^8.21.3",
-    "better-auth": "^1.2.9",
+    "better-auth": "^1.3.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -44,6 +48,7 @@
     "recharts": "^2.15.4",
     "resend": "^4.6.0",
     "sonner": "^2.0.5",
+    "stripe": "^18.0.0",
     "swr": "^2.3.4",
     "tailwind-merge": "^3.3.1",
     "zod": "^3.25.64"
@@ -63,6 +68,7 @@
     "track-dev-time": "^1.0.3",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5.8.3"
   },
