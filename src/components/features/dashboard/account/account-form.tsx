@@ -52,8 +52,6 @@ export const AccountForm = ({ user, subscription }: AccountFormProps) => {
   });
 
   const onSubmit = async (values: AccountFormSchemaType) => {
-    console.log(values);
-
     setLoading(true);
     try {
       await updateUserAccount(values);

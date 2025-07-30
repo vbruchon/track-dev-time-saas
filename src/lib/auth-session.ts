@@ -36,7 +36,6 @@ export const getRequiredUser = async ({ redirectToSubscribe = true } = {}) => {
   const userSubscription = await getUserSubscription(user.id);
   const isPro = userSubscription?.status === "active";
   const isInTrial = addDays(user.createdAt, 7) > new Date();
-  console.log({ userSubscription, isPro, isInTrial });
 
   if (!isPro && !isInTrial && redirectToSubscribe) {
     return redirect("/subscribe");
