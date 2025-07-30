@@ -5,7 +5,7 @@ import { PricingSection } from "@/components/features/dashboard/subscribe/pricin
 import { prisma } from "@/lib/prisma";
 
 export default async function SubscribePage() {
-  const user = await getRequiredUser();
+  const user = await getRequiredUser({ redirectToSubscribe: false });
   const userSubscribe = await prisma.subscription.findFirst({
     where: { referenceId: user.id },
   });

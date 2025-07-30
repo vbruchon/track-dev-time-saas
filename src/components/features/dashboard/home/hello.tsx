@@ -44,7 +44,7 @@ export const Hello = ({
         <WeeklyGoal />
         <div className="flex gap-2">
           <Link
-            href="/dashboard/doc"
+            href="/dashboard/docs"
             className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
           >
             How to start tracking
