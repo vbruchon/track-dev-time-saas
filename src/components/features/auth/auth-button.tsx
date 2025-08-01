@@ -12,13 +12,14 @@ import { LogoutButton } from "./logout-button";
 
 type AuthButtonProps = {
   user: User;
+  className?: string;
 };
 
-export const AuthButton = ({ user }: AuthButtonProps) => {
+export const AuthButton = ({ user, className }: AuthButtonProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="sm" variant={"outline"}>
+        <Button size="sm" variant={"outline"} className={className}>
           {user.name ?? user.email}
         </Button>
       </DropdownMenuTrigger>

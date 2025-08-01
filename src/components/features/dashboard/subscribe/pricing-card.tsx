@@ -8,6 +8,7 @@ export type PricingCardProps = {
   price: number;
   discount?: number;
   billingInterval: "month" | "year";
+  showButton?: boolean;
 };
 
 export const PricingCard = ({
@@ -15,9 +16,11 @@ export const PricingCard = ({
   price,
   discount,
   billingInterval,
+  showButton = true,
 }: PricingCardProps) => {
   const fullPrice =
     billingInterval === "year" ? price / (1 - discount / 100) : price;
+
   const formattedFullPrice = Math.round(fullPrice);
 
   const features = [
@@ -25,6 +28,7 @@ export const PricingCard = ({
     "Visual dashboard &stats",
     "Priority support",
   ];
+
   return (
     <Card className="relative w-full min-w-56 max-w-xs overflow-hidden transition duration-300 px-2">
       <CardHeader>
@@ -39,7 +43,11 @@ export const PricingCard = ({
       </CardHeader>
       <CardContent className="space-y-8">
         <div className="flex items-end space-x-2">
-          <span className="text-3xl font-bold">{price} €</span>
+          {price === 0 ? (
+            <span className="text-2xl font-bold">7-day free trial</span>
+          ) : (
+            <span className="text-3xl font-bold">{price} €</span>
+          )}
           {discount && (
             <span className="text-gray-400 line-through md:text-lg lg:text-xl xl:text-2xl">
               {formattedFullPrice} €
@@ -49,23 +57,23 @@ export const PricingCard = ({
             / {billingInterval}
           </span>
         </div>
-
         <ul className="space-y-2 text-sm">
           {features.map((feature) => (
             <PricingFeatureItem key={feature}>{feature}</PricingFeatureItem>
           ))}
         </ul>
-
-        <form action={upgradeSubscription}>
-          <input type="hidden" name="billing" value={billingInterval} />
-          <button
-            type="submit"
-            className="bg-primary py-2 px-4 flex items-center justify-center text-sm cursor-pointer text-muted rounded-md w-full hover:bg-primary/80 hover:scale-105"
-          >
-            <Rocket className="size-5 mr-2" />
-            Upgrade to Pro
-          </button>
-        </form>
+        {showButton && (
+          <form action={upgradeSubscription}>
+            <input type="hidden" name="billing" value={billingInterval} />
+            <button
+              type="submit"
+              className="bg-primary py-2 px-4 flex items-center justify-center text-sm cursor-pointer text-muted rounded-md w-full hover:bg-primary/80 hover:scale-105"
+            >
+              <Rocket className="size-5 mr-2" />
+              Upgrade to Pro
+            </button>
+          </form>
+        )}
       </CardContent>
     </Card>
   );

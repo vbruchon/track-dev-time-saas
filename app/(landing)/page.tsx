@@ -1,19 +1,19 @@
-import Image from "next/image";
+import { FaqSection } from "@/components/features/landing/faq-section";
+import { FeaturesSection } from "@/components/features/landing/features-section";
+import { FinalCtaSection } from "@/components/features/landing/final-cta-section";
+import { Hero } from "@/components/features/landing/hero";
+import { PricingSection } from "@/components/features/landing/pricing-section";
+import { WhyTrackDevTime } from "@/components/features/landing/why-track_dev_time-section";
 
 export default async function Home() {
   return (
-    <>
-      <main className="flex flex-col mx-auto items-center h-full">
-        <div className="flex items-center gap-2 py-6">
-          <Image
-            src={"/logo.png"}
-            alt="logo track-dev-time"
-            width={80}
-            height={80}
-          />
-          <h1 className="text-4xl text-primary">Track-dev-time</h1>
-        </div>
-      </main>
-    </>
+    <main className="flex flex-col items-center px-4 py-12 sm:py-12 lg:py-16">
+      <Hero />
+      <FeaturesSection />
+      <WhyTrackDevTime />
+      <PricingSection />
+      <FinalCtaSection />
+      <FaqSection />
+    </main>
   );
 }
