@@ -45,10 +45,11 @@ export const PricingSection = () => {
         </Label>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="flex justify-center gap-6">
         <PricingCard
+          key={billing}
           heading="Pro"
-          price={billing === "month" ? 8 : 80}
+          price={billing === "month" ? 7 : 70}
           discount={billing === "year" ? 17 : undefined}
           billingInterval={billing}
         />

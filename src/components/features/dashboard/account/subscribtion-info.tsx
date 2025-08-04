@@ -18,7 +18,7 @@ export const SubscriptionInfo = ({
           You are currently on the <strong>free trial</strong>.
         </p>
         <Link
-          href="/dashboard/subscribe"
+          href="/subscribe"
           className={buttonVariants({ variant: "outline", size: "sm" })}
         >
           Upgrade to Pro
@@ -28,9 +28,7 @@ export const SubscriptionInfo = ({
   }
 
   return (
-    <div className="space-y-2 mt-6">
-      <h2 className="text-lg font-medium">Your subscription</h2>
-
+    <div className="space-y-2">
       <div className="flex items-center justify-between">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline">{plan}</Badge>

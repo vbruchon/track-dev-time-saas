@@ -11,6 +11,13 @@ const stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-06-30.basil",
 });
 
+const STRIPE_PRO_YEARLY_PRICE_ID = process.env.STRIPE_PRO_YEARLY_PRICE_ID!;
+const STRIPE_PRO_MONTHLY_PRICE_ID = process.env.STRIPE_PRO_MONTHLY_PRICE_ID!;
+
+console.log("✅ BetterAuth Stripe plan mapping:");
+console.log("- STRIPE_PRO_MONTHLY_PRICE_ID:", STRIPE_PRO_MONTHLY_PRICE_ID);
+console.log("- STRIPE_PRO_YEARLY_PRICE_ID:", STRIPE_PRO_YEARLY_PRICE_ID);
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
@@ -104,17 +111,49 @@ The Track Dev Time Team
         },
         plans: [
           {
-            name: "pro_monthly",
-            priceId: process.env.STRIPE_PRO_MONTHLY_PRICE_ID!,
-          },
-          {
             name: "pro_yearly",
             priceId: process.env.STRIPE_PRO_YEARLY_PRICE_ID!,
+          },
+          {
+            name: "pro_monthly",
+            priceId: process.env.STRIPE_PRO_MONTHLY_PRICE_ID!,
           },
         ],
       },
     }),
+    // stripe({
+    //   stripeClient,
+    //   stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET!,
+    //   createCustomerOnSignUp: true,
+    //   subscription: {
+    //     enabled: true,
+    //     authorizeReference: async ({ user, referenceId }) => {
+    //       return user.id === referenceId;
+    //     },
+    //     plans: [
+    //       {
+    //         name: "pro_monthly",
+    //         priceId: STRIPE_PRO_MONTHLY_PRICE_ID,
+    //       },
+    //       {
+    //         name: "pro_yearly",
+    //         priceId: STRIPE_PRO_YEARLY_PRICE_ID,
+    //       },
+    //     ],
+    //   },
+    // }),
 
     nextCookies(),
   ],
 });
+
+console.log("📦 Plans Stripe passés à BetterAuth", [
+  {
+    name: "pro_monthly",
+    priceId: STRIPE_PRO_MONTHLY_PRICE_ID,
+  },
+  {
+    name: "pro_yearly",
+    priceId: STRIPE_PRO_YEARLY_PRICE_ID,
+  },
+]);

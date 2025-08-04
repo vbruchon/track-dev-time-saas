@@ -1,5 +1,6 @@
 import { AccountForm } from "@/components/features/dashboard/account/account-form";
-import { Card, CardContent } from "@/components/ui/card";
+import { SubscriptionInfo } from "@/components/features/dashboard/account/subscribtion-info";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getRequiredUser } from "@/lib/auth-session";
 import { getUserSubscription } from "@/lib/queries/dashboard/subscription/get-user-subscription";
 
@@ -12,7 +13,15 @@ export default async function AccountPage() {
       <h1 className="text-2xl font-bold tracking-tight">Account Settings</h1>
       <Card>
         <CardContent>
-          <AccountForm user={user} subscription={userSubscription} />
+          <AccountForm user={user} />
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Your subscribtion</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <SubscriptionInfo subscription={userSubscription} />
         </CardContent>
       </Card>
     </div>

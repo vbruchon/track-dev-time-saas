@@ -16,7 +16,7 @@ export default async function BillingPage() {
           You are currently on a <strong>free trial</strong>.
         </p>
         <Button asChild>
-          <a href="/dashboard/subscribe">Upgrade Now</a>
+          <a href="/subscribe">Upgrade Now</a>
         </Button>
       </div>
     );

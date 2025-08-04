@@ -25,7 +25,7 @@ export function SubscriptionStatus({
         <div className="mt-2 flex items-center gap-4">
           <Badge variant="outline">{subscriptionText}</Badge>
           <Link
-            href="/dashboard/subscribe"
+            href="/subscribe"
             className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
           >
             Upgrade now

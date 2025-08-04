@@ -52,7 +52,7 @@ export const sendTrialEmail = async (dryRun = false) => {
 <p>Your <strong>Track Dev Time</strong> trial wraps up in just <strong>2 days</strong>! ⏳</p>
 <p>If you’ve been enjoying the productivity boost, now’s the time to go Pro and keep that momentum going.</p>
 <p>Don’t worry — your data is safe. But you’ll need to upgrade to keep tracking your sessions automatically.</p>
-<p><a href="https://trackdevtime.com/dashboard/subscribe">Upgrade now →</a></p>
+<p><a href="https://trackdevtime.com/subscribe">Upgrade now →</a></p>
 <p>Keep shipping,</p>
 <p>The Track Dev Time team 💻</p>`,
           });
@@ -77,7 +77,7 @@ export const sendTrialEmail = async (dryRun = false) => {
 <p>Your free trial of <strong>Track Dev Time</strong> just ended.</p>
 <p>But no worries — your data’s still here, waiting for you.</p>
 <p>Upgrade to Pro and pick up right where you left off. Let’s keep crushing those dev sessions together 🚀</p>
-<p><a href="https://trackdevtime.com/dashboard/subscribe">Go Pro →</a></p>
+<p><a href="https://trackdevtime.com/subscribe">Go Pro →</a></p>
 <p>Talk soon,</p>
 <p>The Track Dev Time team 👨‍💻</p>`,
           });
