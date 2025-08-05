@@ -145,8 +145,8 @@ importers:
         specifier: ^19
         version: 19.1.6(@types/react@19.1.8)
       concurrently:
-        specifier: ^9.1.2
-        version: 9.1.2
+        specifier: ^9.2.0
+        version: 9.2.0
       eslint:
         specifier: ^9
         version: 9.28.0(jiti@2.4.2)
@@ -160,8 +160,8 @@ importers:
         specifier: ^4
         version: 4.1.10
       track-dev-time:
-        specifier: ^1.0.3
-        version: 1.0.3(concurrently@9.1.2)
+        specifier: ^2.0.0
+        version: 2.0.0
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.19.0)(typescript@5.8.3)
@@ -1723,6 +1723,10 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
+  chalk@5.5.0:
+    resolution: {integrity: sha512-1tm8DTaJhPBG3bIkVeZt1iZM9GfSX2lzOeDVZH9R9ffRHpmHvxZ/QhgQH/aDTkswQVt+YHdXAdS/In/30OjCbg==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+
   character-entities-html4@2.1.0:
     resolution: {integrity: sha512-1v7fgQRj6hnSwFpq1Eu0ynr/CDEw0rXo2B61qXrLNdHZmPKgb7fqS1a2JwF0rISo9q77jDI8VMEHoApn8qDoZA==}
 
@@ -1784,8 +1788,8 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
-  concurrently@9.1.2:
-    resolution: {integrity: sha512-H9MWcoPsYddwbOGM6difjVwVZHl63nwMEwDJG/L7VGtuaJhb12h2caPG2tVPWs7emuYix252iGfqOyrz1GczTQ==}
+  concurrently@9.2.0:
+    resolution: {integrity: sha512-IsB/fiXTupmagMW4MNp2lx2cdSN2FfZq78vF90LBB+zZHArbIQZjQtzXCiXnvTxCZSvXanTqFLWBjw2UkLx1SQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2807,11 +2811,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.5:
-    resolution: {integrity: sha512-Ir/+ZpE9fDsNH0hQ3C68uyThDXzYcim2EqcZ8zn8Chtt1iylPT9xXJB0kPCnqzgcEGikO9RxSrh63MsmVCU7Fw==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-
   nanostores@0.11.4:
     resolution: {integrity: sha512-k1oiVNN4hDK8NcNERSZLQiMfRzEGtfnvZvdBvey3SQbgn8Dcrk0h1I6vpxApjb10PFUflZrgJ2WEZyJQ+5v7YQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -3369,11 +3368,9 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  track-dev-time@1.0.3:
-    resolution: {integrity: sha512-QUR9UdGw844e+WCePNdrs5+f/1JOnU1af1foA/V5O3eE1L8R4PSafww/yRnQKw2RD9h8axBOm98aZUxq1aft3w==}
+  track-dev-time@2.0.0:
+    resolution: {integrity: sha512-a93femGDQN2M3Q9/rzN9YmYPmlAex8fuLO0QQ5yr/XlnHAtMROFUteer3cum3yWId2kJw9a+Mc4ON+VNs2jiaQ==}
     hasBin: true
-    peerDependencies:
-      concurrently: ^9.1.2
 
   tree-kill@1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
@@ -5065,6 +5062,8 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
+  chalk@5.5.0: {}
+
   character-entities-html4@2.1.0: {}
 
   character-entities-legacy@3.0.0: {}
@@ -5119,7 +5118,7 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  concurrently@9.1.2:
+  concurrently@9.2.0:
     dependencies:
       chalk: 4.1.2
       lodash: 4.17.21
@@ -6511,8 +6510,6 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  nanoid@5.1.5: {}
-
   nanostores@0.11.4: {}
 
   napi-postinstall@0.2.4: {}
@@ -7188,12 +7185,12 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
-  track-dev-time@1.0.3(concurrently@9.1.2):
+  track-dev-time@2.0.0:
     dependencies:
+      chalk: 5.5.0
       chokidar: 4.0.3
       commander: 13.1.0
-      concurrently: 9.1.2
-      nanoid: 5.1.5
+      concurrently: 9.2.0
 
   tree-kill@1.2.2: {}
 
