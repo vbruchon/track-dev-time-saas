@@ -17,6 +17,7 @@ import { Logo } from "./logo";
 import { AuthButton } from "./features/auth/auth-button";
 import Link from "next/link";
 import { User } from "better-auth";
+import { ThemeToggleButton } from "./features/theme/theme-toggle-button";
 
 export const MobileMenu = ({ user }: { user: User | null }) => {
   const [open, setOpen] = useState(false);
@@ -51,6 +52,9 @@ export const MobileMenu = ({ user }: { user: User | null }) => {
 
           <div className="mt-12">
             <NavMenu onLinkClick={handleLinkClick} />
+          </div>
+          <div className="mt-8">
+            <ThemeToggleButton />
           </div>
         </DrawerHeader>
 

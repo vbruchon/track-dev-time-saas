@@ -5,6 +5,7 @@ import { AuthButton } from "./features/auth/auth-button";
 import { NavMenu } from "./nav-menu";
 import { MobileMenu } from "./mobile-menu";
 import { Logo } from "./logo";
+import { ThemeToggleButton } from "./features/theme/theme-toggle-button";
 
 export const Header = async () => {
   const user = await getUser();
@@ -18,9 +19,7 @@ export const Header = async () => {
       </nav>
       <div className="hidden md:flex items-center gap-4">
         {user ? (
-          <div className="absolute right-8">
-            <AuthButton user={user} />
-          </div>
+          <AuthButton user={user} />
         ) : (
           <Link
             className={`${buttonVariants({ size: "sm", variant: "outline" })} absolute right-8`}
@@ -29,6 +28,7 @@ export const Header = async () => {
             SignIn
           </Link>
         )}
+        <ThemeToggleButton />
       </div>
       <div className="flex flex-1 justify-end md:hidden">
         <MobileMenu user={user} />
