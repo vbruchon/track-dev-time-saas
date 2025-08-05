@@ -12,22 +12,24 @@ export const createDevSession = async ({
   userId,
 }: CreateDevSessionProps) => {
   const project = await getOrCreateProject(userId, data.projectName);
+  const startedAt = new Date(data.start);
+  const endedAt = new Date(data.end);
 
   const session = await prisma.devSession.upsert({
     where: {
       projectId_startedAt: {
         projectId: project.id,
-        startedAt: data.start,
+        startedAt,
       },
     },
     update: {
-      endedAt: data.end,
+      endedAt,
       duration: data.duration,
     },
     create: {
       projectId: project.id,
-      startedAt: data.start,
-      endedAt: data.end,
+      startedAt,
+      endedAt,
       duration: data.duration,
       pauses: {
         create: data.pauses.map((pause: PauseSchemaType) => ({
