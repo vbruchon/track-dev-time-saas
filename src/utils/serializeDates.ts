@@ -8,9 +8,9 @@ export function serializeDates<T>(input: T): T {
   }
 
   if (input !== null && typeof input === "object") {
-    const newObj: any = {};
+    const newObj = {} as T;
     for (const key in input) {
-      newObj[key] = serializeDates((input as any)[key]);
+      newObj[key] = serializeDates(input[key]);
     }
     return newObj;
   }

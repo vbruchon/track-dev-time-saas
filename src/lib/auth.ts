@@ -18,10 +18,7 @@ export const auth = betterAuth({
   user: {
     changeEmail: {
       enabled: true,
-      sendChangeEmailVerification: async (
-        { user, newEmail, url, token },
-        request
-      ) => {
+      sendChangeEmailVerification: async ({ user, newEmail, url }) => {
         await resend.emails.send({
           from: process.env.CONTACT_EMAIL!,
           to: user.email,
