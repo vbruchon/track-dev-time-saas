@@ -14,7 +14,7 @@ type SocialAuthButtonProps = {
 
 export const SocialAuthButton = ({
   provider,
-  callbackURL = "/",
+  callbackURL = "/dashboard",
 }: SocialAuthButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
