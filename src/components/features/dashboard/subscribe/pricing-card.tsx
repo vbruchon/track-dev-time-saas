@@ -19,7 +19,7 @@ export const PricingCard = ({
   showButton = true,
 }: PricingCardProps) => {
   const fullPrice =
-    billingInterval === "year" ? price / (1 - discount / 100) : price;
+    billingInterval === "year" ? price / (1 - (discount ?? 0) / 100) : price;
 
   const formattedFullPrice = Math.round(fullPrice);
 

@@ -69,7 +69,7 @@ export const DashboardSidebar = async () => {
       </SidebarContent>
       <SidebarFooter className="w-full">
         <SidebarMenuButton tooltip={"user"} asChild>
-          <UserMenu user={user} />
+          {user && <UserMenu user={user} />}
         </SidebarMenuButton>
       </SidebarFooter>
     </Sidebar>
