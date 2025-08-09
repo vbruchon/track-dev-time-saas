@@ -24,6 +24,10 @@ const cliCommands = [
     description: "Manually sync local sessions to the SaaS dashboard",
   },
   {
+    command: "track-dev-time list",
+    description: "Display all your tracked sessions in a human-readable format",
+  },
+  {
     command: "track-dev-time uninstall",
     description: "Remove tracking setup from the project",
   },

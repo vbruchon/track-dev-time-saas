@@ -75,13 +75,55 @@ yarn track-dev-time setup
 
 This will:
 
+- Automatically create a .track-dev-time/config.json file with default configuration values.
 - Update your package.json to run the tracker and dev server concurrently.
 - Add .track-dev-time/ to your .gitignore to exclude session files from version control.
+- Prompt you to install concurrently if it’s not already installed.
 
-ℹ️ track-dev-time uses concurrently under the hood to run your server and tracker in parallel.
-No need to install it manually — it’s bundled with the CLI.
+ℹ️ To enable automatic tracking while your dev server is running, your project must run both tasks in parallel (dev server + tracker).  
+`track-dev-time` recommends using [`concurrently`](https://www.npmjs.com/package/concurrently) for this purpose.
 
-## How It Works
+During setup, the CLI will detect if `concurrently` is installed and offer to install it automatically if it’s missing.
+
+You're free to use any other process runner (like `npm-run-all`, `turbo`, etc.), but you’ll need to set it up manually to ensure the tracker and your server run together.
+
+### Configuration File
+
+The config file is located in the hidden folder `.track-dev-time` at your project root:
+`.track-dev-time/config.json`
+
+### Default Content
+
+On first run or when executing the `setup` command, a `config.json` file is automatically created with the following default values:
+
+```json
+{
+  "inactivityTimeoutMs": 900000,
+  "autoResumeSessionWindowMs": 300000
+}
+```
+
+- **inactivityTimeoutMs**: Inactivity timeout in milliseconds before the session is automatically paused. Default is 900,000 ms = 15 minutes.
+- **autoResumeSessionWindowMs**: Time window in milliseconds to automatically resume a previous session if restarted within this delay. Default is 300,000 ms = 5 minutes.
+
+### Modifying the Configuration
+
+You can modify these values by manually editing the config.json file with your favorite text editor.
+
+For example, to reduce the inactivity timeout to 5 minutes, update the file as follows:
+
+```json
+{
+  "inactivityTimeoutMs": 300000,
+  "autoResumeSessionWindowMs": 300000
+}
+```
+
+### Applying Changes
+
+New values will be applied as soon as the CLI reads the config file again, typically on start or when running commands.
+
+### How It Works
 
 Once the package is installed and configured using the setup command, track-dev-time automatically hooks into your development workflow. Every time you run your project’s development script, time tracking is launched in parallel with your server.
 
@@ -118,7 +160,7 @@ track-dev-time sync
 
 <CommandsCliTable />
 
-## More about the CLI
+## Advanced CLI usage
 
 This documentation covers how the CLI integrates with the SaaS dashboard.
 
