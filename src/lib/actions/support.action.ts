@@ -21,7 +21,7 @@ export const sendSupportMessage = async (data: SupportFormSchemaType) => {
 
   return await resend.emails.send({
     from: userEmail,
-    to: "contact@vivianb.fr",
+    to: process.env.SUPPORT_EMAIL!,
     subject: "New support message from Track Dev Time",
     text: `You've received a new support request:\n\n"${supportMessage}"\n\nFrom: ${userEmail}`,
   });

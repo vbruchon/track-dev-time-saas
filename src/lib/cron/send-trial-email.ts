@@ -45,7 +45,7 @@ export const sendTrialEmail = async (dryRun = false) => {
       } else {
         try {
           await resend.emails.send({
-            from: "contact@vivianb.fr",
+            from: process.env.CONTACT_EMAIL!,
             to: user.email,
             subject: "Only 2 days left — don’t lose your dev flow 🚀",
             html: `<p>Hi ${user.name ?? user.email},</p>
@@ -70,7 +70,7 @@ export const sendTrialEmail = async (dryRun = false) => {
       } else {
         try {
           await resend.emails.send({
-            from: "contact@vivianb.fr",
+            from: process.env.CONTACT_EMAIL!,
             to: user.email,
             subject: "🛑 Your free trial just ended — let’s keep going 💪",
             html: `<p>Hi ${user.name ?? user.email},</p>

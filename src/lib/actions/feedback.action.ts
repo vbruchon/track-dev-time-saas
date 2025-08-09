@@ -22,7 +22,7 @@ export const sendFeedBack = async (data: FeedbackFormSchemaType) => {
 
   return await resend.emails.send({
     from: userEmail,
-    to: "contact@vivianb.fr",
+    to: process.env.FEEDBACK_EMAIL!,
     subject: "New feedback from Track Dev Time",
     text: `You've received a new feedback:\n\n"${feedback}"\n\nFrom: ${userEmail}`,
   });
