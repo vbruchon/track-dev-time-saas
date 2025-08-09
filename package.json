@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "concurrently -n server,track -c ,green \"next dev --turbopack\" \"track-dev-time start\"",
     "build": "next build",
+    "vercel-build": "prisma generate && next build && prisma migrate deploy",
     "start": "next start",
     "lint": "next lint",
     "trial:emails": "tsx src/lib/cron/send-trial-email.ts"
