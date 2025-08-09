@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { MDXComponents } from "@/components/features/dashboard/mdx/mdx-composants";
+import { MDXComponents } from "@/components/features/dashboard/mdx/mdx-components";
 import { TableOfContents } from "@/components/features/dashboard/docs/table-of-content";
 
 export default async function DocsPage() {

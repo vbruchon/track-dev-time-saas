@@ -5,8 +5,14 @@ import { CommandsCliTable } from "../docs/commands-cli-tab";
 import { FAQDocs } from "../docs/faq-docs";
 import { ApiKeyFormServer } from "./api-key-form-server";
 import { ApiKeyInfoAlert } from "../docs/api-key-info-alert";
+import {
+  ReactNode,
+  HTMLAttributes,
+  AnchorHTMLAttributes,
+  ReactElement,
+} from "react";
 
-const getId = (text: React.ReactNode) => {
+const getId = (text: ReactNode) => {
   if (typeof text !== "string") return undefined;
   return text
     .toLowerCase()
@@ -14,8 +20,17 @@ const getId = (text: React.ReactNode) => {
     .replace(/[^\w-]/g, "");
 };
 
+type MDXComponentProps = {
+  children?: ReactNode;
+} & HTMLAttributes<HTMLElement>;
+
+type MDXLinkProps = {
+  children?: ReactNode;
+  href: string;
+} & AnchorHTMLAttributes<HTMLAnchorElement>;
+
 export const MDXComponents = {
-  h1: ({ children, ...props }) => {
+  h1: ({ children, ...props }: MDXComponentProps) => {
     const id = getId(children);
     return (
       <h1 id={id} className="text-4xl font-bold mb-4" {...props}>
@@ -23,7 +38,7 @@ export const MDXComponents = {
       </h1>
     );
   },
-  h2: ({ children, ...props }) => {
+  h2: ({ children, ...props }: MDXComponentProps) => {
     const id = getId(children);
     return (
       <h2
@@ -35,8 +50,7 @@ export const MDXComponents = {
       </h2>
     );
   },
-
-  h3: ({ children, ...props }) => {
+  h3: ({ children, ...props }: MDXComponentProps) => {
     const id = getId(children);
     return (
       <h3 id={id} className="text-xl font-semibold mt-8 mb-4" {...props}>
@@ -44,7 +58,7 @@ export const MDXComponents = {
       </h3>
     );
   },
-  h4: ({ children, ...props }) => {
+  h4: ({ children, ...props }: MDXComponentProps) => {
     const id = getId(children);
     return (
       <h4 id={id} className="text-lg font-semibold mt-4 mb-2" {...props}>
@@ -52,13 +66,16 @@ export const MDXComponents = {
       </h4>
     );
   },
-  p: ({ children, ...props }) => (
+  p: ({ children, ...props }: MDXComponentProps) => (
     <p className="leading-7 text-base text-foreground/90 mb-4" {...props}>
       {children}
     </p>
   ),
-
-  code: ({ children, className = "", ...props }) => (
+  code: ({
+    children,
+    className = "",
+    ...props
+  }: MDXComponentProps & { className?: string }) => (
     <code
       className={cn(
         "rounded bg-muted px-1.5 py-1 font-mono text-sm",
@@ -69,25 +86,35 @@ export const MDXComponents = {
       {children}
     </code>
   ),
-  pre: ({ children, ...props }) => {
-    const child = children?.props;
+  pre: ({ children, ...props }: MDXComponentProps) => {
+    const child =
+      children && typeof children === "object" && "props" in children
+        ? (
+            children as ReactElement<{
+              children?: ReactNode;
+              className?: string;
+            }>
+          ).props
+        : null;
+
     const codeString =
       typeof child?.children === "string" ? child.children.trim() : "";
+
     const language = child?.className?.replace("language-", "") || "bash";
 
     return <CodeBlock code={codeString} language={language} {...props} />;
   },
-  ul: ({ children, ...props }) => (
+  ul: ({ children, ...props }: MDXComponentProps) => (
     <ul className="list-disc list-inside space-y-1 ml-4 my-2" {...props}>
       {children}
     </ul>
   ),
-  li: ({ children, ...props }) => (
+  li: ({ children, ...props }: MDXComponentProps) => (
     <li className="text-base" {...props}>
       {children}
     </li>
   ),
-  a: ({ children, href, ...props }) => (
+  a: ({ children, href, ...props }: MDXLinkProps) => (
     <Link
       href={href}
       className="text-primary underline underline-offset-2 hover:text-primary/80"
@@ -96,7 +123,9 @@ export const MDXComponents = {
       {children}
     </Link>
   ),
-  strong: ({ children, ...props }) => <strong {...props}>{children}</strong>,
+  strong: ({ children, ...props }: MDXComponentProps) => (
+    <strong {...props}>{children}</strong>
+  ),
   CommandsCliTable,
   FAQDocs,
   ApiKeyForm: ApiKeyFormServer,
