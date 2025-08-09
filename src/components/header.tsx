@@ -22,7 +22,7 @@ export const Header = async () => {
           <AuthButton user={user} />
         ) : (
           <Link
-            className={`${buttonVariants({ size: "sm", variant: "outline" })} absolute right-8`}
+            className={`${buttonVariants({ size: "sm", variant: "outline" })}`}
             href="/sign-in"
           >
             SignIn
