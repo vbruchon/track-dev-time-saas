@@ -19,10 +19,16 @@ export const sendSupportMessage = async (data: SupportFormSchemaType) => {
   const { supportMessage } = parsed.data;
   const userEmail = user?.email ?? "contact@vivianb.fr";
 
-  return await resend.emails.send({
-    from: userEmail,
+  const result = await resend.emails.send({
+    from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
     to: process.env.SUPPORT_EMAIL!,
+    replyTo: userEmail,
     subject: "New support message from Track Dev Time",
     text: `You've received a new support request:\n\n"${supportMessage}"\n\nFrom: ${userEmail}`,
   });
+
+  if (result.error) {
+    console.error("Resend error:", result.error);
+    throw new Error(result.error.message);
+  }
 };

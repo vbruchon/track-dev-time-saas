@@ -35,7 +35,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
     try {
       await sendFeedBack(values);
       toast.success("Thanks for your feedback");
-      onSuccess?.(); // 👈 ferme la Dialog si défini
+      onSuccess?.();
     } catch {
       toast.error("An error occurred while sending your feedback.");
     }

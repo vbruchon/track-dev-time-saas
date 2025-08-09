@@ -20,7 +20,7 @@ export const auth = betterAuth({
       enabled: true,
       sendChangeEmailVerification: async ({ user, newEmail, url }) => {
         await resend.emails.send({
-          from: process.env.CONTACT_EMAIL!,
+          from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
           to: user.email,
           subject: "Confirm your email change request",
           text: `
@@ -45,7 +45,7 @@ The Track Dev Time Team
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
       await resend.emails.send({
-        from: process.env.CONTACT_EMAIL!,
+        from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
         to: user.email,
         subject: "Reset your password",
         text: `Click the link to reset your password: ${url}`,
@@ -55,7 +55,7 @@ The Track Dev Time Team
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       await resend.emails.send({
-        from: process.env.CONTACT_EMAIL!,
+        from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
         to: user.email,
         subject: "Verify your email",
         html: `
@@ -83,7 +83,7 @@ The Track Dev Time Team
     magicLink({
       sendMagicLink: async ({ email, url }) => {
         await resend.emails.send({
-          from: process.env.CONTACT_EMAIL!,
+          from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
           to: email,
           subject: "Magic Link",
           text: `Hello! click here for connect to track-dev-time. ${url}`,
