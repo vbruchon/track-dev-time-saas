@@ -47,9 +47,9 @@ export const ProjectHeader = async ({
       <div className="space-y-4">
         {/* Categories */}
         <div className="flex items-center gap-2">
-          {categories.length > 0 && (
-            <div className="flex items-center gap-2 text-sm">
-              Categories:
+          <div className="flex items-center gap-2 text-sm">
+            Categories:
+            {categories.length > 0 && (
               <div className="flex flex-wrap items-center gap-2">
                 {categories.map((cat) => (
                   <Badge variant={"outline"} key={cat.id}>
@@ -57,8 +57,8 @@ export const ProjectHeader = async ({
                   </Badge>
                 ))}
               </div>
-            </div>
-          )}
+            )}
+          </div>
           <ManageCategoryDialog
             projectId={projectId}
             projectCategories={categories}
