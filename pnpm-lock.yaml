@@ -160,8 +160,8 @@ importers:
         specifier: ^4
         version: 4.1.10
       track-dev-time:
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^2.0.5
+        version: 2.0.5
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.19.0)(typescript@5.8.3)
@@ -3368,8 +3368,8 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  track-dev-time@2.0.0:
-    resolution: {integrity: sha512-a93femGDQN2M3Q9/rzN9YmYPmlAex8fuLO0QQ5yr/XlnHAtMROFUteer3cum3yWId2kJw9a+Mc4ON+VNs2jiaQ==}
+  track-dev-time@2.0.5:
+    resolution: {integrity: sha512-bopaDJ6A3vF3EtHxUXxC+qm/RjvcVEDeOYP/9HiOuzo7VNgGfhO/VrjXghohkxDdn7NanEqNKMFwZohym1TQVQ==}
     hasBin: true
 
   tree-kill@1.2.2:
@@ -7185,7 +7185,7 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
-  track-dev-time@2.0.0:
+  track-dev-time@2.0.5:
     dependencies:
       chalk: 5.5.0
       chokidar: 4.0.3
