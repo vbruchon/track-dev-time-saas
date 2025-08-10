@@ -31,13 +31,13 @@ export function PricingSection() {
       >
         <PricingCard
           heading="Pro Monthly"
-          price={8}
+          price={7}
           billingInterval="month"
           showButton={false}
         />
         <PricingCard
           heading="Pro Yearly"
-          price={80}
+          price={70}
           billingInterval="year"
           discount={17}
           showButton={false}

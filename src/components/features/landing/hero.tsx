@@ -95,17 +95,30 @@ export const Hero = () => {
           animate="show"
           className="relative rounded-xl overflow-hidden"
         >
-          <Image
-            src="/dashboard-screen.png"
-            alt="Track Dev Time dashboard"
-            width={1200}
-            height={800}
-            className="w-full h-auto rounded-xl shadow-lg z-10  
+          <>
+            <Image
+              src="/dashboard-screen.png"
+              alt="Track Dev Time dashboard"
+              width={1200}
+              height={800}
+              className="dark:hidden block w-full h-auto rounded-xl shadow-lg z-10  
               [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] 
               [mask-size:100%_100%] 
               [mask-repeat:no-repeat]"
-            priority
-          />
+              priority
+            />
+            <Image
+              src="/dashboard-screen-dark.png"
+              alt="Track Dev Time dashboard"
+              width={1200}
+              height={800}
+              className="dark:block hidden w-full h-auto rounded-xl shadow-lg z-10  
+              [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] 
+              [mask-size:100%_100%] 
+              [mask-repeat:no-repeat]"
+              priority
+            />
+          </>
         </motion.div>
       </div>
     </>
