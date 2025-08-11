@@ -7,6 +7,7 @@ import {
   FeedbackFormSchemaType,
 } from "../schema/feedback-form-schema";
 import { resend } from "../resend";
+import FeedbackNotification from "../../../emails/feedback-notification";
 
 export const sendFeedBack = async (data: FeedbackFormSchemaType) => {
   const user = await getUser();
@@ -25,7 +26,7 @@ export const sendFeedBack = async (data: FeedbackFormSchemaType) => {
     to: process.env.FEEDBACK_EMAIL!,
     replyTo: userEmail,
     subject: "New feedback from Track Dev Time",
-    text: `You've received a new feedback:\n\n"${feedback}"\n\nFrom: ${userEmail}`,
+    react: FeedbackNotification({ feedback: feedback, userEmail: userEmail }),
   });
 
   if (result.error) {

@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "**/*.mdx",
     "scripts/cleanSubscriptions.mts",
-    "src/lib/cron/send-trial-email.ts"
+    "src/lib/cron/send-trial-email.ts",
+    "script/test-send-trial-email.js"
   ],
   "exclude": ["node_modules", "src/lib/generated"]
 }
