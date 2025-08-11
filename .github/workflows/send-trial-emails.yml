@@ -19,11 +19,12 @@ jobs:
         with:
           node-version: 21
 
-      - name: Setup pnpm
-        run: npm install -g pnpm
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
 
       - name: Install dependencies
-        run: pnpm ci
+        run: pnpm install
 
       - name: Run trial email script
         env:
