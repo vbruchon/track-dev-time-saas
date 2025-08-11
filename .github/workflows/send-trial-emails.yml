@@ -30,4 +30,4 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-        run: node ./path/to/send-trial-emails.js
+        run: pnpm ts-node -r tsconfig-paths/register ./script/send-trial-emails.ts
