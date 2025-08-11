@@ -1,0 +1,32 @@
+name: Send Trial Emails Cron
+
+on:
+  schedule:
+    # Tous les jours à 8h UTC (à adapter si tu veux)
+    - cron: "0 8 * * *"
+  workflow_dispatch: # Pour lancer manuellement depuis GitHub
+
+jobs:
+  send-emails:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
+      - name: Setup pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Run trial email script
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: node ./path/to/send-trial-emails.js

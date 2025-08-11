@@ -6,9 +6,13 @@ import { nextCookies } from "better-auth/next-js";
 import { resend } from "./resend";
 import { stripe } from "@better-auth/stripe";
 import Stripe from "stripe";
+import MagicLinkEmail from "../../emails/magic-link";
+import ResetPasswordEmail from "../../emails/reset-password";
+import ChangeEmailVerification from "../../emails/change-email-verification";
+import { VerifyEmail } from "../../emails/verifiy-email";
 
 const stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-06-30.basil",
+  apiVersion: "2025-07-30.basil",
 });
 
 export const auth = betterAuth({
@@ -20,23 +24,14 @@ export const auth = betterAuth({
       enabled: true,
       sendChangeEmailVerification: async ({ user, newEmail, url }) => {
         await resend.emails.send({
-          from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
+          from: "Track Dev Time <noreply@track-dev-time.dev>",
           to: user.email,
           subject: "Confirm your email change request",
-          text: `
-Hi ${user.name ?? "there"},
-
-We received a request to change the email address for your Track Dev Time account to: ${newEmail}.
-
-If you made this request, please confirm it by clicking the link below:
-
-${url}
-
-If you did not request this change, you can safely ignore this email — your email address will remain unchanged.
-
-Thanks,  
-The Track Dev Time Team
-    `.trim(),
+          react: ChangeEmailVerification({
+            redirectTo: url,
+            userName: user.name,
+            newEmail,
+          }),
         });
       },
     },
@@ -45,24 +40,25 @@ The Track Dev Time Team
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
       await resend.emails.send({
-        from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
+        from: "Track Dev Time <noreply@track-dev-time.dev>",
         to: user.email,
         subject: "Reset your password",
-        text: `Click the link to reset your password: ${url}`,
+        react: ResetPasswordEmail({ resetLink: url, userName: user.name }),
       });
     },
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
+      console.log("Sending verify email to", user.email, "url:", url);
+
       await resend.emails.send({
-        from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
+        from: "Track Dev Time <noreply@track-dev-time.dev>",
         to: user.email,
         subject: "Verify your email",
-        html: `
-        <p>Hi ${user.name ?? "there"},</p>
-        <p>Please verify your email address by clicking the link below:</p>
-        <a href="${url}">Verify my email</a>
-      `,
+        react: VerifyEmail({
+          verificationLink: url,
+          userName: user.name ?? "there",
+        }),
       });
     },
     sendOnSignUp: true,
@@ -83,10 +79,10 @@ The Track Dev Time Team
     magicLink({
       sendMagicLink: async ({ email, url }) => {
         await resend.emails.send({
-          from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
+          from: "Track Dev Time <noreply@track-dev-time.dev>",
           to: email,
           subject: "Magic Link",
-          text: `Hello! click here for connect to track-dev-time. ${url}`,
+          react: MagicLinkEmail({ magicLink: url }),
         });
       },
     }),

@@ -6,6 +6,7 @@ import {
   SupportFormSchemaType,
 } from "../schema/support-form-schema";
 import { resend } from "../resend";
+import SupportNotification from "../../../emails/support-notification";
 
 export const sendSupportMessage = async (data: SupportFormSchemaType) => {
   const user = await getUser();
@@ -20,11 +21,14 @@ export const sendSupportMessage = async (data: SupportFormSchemaType) => {
   const userEmail = user?.email ?? "contact@vivianb.fr";
 
   const result = await resend.emails.send({
-    from: `Track Dev Time <${process.env.CONTACT_EMAIL!}>`,
+    from: "Track Dev Time <noreply@track-dev-time.dev>",
     to: process.env.SUPPORT_EMAIL!,
     replyTo: userEmail,
     subject: "New support message from Track Dev Time",
-    text: `You've received a new support request:\n\n"${supportMessage}"\n\nFrom: ${userEmail}`,
+    react: SupportNotification({
+      message: supportMessage,
+      userEmail: userEmail,
+    }),
   });
 
   if (result.error) {
