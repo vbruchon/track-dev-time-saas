@@ -26,13 +26,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Debug working directory and files
-        run: |
-          pwd
-          ls -l ./script/
-
       - name: Run trial email script
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-        run: pnpm exec ts-node --esm -r tsconfig-paths/register ./script/send-trial-emails
+        run: pnpm exec ts-node -r tsconfig-paths/register ./script/send-trial-emails
