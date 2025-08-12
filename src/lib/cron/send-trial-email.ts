@@ -27,7 +27,6 @@ async function getTrialUsersNotSubscribed(daysTrial = 7) {
   const now = new Date();
   now.setHours(0, 0, 0, 0);
 
-  // Étendre la période pour attraper les users récents
   const trialStartDate = new Date(now);
   trialStartDate.setDate(trialStartDate.getDate() - (daysTrial + 1));
 
@@ -94,12 +93,7 @@ async function sendEmail({ user, type }: SendEmailProps) {
       throw new Error("Unknown email type");
   }
 
-  try {
-    await resend.emails.send(emailOptions);
-    console.log(`Sent ${type} email to ${user.email}`);
-  } catch (error) {
-    console.error(`Failed to send email to ${user.email}:`, error);
-  }
+  await resend.emails.send(emailOptions);
 }
 
 export const sendTrialEmail = async () => {
@@ -118,10 +112,6 @@ export const sendTrialEmail = async () => {
     const trialEndDate = addDays(createdAtLocal, trialDuration);
 
     const daysLeft = daysBetweenLocalDates(now, trialEndDate);
-
-    console.log(
-      `[DEBUG] user: ${user.email} | createdAt: ${createdAtLocal.toISOString()} | daysLeft: ${daysLeft}`
-    );
 
     if (daysLeft > 2) continue;
 
