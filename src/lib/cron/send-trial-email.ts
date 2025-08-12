@@ -1,9 +1,4 @@
-import {
-  startOfDay,
-  differenceInCalendarDays,
-  addDays,
-  subDays,
-} from "date-fns";
+import { addDays, differenceInCalendarDays } from "date-fns";
 import { prisma } from "../prisma";
 import { resend } from "../resend";
 import TrialEndingSoon from "../../../emails/trial-ending-soon";
@@ -11,8 +6,16 @@ import TrialEnded from "../../../emails/trial-ended";
 import { ReactElement } from "react";
 import { User } from "@/generated";
 
+function toLocalStartOfDay(date: Date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 async function getTrialUsersNotSubscribed(daysTrial = 7) {
-  const trialStartDate = subDays(startOfDay(new Date()), daysTrial + 1);
+  const trialStartDate = new Date();
+  trialStartDate.setHours(0, 0, 0, 0);
+  trialStartDate.setDate(trialStartDate.getDate() - (daysTrial + 1));
 
   const usersInTrial = await prisma.user.findMany({
     where: {
@@ -87,14 +90,15 @@ async function sendEmail({ user, type }: SendEmailProps) {
 
 export const sendTrialEmail = async () => {
   const trialDuration = 7;
-  const now = startOfDay(new Date());
+  const now = new Date();
+  now.setHours(0, 0, 0, 0); // normaliser à 00:00 local
 
   const users = await getTrialUsersNotSubscribed(trialDuration);
 
   if (users.length === 0) return;
 
   for (const user of users) {
-    const createdAtDay = startOfDay(user.createdAt);
+    const createdAtDay = toLocalStartOfDay(user.createdAt);
     const trialEndDate = addDays(createdAtDay, trialDuration);
 
     const daysLeft = differenceInCalendarDays(trialEndDate, now);
