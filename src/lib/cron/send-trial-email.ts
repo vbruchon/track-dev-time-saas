@@ -91,6 +91,9 @@ export const sendTrialEmail = async () => {
     const trialEndDate = addDays(user.createdAt, trialDuration);
     const diffMs = trialEndDate.getTime() - now.getTime();
     const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    console.log(
+      `[DEBUG] user: ${user.email} | createdAt: ${user.createdAt.toISOString()} | daysLeft: ${daysLeft}`
+    );
 
     if (daysLeft > 2) continue;
 
