@@ -26,7 +26,11 @@ const changePasswordFormSchema = z
 
 type ChangePasswordFormSchemaType = z.infer<typeof changePasswordFormSchema>;
 
-export const ChangePasswordForm = () => {
+export const ChangePasswordForm = ({
+  onSuccess,
+}: {
+  onSuccess?: () => void;
+}) => {
   const form = useForm<ChangePasswordFormSchemaType>({
     resolver: zodResolver(changePasswordFormSchema),
     mode: "onChange",
@@ -45,7 +49,7 @@ export const ChangePasswordForm = () => {
         revokeOtherSessions: true,
       });
       toast.success("Password successfully changed.");
-      form.reset();
+      onSuccess?.();
     } catch {
       toast.error("Failed to change password.");
     }

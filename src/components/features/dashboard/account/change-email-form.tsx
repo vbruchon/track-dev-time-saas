@@ -24,7 +24,13 @@ const changeEmailFormSchema = z.object({
 
 type ChangeEmailFormSchemaType = z.infer<typeof changeEmailFormSchema>;
 
-export const ChangeEmailForm = ({ currentEmail }: { currentEmail: string }) => {
+export const ChangeEmailForm = ({
+  currentEmail,
+  onSuccess,
+}: {
+  currentEmail: string;
+  onSuccess?: () => void;
+}) => {
   const form = useForm<ChangeEmailFormSchemaType>({
     resolver: zodResolver(changeEmailFormSchema),
     defaultValues: {
@@ -39,7 +45,7 @@ export const ChangeEmailForm = ({ currentEmail }: { currentEmail: string }) => {
         callbackURL: "/dashboard",
       });
       toast.success("Confirmation email sent to your current address.");
-      form.reset();
+      onSuccess?.();
     } catch {
       toast.error("Failed to initiate email change.");
     }

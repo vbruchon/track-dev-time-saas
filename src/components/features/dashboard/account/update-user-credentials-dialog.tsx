@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { ChangeEmailForm } from "./change-email-form";
 import { ChangePasswordForm } from "./change-password-form";
+import { useState } from "react";
 
 export type UpdateUserCredentialsDialogProps = {
   type: "email" | "password";
@@ -19,8 +20,10 @@ export const UpdateUserCredentialsDialog = ({
   type,
   currentEmail = "",
 }: UpdateUserCredentialsDialogProps) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"} variant={"link"}>
           Change {type}
@@ -31,9 +34,12 @@ export const UpdateUserCredentialsDialog = ({
           <DialogTitle>Change your {type}</DialogTitle>
         </DialogHeader>
         {type === "email" ? (
-          <ChangeEmailForm currentEmail={currentEmail} />
+          <ChangeEmailForm
+            currentEmail={currentEmail}
+            onSuccess={() => setOpen(false)}
+          />
         ) : (
-          <ChangePasswordForm />
+          <ChangePasswordForm onSuccess={() => setOpen(false)} />
         )}
       </DialogContent>
     </Dialog>
