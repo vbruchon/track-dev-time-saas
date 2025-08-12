@@ -7,7 +7,7 @@ import { ReactElement } from "react";
 import { User } from "@/generated";
 
 async function getTrialUsersNotSubscribed(daysTrial = 7) {
-  const trialStartDate = subDays(new Date(), daysTrial);
+  const trialStartDate = subDays(new Date(), daysTrial + 1);
 
   const usersInTrial = await prisma.user.findMany({
     where: {
@@ -99,7 +99,7 @@ export const sendTrialEmail = async () => {
 
     if (daysLeft === 2) {
       await sendEmail({ user, type: "twoDaysLeft" });
-    } else if (daysLeft === 0) {
+    } else if (daysLeft <= 0) {
       await sendEmail({ user, type: "trialEnded" });
     }
   }
