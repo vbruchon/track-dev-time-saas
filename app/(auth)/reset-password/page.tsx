@@ -86,7 +86,7 @@ export default function ResetPasswordPage() {
         onSuccess: () => {
           setLoading(false);
           toast.success("Your password has been updated");
-          router.push("/dashboard");
+          router.push("/sign-in");
         },
         onError: (ctx) => {
           setLoading(false);
