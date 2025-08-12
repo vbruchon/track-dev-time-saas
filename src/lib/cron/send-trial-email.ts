@@ -1,4 +1,4 @@
-import { addDays, differenceInCalendarDays } from "date-fns";
+import { addDays } from "date-fns";
 import { prisma } from "../prisma";
 import { resend } from "../resend";
 import TrialEndingSoon from "../../../emails/trial-ending-soon";
@@ -6,15 +6,29 @@ import TrialEnded from "../../../emails/trial-ended";
 import { ReactElement } from "react";
 import { User } from "@/generated";
 
-function toLocalStartOfDay(date: Date) {
+function getLocalDateString(date: Date) {
   const d = new Date(date);
   d.setHours(0, 0, 0, 0);
-  return d;
+  return d.toISOString().split("T")[0];
+}
+
+function daysBetweenLocalDates(startDate: Date, endDate: Date) {
+  const startStr = getLocalDateString(startDate);
+  const endStr = getLocalDateString(endDate);
+
+  const start = new Date(startStr);
+  const end = new Date(endStr);
+
+  const diffMs = end.getTime() - start.getTime();
+  return Math.round(diffMs / (1000 * 60 * 60 * 24));
 }
 
 async function getTrialUsersNotSubscribed(daysTrial = 7) {
-  const trialStartDate = new Date();
-  trialStartDate.setHours(0, 0, 0, 0);
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  // Étendre la période pour attraper les users récents
+  const trialStartDate = new Date(now);
   trialStartDate.setDate(trialStartDate.getDate() - (daysTrial + 1));
 
   const usersInTrial = await prisma.user.findMany({
@@ -91,20 +105,22 @@ async function sendEmail({ user, type }: SendEmailProps) {
 export const sendTrialEmail = async () => {
   const trialDuration = 7;
   const now = new Date();
-  now.setHours(0, 0, 0, 0); // normaliser à 00:00 local
+  now.setHours(0, 0, 0, 0); // normalize current date to local midnight
 
   const users = await getTrialUsersNotSubscribed(trialDuration);
 
   if (users.length === 0) return;
 
   for (const user of users) {
-    const createdAtDay = toLocalStartOfDay(user.createdAt);
-    const trialEndDate = addDays(createdAtDay, trialDuration);
+    const createdAtLocal = new Date(user.createdAt);
+    createdAtLocal.setHours(0, 0, 0, 0);
 
-    const daysLeft = differenceInCalendarDays(trialEndDate, now);
+    const trialEndDate = addDays(createdAtLocal, trialDuration);
+
+    const daysLeft = daysBetweenLocalDates(now, trialEndDate);
 
     console.log(
-      `[DEBUG] user: ${user.email} | createdAt: ${createdAtDay.toISOString()} | daysLeft: ${daysLeft}`
+      `[DEBUG] user: ${user.email} | createdAt: ${createdAtLocal.toISOString()} | daysLeft: ${daysLeft}`
     );
 
     if (daysLeft > 2) continue;
