@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { NavMenuItemProps, NavMenuItem } from "./nav-menu-item";
 import { cn } from "@/lib/utils";
@@ -26,12 +25,22 @@ export const NavMenu = ({ onLinkClick, footer = false }: NavMenuProps) => {
     };
   }, []);
 
-  const items: NavMenuItemProps[] = [
+  // Items principaux
+  const mainItems: NavMenuItemProps[] = [
     { href: "/", label: "Home" },
     { href: "#features", label: "Features" },
     { href: "#pricing", label: "Pricing" },
     { href: "#faq", label: "FAQ" },
   ];
+
+  // Items spécifiques au footer
+  const footerItems: NavMenuItemProps[] = [
+    { href: "/mentions-legales", label: "Mentions légales" },
+    { href: "/cgv", label: "Terms and Conditions" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+  ];
+
+  const items = footer ? footerItems : mainItems;
 
   return (
     <ul
@@ -54,9 +63,6 @@ export const NavMenu = ({ onLinkClick, footer = false }: NavMenuProps) => {
           }}
         />
       ))}
-      {footer && (
-        <NavMenuItem href={"/mentions-legale"} label={"metnion légale"} />
-      )}
     </ul>
   );
 };
