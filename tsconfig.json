@@ -30,7 +30,8 @@
     "**/*.mdx",
     "scripts/cleanSubscriptions.mts",
     "src/lib/cron/send-trial-email.ts",
-    "script/test-send-trial-email.js"
+    "script/test-send-trial-email.js",
+    "script/fix-file-extensions.js"
   ],
-  "exclude": ["node_modules", "src/lib/generated"]
+  "exclude": ["node_modules", "src/generated"]
 }

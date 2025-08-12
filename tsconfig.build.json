@@ -4,7 +4,18 @@
     "noEmit": false,
     "outDir": "dist",
     "module": "esnext",
-    "target": "ES2019"
+    "target": "ES2019",
+    "jsx": "react-jsx", // Important pour compiler JSX en JS ESM
+    "baseUrl": ".", // Pour que les paths fonctionnent dans tsc-alias
+    "paths": {
+      "@/*": ["src/*"] // Alias à respecter pour tsc-alias
+    }
   },
-  "include": ["script/send-trial-emails.ts"]
+  "include": [
+    "script/send-trial-emails.ts",
+    "src/lib/**/*.ts",
+    "src/emails/**/*.tsx",
+    "src/generated/**/*.ts" // si tu veux compiler certains fichiers generated TS
+  ],
+  "exclude": ["node_modules"]
 }

@@ -9,7 +9,7 @@
     "vercel-build": "prisma generate && next build && prisma migrate deploy",
     "start": "next start",
     "lint": "next lint",
-    "build:send-trial-email": "tsc --project tsconfig.build.json",
+    "build:send-trial-email": "tsc --project tsconfig.build.json && cp -r src/generated dist/src/generated && tsc-alias -p tsconfig.build.json && node script/fix-file-extensions.js",
     "email": "email dev"
   },
   "prisma": {
@@ -73,6 +73,7 @@
     "tailwindcss": "^4",
     "track-dev-time": "^2.0.5",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.4",
