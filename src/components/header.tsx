@@ -11,13 +11,16 @@ export const Header = async () => {
   const user = await getUser();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-8 py-6 flex items-center">
-      <Logo />
+    <header className="sticky top-0 z-50 w-full h-20 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-8 py-6 flex items-center">
+      <div className="flex-none mr-8">
+        <Logo />
+      </div>
 
       <nav className="hidden md:flex flex-1 justify-center">
         <NavMenu />
       </nav>
-      <div className="hidden md:flex items-center gap-4">
+
+      <div className="hidden md:flex flex-none items-center gap-4 ml-8">
         {user ? (
           <AuthButton user={user} />
         ) : (
@@ -30,6 +33,7 @@ export const Header = async () => {
         )}
         <ThemeToggleButton />
       </div>
+
       <div className="flex flex-1 justify-end md:hidden">
         <MobileMenu user={user} />
       </div>

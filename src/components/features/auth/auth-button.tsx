@@ -9,6 +9,7 @@ import { User } from "better-auth";
 import { LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { LogoutButton } from "./logout-button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type AuthButtonProps = {
   user: User;
@@ -19,8 +20,14 @@ export const AuthButton = ({ user, className }: AuthButtonProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="sm" variant={"outline"} className={className}>
-          {user.name ?? user.email}
+        <Button variant={"outline"} className={className}>
+          <div className="flex items-center gap-2">
+            <Avatar>
+              <AvatarImage src={user?.image ?? ""} alt="User avatar" />
+              <AvatarFallback>{user?.name[0] ?? user?.email[0]}</AvatarFallback>
+            </Avatar>
+            {user.name ?? user.email}
+          </div>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
