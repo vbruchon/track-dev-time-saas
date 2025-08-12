@@ -1,4 +1,9 @@
-import { addDays, subDays } from "date-fns";
+import {
+  startOfDay,
+  differenceInCalendarDays,
+  addDays,
+  subDays,
+} from "date-fns";
 import { prisma } from "../prisma";
 import { resend } from "../resend";
 import TrialEndingSoon from "../../../emails/trial-ending-soon";
@@ -7,7 +12,7 @@ import { ReactElement } from "react";
 import { User } from "@/generated";
 
 async function getTrialUsersNotSubscribed(daysTrial = 7) {
-  const trialStartDate = subDays(new Date(), daysTrial + 1);
+  const trialStartDate = subDays(startOfDay(new Date()), daysTrial + 1);
 
   const usersInTrial = await prisma.user.findMany({
     where: {
@@ -82,24 +87,27 @@ async function sendEmail({ user, type }: SendEmailProps) {
 
 export const sendTrialEmail = async () => {
   const trialDuration = 7;
-  const now = new Date();
+  const now = startOfDay(new Date());
+
   const users = await getTrialUsersNotSubscribed(trialDuration);
 
   if (users.length === 0) return;
 
   for (const user of users) {
-    const trialEndDate = addDays(user.createdAt, trialDuration);
-    const diffMs = trialEndDate.getTime() - now.getTime();
-    const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    const createdAtDay = startOfDay(user.createdAt);
+    const trialEndDate = addDays(createdAtDay, trialDuration);
+
+    const daysLeft = differenceInCalendarDays(trialEndDate, now);
+
     console.log(
-      `[DEBUG] user: ${user.email} | createdAt: ${user.createdAt.toISOString()} | daysLeft: ${daysLeft}`
+      `[DEBUG] user: ${user.email} | createdAt: ${createdAtDay.toISOString()} | daysLeft: ${daysLeft}`
     );
 
     if (daysLeft > 2) continue;
 
     if (daysLeft === 2) {
       await sendEmail({ user, type: "twoDaysLeft" });
-    } else if (daysLeft <= 0) {
+    } else if (daysLeft === 0) {
       await sendEmail({ user, type: "trialEnded" });
     }
   }
