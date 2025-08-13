@@ -25,13 +25,13 @@ const appItems: SidebarMenuItemProps[] = [
     url: "/dashboard/projects",
     icon: "FolderCode",
   },
-];
-const helpItems: SidebarMenuItemProps[] = [
   {
     title: "Documentation",
     url: "/dashboard/docs",
     icon: "BookOpenText",
   },
+];
+const helpItems: SidebarMenuItemProps[] = [
   {
     title: "Support",
     url: "/dashboard/support",

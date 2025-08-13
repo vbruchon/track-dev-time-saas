@@ -6,7 +6,7 @@ import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
-import { Badge } from "@/components/ui/badge";
+import { BadgeBorderAnimated } from "./badge-border-animated";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -34,7 +34,7 @@ export const Hero = () => {
   return (
     <>
       <div className="flex flex-col items-center w-full max-w-4xl text-center space-y-6">
-        <Badge variant={"outline"}> Welcome to Track Dev Time</Badge>
+        <BadgeBorderAnimated>Welcome to Track Dev Time</BadgeBorderAnimated>
         <motion.h1
           variants={fadeUp}
           initial="hidden"
