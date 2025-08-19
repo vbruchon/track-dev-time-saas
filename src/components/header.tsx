@@ -6,8 +6,17 @@ import { NavMenu } from "./nav-menu";
 import { MobileMenu } from "./mobile-menu";
 import { Logo } from "./logo";
 import { ThemeToggleButton } from "./features/theme/theme-toggle-button";
+import { LangSwitcher } from "./features/lang/lang-swticher";
+import { getDictionary } from "@/locales/dictionaries";
 
-export const Header = async () => {
+type HeaderDict = {
+  header: {
+    nav: string[];
+  };
+};
+
+export const Header = async ({ lang }: { lang: string }) => {
+  const dict = (await getDictionary(lang, "layout")) as HeaderDict;
   const user = await getUser();
 
   return (
@@ -16,26 +25,31 @@ export const Header = async () => {
         <Logo />
       </div>
 
+      {/* Menu principal */}
       <nav className="hidden md:flex flex-1 justify-center">
-        <NavMenu />
+        <NavMenu items={dict.header.nav} />
       </nav>
 
+      {/* Boutons utilisateur et thème */}
       <div className="hidden md:flex flex-none items-center gap-4 ml-8">
         {user ? (
-          <AuthButton user={user} />
+          <AuthButton user={user} lang={lang} />
         ) : (
           <Link
             className={`${buttonVariants({ size: "sm", variant: "outline" })}`}
             href="/sign-in"
           >
-            SignIn
+            Sign In
           </Link>
         )}
+
         <ThemeToggleButton />
+        <LangSwitcher />
       </div>
 
+      {/* Menu mobile */}
       <div className="flex flex-1 justify-end md:hidden">
-        <MobileMenu user={user} />
+        <MobileMenu user={user} lang={lang} />
       </div>
     </header>
   );

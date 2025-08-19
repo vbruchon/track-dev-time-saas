@@ -1,0 +1,7 @@
+{
+  "header": { "nav": ["Home", "Features", "Pricing", "FAQ"] },
+  "footer": {
+    "nav": ["Legal Notice", "Terms and Conditions", "Privacy Policy"],
+    "copyright": "All rights reserved."
+  }
+}

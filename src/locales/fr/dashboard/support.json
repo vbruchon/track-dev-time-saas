@@ -1,0 +1,26 @@
+{
+  "supportPage": {
+    "title": "Support",
+    "description": "Vous rencontrez un bug, avez une question ou besoin d’aide ? Dites-nous ce qui se passe, nous vous répondrons dès que possible.",
+    "label": "Votre message",
+    "placeholder": "Décrivez votre problème ou votre question en détail...",
+    "textButton": "Envoyer mon message",
+    "toast": {
+      "success": "Merci ! Votre message a été envoyé.",
+      "error": "Une erreur est survenue lors de l'envoi de votre message."
+    }
+  },
+  "feedback": {
+    "dialogTitle": "Donner votre avis",
+    "form": {
+      "label": "Votre avis",
+      "description": "Une idée, une frustration ou une remarque rapide ? Nous serions ravis de l'entendre. Pour tout problème urgent ou bloquant votre travail, veuillez contacter le support.",
+      "placeholder": "Que souhaitez-vous partager ?",
+      "buttonText": "Envoyer votre avis",
+      "toast": {
+        "success": "Merci pour votre avis !",
+        "error": "Une erreur est survenue lors de l'envoi de votre avis."
+      }
+    }
+  }
+}

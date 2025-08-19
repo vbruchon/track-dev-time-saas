@@ -20,10 +20,17 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 type FeedbackFormProps = {
+  content: {
+    label: string;
+    description: string;
+    placeholder: string;
+    buttonText: string;
+    toast: { success: string; error: string };
+  };
   onSuccess?: () => void;
 };
 
-export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
+export const FeedbackForm = ({ content, onSuccess }: FeedbackFormProps) => {
   const form = useForm<FeedbackFormSchemaType>({
     resolver: zodResolver(feedbackFormSchema),
     defaultValues: {
@@ -34,10 +41,10 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
   const onSubmit = async (values: FeedbackFormSchemaType) => {
     try {
       await sendFeedBack(values);
-      toast.success("Thanks for your feedback");
+      toast.success(content.toast.success);
       onSuccess?.();
     } catch {
-      toast.error("An error occurred while sending your feedback.");
+      toast.error(content.toast.error);
     }
   };
 
@@ -49,17 +56,13 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
           name="feedback"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Your feedback</FormLabel>
-              <FormDescription>
-                Got an idea, frustration, or quick thought? We&apos;d love to
-                hear it. For urgent issues or anything blocking your workflow,
-                please contact support.
-              </FormDescription>
+              <FormLabel>{content.label}</FormLabel>
+              <FormDescription>{content.description}</FormDescription>
 
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder="What would you like to share?"
+                  placeholder={content.placeholder}
                   className="min-h-[100px]"
                 />
               </FormControl>
@@ -69,7 +72,7 @@ export const FeedbackForm = ({ onSuccess }: FeedbackFormProps) => {
         />
         <div className="flex justify-end">
           <LoadingButton type="submit" loading={form.formState.isSubmitting}>
-            Send feedback
+            {content.buttonText}
           </LoadingButton>
         </div>
       </form>

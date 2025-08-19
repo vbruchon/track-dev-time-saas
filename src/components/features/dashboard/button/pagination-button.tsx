@@ -4,10 +4,14 @@ import React from "react";
 
 interface PaginationButtonProps<TData> {
   table: ReactTable<TData>;
+  nextText?: string;
+  previousText?: string;
 }
 
 export function PaginationButton<TData>({
   table,
+  nextText,
+  previousText,
 }: PaginationButtonProps<TData>) {
   return (
     <div className="flex items-center justify-end space-x-2 py-4">
@@ -17,7 +21,7 @@ export function PaginationButton<TData>({
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
-        Previous
+        {previousText ?? "Previous"}
       </Button>
       <Button
         variant="outline"
@@ -25,7 +29,7 @@ export function PaginationButton<TData>({
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
       >
-        Next
+        {nextText ?? "Next"}
       </Button>
     </div>
   );

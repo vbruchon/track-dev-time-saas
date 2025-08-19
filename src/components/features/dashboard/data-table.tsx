@@ -25,6 +25,8 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   showPagination?: boolean;
   element?: string;
+  nextText?: string;
+  previousText?: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -32,6 +34,8 @@ export function DataTable<TData, TValue>({
   data,
   showPagination = true,
   element,
+  nextText,
+  previousText,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -102,7 +106,13 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {showPagination && <PaginationButton table={table} />}{" "}
+      {showPagination && (
+        <PaginationButton
+          table={table}
+          nextText={nextText}
+          previousText={previousText}
+        />
+      )}
     </div>
   );
 }

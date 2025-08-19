@@ -1,6 +1,6 @@
 import { SectionWrapper } from "../projects/[projectId]/section-wrapper";
 import { FolderCode } from "lucide-react";
-import { ProjectHighlights } from "./project-highlights";
+import { HighlightsDict, ProjectHighlights } from "./project-highlights";
 import { ProjectTable } from "./project-table";
 import {
   ChartDataPoint,
@@ -11,6 +11,7 @@ import { getUserId } from "@/lib/auth-session";
 import { TechnologyCountChart } from "../chart/technology-count-chart";
 import { getProjectsCountByTechnology } from "@/lib/queries/dashboard/projects/get-count-projects-by-technology";
 import { ChartCard } from "../chart/chart-card";
+import { Suspense } from "react";
 
 function transformForChart(
   groupedData: Record<string, Record<string, number>>,
@@ -37,7 +38,36 @@ function transformCountsToChartData(counts: Record<string, number>) {
   }));
 }
 
-export const ProjectOverview = async () => {
+export type ChartsDict = {
+  timeByCategoryWeekly: string;
+  timeByCategoryMonthly: string;
+  timeByCategoryGlobal: string;
+  countProjectsByTechnology: string;
+};
+export type ProjectTableDict = {
+  title: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  sessions: string;
+  avgDuration: string;
+  totalTime: string;
+  actions: string;
+  topProjectBadge: string;
+  next: string;
+  previous: string;
+};
+
+export const ProjectOverview = async ({
+  dict,
+}: {
+  dict: {
+    title: string;
+    highlights: HighlightsDict;
+    charts: ChartsDict;
+    projectTable: ProjectTableDict;
+  };
+}) => {
   const userId = await getUserId();
   const groupedData = await getActivityByCategory(userId);
   const countProjectByTechnology = await getProjectsCountByTechnology(userId);
@@ -52,29 +82,35 @@ export const ProjectOverview = async () => {
   const technologyCountChartData = transformCountsToChartData(
     countProjectByTechnology
   );
-  const periodLabel = groupedData.period
-    ? groupedData.period?.charAt(0).toUpperCase() +
-      groupedData.period?.slice(1).toLowerCase()
-    : "";
+
+  const chartTitleKey =
+    groupedData.period === "weekly"
+      ? dict.charts.timeByCategoryWeekly
+      : groupedData.period === "monthly"
+        ? dict.charts.timeByCategoryMonthly
+        : dict.charts.timeByCategoryGlobal;
+
   return (
-    <SectionWrapper title="Project Overview" icon={<FolderCode />}>
+    <SectionWrapper title={dict.title} icon={<FolderCode />}>
       <div className="space-y-4">
-        <ProjectHighlights />
-        <ChartCard
-          title={`${periodLabel} Time Spent by Project Category`}
-          className="mt-6"
-        >
+        <ProjectHighlights dict={dict.highlights} />
+        <ChartCard title={chartTitleKey} className="mt-6">
           <ProjectActivityTimeline
             data={activityTimelineData}
             categories={categories}
           />
         </ChartCard>
 
-        <ChartCard title="Count Projects per Technology" className="mt-6">
+        <ChartCard
+          title={dict.charts.countProjectsByTechnology}
+          className="mt-6"
+        >
           <TechnologyCountChart data={technologyCountChartData} />
         </ChartCard>
         <div className="mt-6">
-          <ProjectTable />
+          <Suspense>
+            <ProjectTable dict={dict.projectTable} />
+          </Suspense>
         </div>
       </div>
     </SectionWrapper>

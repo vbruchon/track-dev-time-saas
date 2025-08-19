@@ -1,7 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { startOfWeek, endOfWeek, getDay } from "date-fns";
 
-export const getWeeklySessionChartData = async (userId: string) => {
+export const getWeeklySessionChartData = async (
+  userId: string,
+  dayLabels: string[]
+) => {
   const weekStart = startOfWeek(new Date(), { weekStartsOn: 1 });
   const weekEnd = endOfWeek(new Date(), { weekStartsOn: 1 });
 
@@ -27,8 +30,6 @@ export const getWeeklySessionChartData = async (userId: string) => {
     const isoDay = jsDay === 0 ? 6 : jsDay - 1; // 0 (Mon) - 6 (Sun)
     countsByDay[isoDay]++;
   });
-
-  const dayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   return dayLabels.map((day, i) => ({
     day,

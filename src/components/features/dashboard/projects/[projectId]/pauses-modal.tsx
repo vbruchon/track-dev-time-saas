@@ -8,18 +8,29 @@ import {
 } from "@/components/ui/dialog";
 import { Eye } from "lucide-react";
 import { DataTable } from "@/components/features/dashboard/data-table";
-import { pausesColumns } from "./pauses-column";
+import { getPausesColumns } from "./pauses-column";
 
-type PausesModalProps = {
+export type PausesModalProps = {
   pauses: Pause[] | undefined;
+  dict: {
+    label: string;
+    title: string;
+    noFound: string;
+    date: string;
+    startedAt: string;
+    endedAt: string;
+    duration: string;
+    next: string;
+    previous: string;
+  };
 };
 
-export const PausesModal = ({ pauses = [] }: PausesModalProps) => {
+export const PausesModal = ({ pauses = [], dict }: PausesModalProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div className="flex items-center gap-2">
-          {pauses.length} break(s)
+          {pauses.length} {dict.label}(s)
           <button aria-label="View breaks" className="hover:cursor-pointer">
             <Eye size={16} />
           </button>
@@ -28,12 +39,17 @@ export const PausesModal = ({ pauses = [] }: PausesModalProps) => {
 
       <DialogContent className="max-h-[70vh] overflow-auto">
         <DialogHeader>
-          <DialogTitle>Pauses List</DialogTitle>
+          <DialogTitle>{dict.title}</DialogTitle>
         </DialogHeader>
         {pauses.length === 0 ? (
-          <p>No pause found.</p>
+          <p>{dict.noFound}.</p>
         ) : (
-          <DataTable columns={pausesColumns} data={pauses} />
+          <DataTable
+            columns={getPausesColumns(dict)}
+            data={pauses}
+            nextText={dict.next}
+            previousText={dict.previous}
+          />
         )}
       </DialogContent>
     </Dialog>

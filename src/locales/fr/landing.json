@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "badge": "Bienvenue sur Track Dev Time",
+    "title": "Concentrez-vous sur votre code, nous suivons votre temps.",
+    "paragraph": {
+      "highlight": "Marre d’oublier de lancer votre timer ?",
+      "text": "Avec Track Dev Time, vous n’avez pas à y penser. Votre temps de développement est suivi automatiquement — pas de boutons, pas de timers, pas de distractions. Oubliez les estimations approximatives. Juste des sessions claires et précises basées sur le travail réel, directement depuis votre éditeur."
+    },
+    "cta": "Commencez votre essai gratuit",
+    "dashboardImageAlt": "Tableau de bord Track Dev Time"
+  },
+  "features": {
+    "badge": "Fonctionnalités",
+    "title": "Fonctionnalités puissantes pour booster votre workflow",
+    "items": [
+      {
+        "title": "Suivi auto. des sessions",
+        "description": "Commencez simplement à coder—Track Dev Time détecte et enregistre automatiquement vos sessions dès que votre serveur de développement démarre."
+      },
+      {
+        "title": "Pause et reprise intelligentes",
+        "description": "Éloignez-vous à tout moment. Le tracker détecte l'inactivité et ajuste votre session en temps réel."
+      },
+      {
+        "title": "Synchronisation hors ligne",
+        "description": "Les sessions sont stockées localement en JSON et synchronisées automatiquement sur votre tableau de bord à la fermeture du serveur."
+      },
+      {
+        "title": "Lien sécurisé avec API key",
+        "description": "Chaque projet est lié à une clé API sécurisée pour une identification et un suivi sans souci."
+      },
+      {
+        "title": "Suivi multi-projets",
+        "description": "Passez facilement d'un projet à l'autre. Toutes les sessions sont regroupées et visualisées clairement."
+      },
+      {
+        "title": "Tableau de bord motivant",
+        "description": "Obtenez une vue claire de vos habitudes de codage, objectifs hebdomadaires et tendances historiques—tout dans un tableau moderne."
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Pourquoi choisir Track Dev Time ?",
+    "items": [
+      {
+        "title": "Fini le suivi manuel du temps",
+        "description": "Oubliez de démarrer et d'arrêter les minuteurs. Track Dev Time enregistre automatiquement vos sessions, pour que vous puissiez rester concentré sur le code, pas sur les boutons."
+      },
+      {
+        "title": "Conçu pour les développeurs",
+        "description": "Track Dev Time fonctionne discrètement dans votre environnement de développement. Il sait quand vous codez réellement — pas seulement quand votre éditeur est ouvert."
+      },
+      {
+        "title": "Restez constant et motivé",
+        "description": "Votre tableau de bord vous aide à suivre vos objectifs hebdomadaires et vos tendances visuelles. C'est comme avoir un coach de productivité — sans les réunions."
+      }
+    ]
+  },
+  "pricing": {
+    "badge": "Tarification",
+    "title": "Tarification simple et transparente",
+    "description": "Commencez avec un essai gratuit de 7 jours. Aucune carte bancaire requise. Annulez à tout moment. Découvrez toutes les fonctionnalités. Passez à un plan supérieur si vous le souhaitez.",
+    "items": [
+      {
+        "title": "Pro Mensuel",
+        "price": 7,
+        "billingInterval": "month",
+        "showButton": false,
+        "features": [
+          "Suivi illimité",
+          "Tableau de bord & stats",
+          "Support prioritaire"
+        ]
+      },
+      {
+        "title": "Pro Annuel",
+        "price": 70,
+        "billingInterval": "year",
+        "discount": 17,
+        "showButton": false,
+        "features": [
+          "Suivi illimité",
+          "Tableau de bord & stats",
+          "Support prioritaire"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Prêt à suivre votre temps de dev sans effort ?",
+    "paragraph": "Commencez votre essai gratuit de 7 jours et découvrez ce que ça fait de tracker automatiquement votre temps de développement. Pas de carte, pas de stress, juste des résultats.",
+    "cta": "Commencez votre essai gratuit",
+    "href": "/auth/register"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Questions Fréquemment Posées",
+    "items": [
+      {
+        "value": "how-work",
+        "question": "Comment fonctionne le suivi ?",
+        "answer": "Vous installez un petit package Node.js sur votre projet. Une fois configuré, il s’exécute en arrière-plan et détecte automatiquement quand vous travaillez activement sur vos projets de développement. Pas de minuteurs, pas de clics — juste un suivi fluide basé sur votre activité réelle de codage. Vous obtenez des informations claires sur votre productivité, l’historique des sessions et les timelines des projets, le tout sans saisie manuelle."
+      },
+      {
+        "value": "trial",
+        "question": "Ai-je besoin d’une carte bancaire pour l’essai gratuit ?",
+        "answer": "Aucune carte bancaire n’est requise. Vous avez un accès complet aux fonctionnalités Pro pendant 7 jours sans engagement."
+      },
+      {
+        "value": "pricing",
+        "question": "Que se passe-t-il après la fin de l’essai ?",
+        "answer": "Vous pouvez choisir un plan Pro (mensuel ou annuel). Si vous ne vous abonnez pas, votre suivi sera mis en pause mais vos données seront conservées."
+      },
+      {
+        "value": "cancel",
+        "question": "Puis-je annuler à tout moment ?",
+        "answer": "Absolument. Les abonnements peuvent être annulés directement depuis votre tableau de bord, sans poser de questions."
+      },
+      {
+        "value": "features",
+        "question": "Qu’est-ce qui est inclus dans le plan Pro ?",
+        "answer": "Suivi automatique complet du temps, analyses détaillées, informations sur la productivité, historique des projets et accès aux nouvelles fonctionnalités au fur et à mesure de leur déploiement."
+      }
+    ]
+  }
+}

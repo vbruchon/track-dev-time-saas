@@ -25,11 +25,15 @@ export type PartialSession = Omit<DevSession, "userId"> & {
 type Props = {
   devSessions: PartialSession[];
   tab: TimeRange;
+  dict: {
+    hoursLabel: string;
+    tooltipLabel: string;
+  };
 };
 
 type TimeRange = "day" | "week" | "month";
 
-export function ProjectTimeChart({ devSessions, tab }: Props) {
+export function ProjectTimeChart({ devSessions, tab, dict }: Props) {
   const datasets = useMemo(() => groupSessions(devSessions), [devSessions]);
 
   return (
@@ -39,7 +43,7 @@ export function ProjectTimeChart({ devSessions, tab }: Props) {
         <XAxis dataKey="date" />
         <YAxis
           label={{
-            value: "Hours",
+            value: dict.hoursLabel,
             angle: -90,
             position: "insideLeft",
           }}
@@ -48,7 +52,7 @@ export function ProjectTimeChart({ devSessions, tab }: Props) {
           content={
             <CustomTooltip
               valueFormatter={(value) => formatDuration(value * 3600)}
-              nameMap={{ duration: "Temps passé" }}
+              nameMap={{ duration: dict.tooltipLabel }}
             />
           }
         />

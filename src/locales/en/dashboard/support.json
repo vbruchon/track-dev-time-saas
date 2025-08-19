@@ -1,0 +1,26 @@
+{
+  "supportPage": {
+    "title": "Support",
+    "description": "Facing a bug, have a question, or need help? Let us know what’s going on, we’ll get back to you as soon as possible.",
+    "label": "Your message",
+    "placeholder": "Describe your issue or question in detail...",
+    "textButton": "Send message",
+    "toast": {
+      "success": "Thanks! Your message has been sent.",
+      "error": "An error occurred while sending your message."
+    }
+  },
+  "feedback": {
+    "dialogTitle": "Give Feedback",
+    "form": {
+      "label": "Your feedback",
+      "description": "Got an idea, frustration, or quick thought? We'd love to hear it. For urgent issues or anything blocking your workflow, please contact support.",
+      "placeholder": "What would you like to share?",
+      "buttonText": "Send feedback",
+      "toast": {
+        "success": "Thanks for your feedback!",
+        "error": "An error occurred while sending your feedback."
+      }
+    }
+  }
+}

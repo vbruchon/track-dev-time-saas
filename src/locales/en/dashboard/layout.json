@@ -1,0 +1,12 @@
+{
+  "application": "Application",
+  "help": "Help",
+  "menuItems": {
+    "home": "Home",
+    "projects": "Projects",
+    "documentation": "Documentation",
+    "support": "Support"
+  },
+  "userTooltip": "User",
+  "userMenu": {}
+}

@@ -17,15 +17,24 @@ import { generateApiKey } from "@/lib/actions/generate-api-key.action";
 import Link from "next/link";
 import { Control } from "react-hook-form";
 import { AccountFormSchemaType } from "@/lib/schema/account-form-schema";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 import { KeyRound } from "lucide-react";
 
 export type ApiKeyFieldProps = {
   control: Control<AccountFormSchemaType>;
   initialApiKey: string;
+  label: string;
+  alertTitle: string;
+  description: string;
 };
 
-export const ApiKeyField = ({ control, initialApiKey }: ApiKeyFieldProps) => {
+export const ApiKeyField = ({
+  control,
+  initialApiKey,
+  label,
+  alertTitle,
+  description,
+}: ApiKeyFieldProps) => {
   const [apiKey, setApiKey] = useState(initialApiKey);
   const [show, setShow] = useState(false);
 
@@ -45,17 +54,13 @@ export const ApiKeyField = ({ control, initialApiKey }: ApiKeyFieldProps) => {
 
         return (
           <FormItem>
-            <FormLabel>Your API Key</FormLabel>
+            <FormLabel>{label}</FormLabel>
 
             <div className="flex gap-2 items-center">
               {!apiKey ? (
                 <Alert variant="destructive">
                   <KeyRound className="size-4" />
-                  <AlertTitle>
-                    You need to generate your API key to link your dashboard
-                    with your CLI.
-                  </AlertTitle>
-                  <AlertDescription></AlertDescription>
+                  <AlertTitle>{alertTitle}</AlertTitle>
                 </Alert>
               ) : (
                 <FormControl>
@@ -82,8 +87,7 @@ export const ApiKeyField = ({ control, initialApiKey }: ApiKeyFieldProps) => {
             <FormMessage />
 
             <FormDescription className="text-foreground text-xs ml-2 mt-2">
-              Use this API key to link your CLI projects to your dashboard. For
-              setup instructions, follow the{" "}
+              {description}{" "}
               <Link
                 href="/dashboard/docs"
                 className="underline underline-offset-2 text-indigo-500"

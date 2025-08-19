@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "badge": "Welcome to Track Dev Time",
+    "title": "Focus on your code, we track your time.",
+    "paragraph": {
+      "highlight": "Tired of forgetting to start your timer?",
+      "text": "With Track Dev Time, you don’t have to think about it. Your dev time is tracked automatically — no buttons, no timers, no distractions. Forget vague estimates. Just clear, accurate sessions based on real work, right from your editor."
+    },
+    "cta": "Start your free trial",
+    "dashboardImageAlt": "Track Dev Time dashboard"
+  },
+  "features": {
+    "badge": "Features",
+    "title": "Powerful features to boost your dev workflow",
+    "items": [
+      {
+        "title": "Automatic session tracking",
+        "description": "Just start coding—Track Dev Time automatically detects and logs your sessions when your dev server starts."
+      },
+      {
+        "title": "Smart pause & resume",
+        "description": "Step away anytime. The tracker intelligently detects inactivity and adjusts your session in real time."
+      },
+      {
+        "title": "Offline-first sync",
+        "description": "Sessions are stored locally in JSON and automatically synced to your dashboard when you close your server."
+      },
+      {
+        "title": "Secure API key linking",
+        "description": "Each project is linked with a secure API key for safe, hassle-free identification and tracking."
+      },
+      {
+        "title": "Cross-project tracking",
+        "description": "Switch between projects seamlessly. All sessions are grouped and visualized with clarity."
+      },
+      {
+        "title": "Motivating dashboard",
+        "description": "Get a clear view of your coding patterns, weekly goals, and historical trends—all in one modern dashboard."
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Why choose Track Dev Time?",
+    "items": [
+      {
+        "title": "No more manual time tracking",
+        "description": "Forget starting and stopping timers. Track Dev Time logs your sessions automatically, so you can stay focused on code, not on buttons."
+      },
+      {
+        "title": "Built for developers",
+        "description": "Track Dev Time runs quietly in your dev environment. It understands when you're actually coding—not just when your editor is open."
+      },
+      {
+        "title": "Stay consistent & motivated",
+        "description": "Your dashboard helps you stay on track with weekly goals and visual trends. It's like having a productivity coach—without the meetings."
+      }
+    ]
+  },
+  "pricing": {
+    "badge": "Pricing",
+    "title": "Simple, transparent pricing",
+    "description": "Start with a 7-day free trial. No credit card required. Cancel anytime. Explore all features. Upgrade later if you like it.",
+    "items": [
+      {
+        "title": "Pro Monthly",
+        "price": 7,
+        "billingInterval": "month",
+        "showButton": false,
+        "features": [
+          "Unlimited tracked",
+          "Visual dashboard & stats",
+          "Priority support"
+        ]
+      },
+      {
+        "title": "Pro Yearly",
+        "price": 70,
+        "billingInterval": "year",
+        "discount": 17,
+        "showButton": false,
+        "features": [
+          "Unlimited tracked",
+          "Visual dashboard &stats",
+          "Priority support"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to track your dev time effortlessly?",
+    "paragraph": "Start your 7-day free trial and experience what automated time tracking feels like. No card, no stress, just results.",
+    "cta": "Start your free trial",
+    "href": "/auth/register"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "value": "how-work",
+        "question": "How does the tracking work?",
+        "answer": "You install a small Node.js package on your project. Once set up, it runs in the background and automatically detects when you're actively working on your development projects. No timers, no clicks—just seamless tracking based on your real coding activity. You'll get clear productivity insights, session history, and project timelines, all without manual input."
+      },
+      {
+        "value": "trial",
+        "question": "Do I need a credit card for the free trial?",
+        "answer": "No credit card is required. You get full access to the Pro features for 7 days without any commitment."
+      },
+      {
+        "value": "pricing",
+        "question": "What happens after the trial ends?",
+        "answer": "You can choose a Pro plan (monthly or yearly). If you don’t subscribe, your tracking will pause but your data is saved."
+      },
+      {
+        "value": "cancel",
+        "question": "Can I cancel anytime?",
+        "answer": "Absolutely. Subscriptions can be cancelled directly from your dashboard, no questions asked."
+      },
+      {
+        "value": "features",
+        "question": "What’s included in the Pro plan?",
+        "answer": "Full automatic time tracking, detailed analytics, productivity insights, project history, and access to new features as they roll out."
+      }
+    ]
+  }
+}

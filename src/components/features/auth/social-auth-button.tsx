@@ -10,11 +10,13 @@ type SupportedProvider = "github" | "google";
 type SocialAuthButtonProps = {
   provider: SupportedProvider;
   callbackURL?: string;
+  text: string;
 };
 
 export const SocialAuthButton = ({
   provider,
   callbackURL = "/",
+  text,
 }: SocialAuthButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,7 +46,7 @@ export const SocialAuthButton = ({
       type="button"
       className="flex-1 hover:bg-muted hover:text-muted-foreground justify-center min-w-[160px]"
     >
-      Continue with {provider.charAt(0).toUpperCase() + provider.slice(1)}
+      {text}
     </LoadingButton>
   );
 };

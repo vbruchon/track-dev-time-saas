@@ -14,9 +14,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 type AuthButtonProps = {
   user: User;
   className?: string;
+  lang: string;
 };
 
-export const AuthButton = ({ user, className }: AuthButtonProps) => {
+export const AuthButton = ({ user, className, lang }: AuthButtonProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,7 +39,7 @@ export const AuthButton = ({ user, className }: AuthButtonProps) => {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="w-full">
-          <LogoutButton />
+          <LogoutButton lang={lang} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

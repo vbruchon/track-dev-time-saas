@@ -1,0 +1,15 @@
+{
+  "title": "🚀 Upgrade to Pro",
+  "trialEnded": "Your 7-day trial has ended. Choose a plan to continue using Track Dev Time.",
+  "helpText": "Need help?",
+  "contactSupport": "Contact support",
+  "pricingSection": {
+    "monthlyLabel": "Monthly",
+    "yearlyLabel": "Yearly",
+    "features": [
+      "Unlimited tracked",
+      "Visual dashboard & stats",
+      "Priority support"
+    ]
+  }
+}

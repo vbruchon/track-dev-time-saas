@@ -9,6 +9,7 @@ export type PricingCardProps = {
   discount?: number;
   billingInterval: "month" | "year";
   showButton?: boolean;
+  features: string[];
 };
 
 export const PricingCard = ({
@@ -17,17 +18,12 @@ export const PricingCard = ({
   discount,
   billingInterval,
   showButton = true,
+  features,
 }: PricingCardProps) => {
   const fullPrice =
     billingInterval === "year" ? price / (1 - (discount ?? 0) / 100) : price;
 
   const formattedFullPrice = Math.round(fullPrice);
-
-  const features = [
-    "Unlimited tracked",
-    "Visual dashboard &stats",
-    "Priority support",
-  ];
 
   return (
     <Card className="relative w-full min-w-56 max-w-xs overflow-hidden transition duration-300 px-2">

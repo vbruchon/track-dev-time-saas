@@ -11,6 +11,7 @@ import {
 import {
   countTimePerPeriod,
   PartialSession,
+  PeriodKey,
 } from "@/utils/[projectId]/chart/session-analytics";
 import { renderCustomizedLabel } from "@/utils/[projectId]/chart/render-customized-label";
 import { CustomTooltip } from "./custom-tooltip";
@@ -24,10 +25,18 @@ const COLORS = [
 
 type Props = {
   devSessions: PartialSession[];
+  dict: {
+    labels: Record<PeriodKey, string>;
+  };
 };
 
-export const SessionPeriodChart = ({ devSessions }: Props) => {
-  const data = countTimePerPeriod(devSessions);
+export const SessionPeriodChart = ({ devSessions, dict }: Props) => {
+  const rawData = countTimePerPeriod(devSessions);
+
+  const data = rawData.map((d) => ({
+    ...d,
+    name: dict.labels[d.name.toLowerCase() as PeriodKey],
+  }));
 
   return (
     <ResponsiveContainer width="100%" height="100%">

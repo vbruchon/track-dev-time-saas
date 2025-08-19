@@ -10,30 +10,12 @@ import {
 } from "@/components/ui/table";
 import { CopyButton } from "../button/copy-button";
 
-const cliCommands = [
-  {
-    command: "track-dev-time setup",
-    description: "Configure the project to start tracking automatically",
-  },
-  {
-    command: "track-dev-time auth",
-    description: "Link CLI to your SaaS account via API key",
-  },
-  {
-    command: "track-dev-time sync",
-    description: "Manually sync local sessions to the SaaS dashboard",
-  },
-  {
-    command: "track-dev-time list",
-    description: "Display all your tracked sessions in a human-readable format",
-  },
-  {
-    command: "track-dev-time uninstall",
-    description: "Remove tracking setup from the project",
-  },
-];
+type Command = {
+  command: string;
+  description: string;
+};
 
-export function CommandsCliTable() {
+export const CommandsCliTable = ({ commands }: { commands: Command[] }) => {
   return (
     <Table className="border">
       <TableHeader>
@@ -43,7 +25,7 @@ export function CommandsCliTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {cliCommands.map((item) => (
+        {commands.map((item) => (
           <TableRow key={item.command} className="group">
             <TableCell className="relative">
               <code>{item.command}</code>
@@ -58,4 +40,4 @@ export function CommandsCliTable() {
       </TableBody>
     </Table>
   );
-}
+};

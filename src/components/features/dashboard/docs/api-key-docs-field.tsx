@@ -24,11 +24,13 @@ import { ApiKeyRegenerateDialog } from "./api-key-regenerate-dialog";
 export type ApiKeyDocsFieldProps = {
   control: Control<AccountFormSchemaType | ApiKeyFormSchemaType>;
   initialApiKey: string;
+  lang: string;
 };
 
 export const ApiKeyDocsField = ({
   control,
   initialApiKey,
+  lang,
 }: ApiKeyDocsFieldProps) => {
   const [apiKey, setApiKey] = useState(initialApiKey);
   const [show, setShow] = useState(false);
@@ -72,8 +74,9 @@ export const ApiKeyDocsField = ({
                   <Alert variant="destructive">
                     <KeyRound className="size-4" />
                     <AlertTitle>
-                      You need to generate your API key to link your dashboard
-                      with your CLI.
+                      {lang === "fr"
+                        ? "Vous devez générer votre clé API pour lier votre dashboard à votre CLI."
+                        : "You need to generate your API key to link your dashboard with your CLI."}
                     </AlertTitle>
                     <AlertDescription></AlertDescription>
                   </Alert>

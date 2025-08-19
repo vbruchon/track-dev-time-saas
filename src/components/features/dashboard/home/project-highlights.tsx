@@ -6,17 +6,34 @@ import { Badge } from "@/components/ui/badge";
 import { formatDuration } from "../projects/project-card";
 import { ProjectHighlightCard } from "./project-highlight-card";
 
-export const ProjectHighlights = async () => {
+export type HighlightsDict = {
+  topProject: string;
+  lastProjectCreated: string;
+  period: {
+    weekly: string;
+    monthly: string;
+    global: string;
+  };
+  totalTime: string;
+  sessions: string;
+  lastSession: string;
+  createdAt: string;
+  noProjectData: string;
+  noProjectCreated: string;
+};
+
+export const ProjectHighlights = async ({ dict }: { dict: HighlightsDict }) => {
   const userId = await getUserId();
   const topProject = await getTopProject(userId);
   const lastProjectCreated = await getLastProjectCreated(userId);
 
-  const periodLabel =
-    topProject?.period === "weekly"
-      ? "This week"
-      : topProject?.period === "monthly"
-        ? "This month"
-        : "Globally";
+  const periodLabel = topProject?.period
+    ? topProject.period === "weekly"
+      ? dict.period.weekly
+      : topProject.period === "monthly"
+        ? dict.period.monthly
+        : dict.period.global
+    : dict.period.global;
 
   const totalDuration =
     lastProjectCreated?.devSessions.reduce(
@@ -27,7 +44,7 @@ export const ProjectHighlights = async () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <ProjectHighlightCard
-        title={`Top Project (${periodLabel})`}
+        title={`${dict.topProject} (${periodLabel})`}
         badge={<Award className="text-yellow-500" />}
         projectId={topProject?.id}
       >
@@ -35,18 +52,24 @@ export const ProjectHighlights = async () => {
           <>
             <p className="font-semibold">{topProject.name}</p>
             <div className="space-y-2 mt-2">
-              <p className="text-sm">Total time: {topProject.totalTime}</p>
-              <p className="text-sm">Sessions: {topProject.sessions}</p>
-              <p className="text-sm">Last session: {topProject.lastSession}</p>
+              <p className="text-sm">
+                {dict.totalTime}: {topProject.totalTime}
+              </p>
+              <p className="text-sm">
+                {dict.sessions}: {topProject.sessions}
+              </p>
+              <p className="text-sm">
+                {dict.lastSession}: {topProject.lastSession}
+              </p>
             </div>
           </>
         ) : (
-          <p className="text-sm">No project data</p>
+          <p className="text-sm">{dict.noProjectData}</p>
         )}
       </ProjectHighlightCard>
 
       <ProjectHighlightCard
-        title="Last Project Created"
+        title={dict.lastProjectCreated}
         badge={<BadgePlus className="text-green-600" />}
         projectId={lastProjectCreated?.id}
       >
@@ -59,7 +82,8 @@ export const ProjectHighlights = async () => {
                 className="flex items-center gap-1 px-2 py-1 text-sm"
               >
                 <Code2 className="w-4 h-4" />
-                {lastProjectCreated.devSessions.length} session
+                {lastProjectCreated.devSessions.length}{" "}
+                {dict.sessions.toLowerCase()}
                 {lastProjectCreated.devSessions.length !== 1 ? "s" : ""}
               </Badge>
               <Badge
@@ -71,11 +95,12 @@ export const ProjectHighlights = async () => {
               </Badge>
             </div>
             <p className="text-xs mt-2">
-              Created at: {lastProjectCreated.createdAt.toLocaleDateString()}
+              {dict.createdAt}:{" "}
+              {lastProjectCreated.createdAt.toLocaleDateString()}
             </p>
           </>
         ) : (
-          <p className="text-sm">No project created yet</p>
+          <p className="text-sm">{dict.noProjectCreated}</p>
         )}
       </ProjectHighlightCard>
     </div>

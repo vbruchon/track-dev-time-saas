@@ -26,11 +26,31 @@ import { UpdateUserCredentialsDialog } from "./update-user-credentials-dialog";
 import { StatusIndicatorTooltip } from "../status-indicator-tooltip";
 import { VerifyEmailButton } from "./verify-email-button";
 
-type AccountFormProps = {
-  user: User;
+type AccountFormDict = {
+  imageUrl: { label: string; placeholder: string };
+  name: { label: string; placeholder: string };
+  email: {
+    label: string;
+    verified: string;
+    unverified: string;
+    verifyBadge: string;
+    toast: {
+      success: string;
+      error: string;
+    };
+  };
+  weeklyGoal: { label: string; placeholder: string };
+  apiKey: { label: string; alertTitle: string; description: string };
+  buttons: { saveChanges: string };
+  toast: { success: string; error: string };
 };
 
-export const AccountForm = ({ user }: AccountFormProps) => {
+type AccountFormProps = {
+  user: User;
+  dict: AccountFormDict;
+};
+
+export const AccountForm = ({ user, dict }: AccountFormProps) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -53,10 +73,10 @@ export const AccountForm = ({ user }: AccountFormProps) => {
     setLoading(true);
     try {
       await updateUserAccount(values);
-      toast.success("Account updated");
+      toast.success(dict.toast.success);
       router.refresh();
     } catch {
-      toast.error("Failed to update account");
+      toast.error(dict.toast.error);
     } finally {
       setLoading(false);
     }
@@ -76,44 +96,48 @@ export const AccountForm = ({ user }: AccountFormProps) => {
                   fallback={user.name?.[0]?.toUpperCase()}
                   onChange={field.onChange}
                   type="text"
-                  placeholder="https://google.image.com"
+                  placeholder={dict.imageUrl.placeholder}
                 />
+                <FormLabel>{dict.imageUrl.label}</FormLabel>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <div className="flex flex-col gap-2 lg:flex-row lg:justify-center">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{dict.name.label}</FormLabel>
                   <EditableField
                     value={field.value ?? ""}
                     onChange={field.onChange}
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder={dict.name.placeholder}
                   />
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem className="flex-1">
                   <div className="flex items-center gap-2">
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{dict.email.label}</FormLabel>
                     <StatusIndicatorTooltip
                       isValid={user.emailVerified}
-                      labelIfValid="Your email is verified"
-                      labelIfInvalid="Your email is not verified"
+                      labelIfValid={dict.email.verified}
+                      labelIfInvalid={dict.email.unverified}
                     />
                     <VerifyEmailButton
                       isVerified={user.emailVerified}
                       email={user.email}
+                      dict={dict.email}
                     />
                   </div>
                   <EditableField
@@ -127,19 +151,24 @@ export const AccountForm = ({ user }: AccountFormProps) => {
               )}
             />
           </div>
+
           <ApiKeyField
             control={form.control}
             initialApiKey={user.apiKey ?? ""}
+            label={dict.apiKey.label}
+            alertTitle={dict.apiKey.alertTitle}
+            description={dict.apiKey.description}
           />
+
           <FormField
             control={form.control}
             name="weeklyGoal"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Your Weekly Goal (hours)</FormLabel>
+                <FormLabel>{dict.weeklyGoal.label}</FormLabel>
                 <EditableField
                   type="number"
-                  placeholder="Ex: 15"
+                  placeholder={dict.weeklyGoal.placeholder}
                   value={field.value ?? ""}
                   onChange={(val) => {
                     const parsed = Number(val);
@@ -153,11 +182,12 @@ export const AccountForm = ({ user }: AccountFormProps) => {
 
           <div className="flex justify-end">
             <LoadingButton type="submit" loading={loading} className="w-fit">
-              Save changes
+              {dict.buttons.saveChanges}
             </LoadingButton>
           </div>
         </form>
       </Form>
+
       <UpdateUserCredentialsDialog type="email" currentEmail={user.email} />
       <UpdateUserCredentialsDialog type="password" />
     </>

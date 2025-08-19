@@ -15,11 +15,24 @@ import { CustomTooltip } from "./custom-tooltip";
 
 type Props = {
   devSessions: PartialSession[];
+  dict: {
+    labels: Record<
+      | "monday"
+      | "tuesday"
+      | "wednesday"
+      | "thursday"
+      | "friday"
+      | "saturday"
+      | "sunday",
+      string
+    >;
+  };
 };
-export const SessionsPerWeekdayChart = ({ devSessions }: Props) => {
+
+export const SessionsPerWeekdayChart = ({ devSessions, dict }: Props) => {
   const counts = countSessionsPerWeekday(devSessions);
 
-  const allDays = [
+  const allDaysKeys: (keyof typeof counts)[] = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -29,26 +42,34 @@ export const SessionsPerWeekdayChart = ({ devSessions }: Props) => {
     "Sunday",
   ];
 
-  const data = allDays.map((day) => ({
+  const data = allDaysKeys.map((day) => ({
     day,
     count: counts[day] ?? 0,
   }));
 
   return (
-    <div className="h-[300x]">
+    <div className="h-[300px]">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
-          <XAxis dataKey="day" ticks={allDays} />
+          <XAxis
+            dataKey="day"
+            tickFormatter={(key) =>
+              dict.labels[
+                (key as string).toLowerCase() as keyof typeof dict.labels
+              ]
+            }
+          />
           <YAxis allowDecimals={false} />
           <Tooltip
             content={
               <CustomTooltip
                 valueFormatter={(value) => `${value}`}
                 nameMap={{ count: "Sessions" }}
+                showLabel={false}
               />
             }
+            cursor={{ fill: "var(--chart-1)", opacity: 0.2 }}
           />
-
           <Bar dataKey="count" fill="var(--primary)" />
         </BarChart>
       </ResponsiveContainer>

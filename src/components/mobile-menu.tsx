@@ -19,7 +19,13 @@ import Link from "next/link";
 import { User } from "better-auth";
 import { ThemeToggleButton } from "./features/theme/theme-toggle-button";
 
-export const MobileMenu = ({ user }: { user: User | null }) => {
+export const MobileMenu = ({
+  user,
+  lang,
+}: {
+  user: User | null;
+  lang: string;
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleLinkClick = () => {
@@ -60,7 +66,7 @@ export const MobileMenu = ({ user }: { user: User | null }) => {
 
         <DrawerFooter className="border-t pt-4">
           {user ? (
-            <AuthButton user={user} className="w-full" />
+            <AuthButton user={user} lang={lang} className="w-full" />
           ) : (
             <Link
               href="/sign-in"

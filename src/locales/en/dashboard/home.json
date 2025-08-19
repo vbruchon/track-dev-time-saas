@@ -1,0 +1,116 @@
+{
+  "helloSection": {
+    "hello": {
+      "greeting": "👋 Hello ",
+      "howToStartTracking": "How to start tracking"
+    },
+    "subscriptionStatus": {
+      "trial": "Trial -  ",
+      "daysLeft": "day(s) left",
+      "upgradeNow": "Upgrade now",
+      "inPlan": "You're in"
+    },
+    "motivationMessage": {
+      "noCoding": "You haven't coded yet today. Time to dive in! 💪",
+      "shortSession1": "A quick coding session of ",
+      "shortSession2": " today. Nice warm-up! 👌",
+      "productiveSession1": "You’ve been productive with ",
+      "productiveSession2": " of coding today. 🔥 Keep it up!",
+      "longSession1": "Impressive! You’ve coded for ",
+      "longSession2": " today. Absolute beast. 🚀"
+    },
+    "weeklyGoal": {
+      "label": "Weekly goal"
+    }
+  },
+  "productivity": {
+    "title": "Productivity Overview",
+    "stats": {
+      "timeToday": "Time Today",
+      "timeThisWeek": "Time This Week",
+      "changeVsLastWeek": "Change vs. Last Week",
+      "sessionsThisWeek": "Sessions This Week",
+      "lastProjectActive": "Last Project Active"
+    }
+  },
+  "sessions": {
+    "title": "Sessions Overview",
+    "stats": {
+      "averageSession": "Average Session Time",
+      "longestSession": "Longest Session",
+      "breaksThisWeek": "Breaks This Week",
+      "averageBreak": "Average Break Duration"
+    },
+    "charts": {
+      "sessionsPerDay": "Sessions per Day (This Week)",
+      "codingPeriod": "Period when you code (This Week)",
+      "dayLabels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      "periodLabels": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      }
+    },
+    "recentSessions": {
+      "title": "Recent Sessions",
+      "table": {
+        "date": "Date",
+        "startedAt": "Started At",
+        "endedAt": "Ended At",
+        "project": "Project",
+        "duration": "Duration",
+        "actions": "Actions"
+      }
+    },
+    "pauses": {
+      "label": "Break(s)",
+      "title": "Breaks List",
+      "noFound": "No breaks found",
+      "date": "Date",
+      "startedAt": "Started At",
+      "endedAt": "Ended At",
+      "duration": "Duration",
+      "next": "Next",
+      "previous": "Previous"
+    }
+  },
+  "projects": {
+    "title": "Project Overview",
+    "highlights": {
+      "topProject": "Top Project",
+      "lastProjectCreated": "Last Project Created",
+      "period": {
+        "weekly": "This week",
+        "monthly": "This month",
+        "global": "Globally"
+      },
+      "totalTime": "Total time",
+      "sessions": "Sessions",
+      "lastSession": "Last session",
+      "createdAt": "Created at",
+      "noProjectData": "No project data",
+      "noProjectCreated": "No project created yet"
+    },
+    "charts": {
+      "timeByCategoryWeekly": "Time Spent by Project Category (This week)",
+      "timeByCategoryMonthly": "Time Spent by Project Category (This month)",
+      "timeByCategoryGlobal": "Time Spent by Project Category (Globally)",
+      "countProjectsByTechnology": "Count Projects per Technology"
+    },
+
+    "projectTable": {
+      "title": "Your Projects",
+      "name": "Name",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "sessions": "Sessions",
+      "avgDuration": "Avg. Duration",
+      "totalTime": "Total Time",
+      "actions": "Action",
+      "topProjectBadge": "Top project",
+      "next": "Next",
+      "previous": "Previous"
+    }
+  }
+}

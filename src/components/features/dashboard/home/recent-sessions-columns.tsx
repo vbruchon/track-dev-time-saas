@@ -5,6 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { formatDuration } from "../projects/project-card";
 import { PausesModal } from "../projects/[projectId]/pauses-modal";
+import { SessionsOverviewDict } from "./sessions-overview";
 
 export type RecentSessionWithProject = {
   id: string;
@@ -17,62 +18,65 @@ export type RecentSessionWithProject = {
   };
 };
 
-export const recentSessionsColumns: ColumnDef<RecentSessionWithProject>[] = [
-  {
-    accessorKey: "startedAt",
-    header: ({ column }) => {
-      return (
+export const getRecentSessionsColumns = ({
+  dict,
+  dictPause,
+}: {
+  dict: SessionsOverviewDict["recentSessions"]["table"];
+  dictPause: SessionsOverviewDict["pauses"];
+}): ColumnDef<RecentSessionWithProject>[] => {
+  return [
+    {
+      accessorKey: "startedAt",
+      header: ({ column }) => (
         <button
           className="flex items-center gap-2 hover:cursor-pointer "
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Date
+          {dict.date}
           <ArrowUpDown size={18} />
         </button>
-      );
+      ),
+      cell: ({ getValue }) => getDate(getValue),
     },
-
-    cell: ({ getValue }) => {
-      return getDate(getValue);
+    {
+      accessorKey: "startedAt",
+      header: dict.startedAt,
+      cell: ({ getValue }) => {
+        const time = getTime(getValue);
+        return <div className="flex items-center">{time}</div>;
+      },
     },
-  },
-  {
-    accessorKey: "startedAt",
-    header: "StartedAt",
-    cell: ({ getValue }) => {
-      const time = getTime(getValue);
-      return <div className="ml-4">{time}</div>;
+    {
+      accessorKey: "endedAt",
+      header: dict.endedAt,
+      cell: ({ getValue }) => {
+        const time = getTime(getValue);
+        return <div className="flex items-center">{time}</div>;
+      },
     },
-  },
-  {
-    accessorKey: "endedAt",
-    header: "EndedAt",
-    cell: ({ getValue }) => {
-      const time = getTime(getValue);
-      return <div className="ml-4">{time}</div>;
+    {
+      accessorKey: "duration",
+      header: dict.duration,
+      cell: ({ getValue }) => {
+        const duration = (getValue() as number) || 0;
+        return formatDuration(duration);
+      },
     },
-  },
-  {
-    accessorKey: "duration",
-    header: "Duration",
-    cell: ({ getValue }) => {
-      const duration = getValue() as number | 0;
-      return formatDuration(duration);
+    {
+      accessorKey: "project.name",
+      header: dict.project,
     },
-  },
-  {
-    accessorKey: "pauses",
-    header: "Break",
-    cell: ({ getValue }) => {
-      const breaks = getValue() as Pause[] | undefined;
-      return <PausesModal pauses={breaks} />;
+    {
+      accessorKey: "pauses",
+      header: dictPause.label,
+      cell: ({ getValue }) => {
+        const breaks = getValue() as Pause[] | undefined;
+        return <PausesModal pauses={breaks} dict={dictPause} />;
+      },
     },
-  },
-  {
-    accessorKey: "project.name",
-    header: "Project",
-  },
-];
+  ];
+};
 
 export const getDate = (value: () => unknown) => {
   const date = new Date(value() as string);

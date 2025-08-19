@@ -5,8 +5,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { PausesModal } from "./pauses-modal";
 import { formatDuration } from "../project-card";
+import { ProjectSessionsDict } from "./project-sessions-section";
 
-export const sessionsColumns: ColumnDef<DevSession>[] = [
+export const getSessionsColumns = (
+  dict: ProjectSessionsDict
+): ColumnDef<DevSession>[] => [
   {
     accessorKey: "startedAt",
     header: ({ column }) => {
@@ -15,7 +18,7 @@ export const sessionsColumns: ColumnDef<DevSession>[] = [
           className="flex items-center gap-2 hover:cursor-pointer "
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Date
+          {dict.date}
           <ArrowUpDown size={18} />
         </button>
       );
@@ -27,23 +30,23 @@ export const sessionsColumns: ColumnDef<DevSession>[] = [
   },
   {
     accessorKey: "startedAt",
-    header: "StartedAt",
+    header: dict.startedAt,
     cell: ({ getValue }) => {
       const time = getTime(getValue);
-      return <div className="ml-4">{time}</div>;
+      return <div className="flex items-center">{time}</div>;
     },
   },
   {
     accessorKey: "endedAt",
-    header: "EndedAt",
+    header: dict.endedAt,
     cell: ({ getValue }) => {
       const time = getTime(getValue);
-      return <div className="ml-4">{time}</div>;
+      return <div className="flex items-center">{time}</div>;
     },
   },
   {
     accessorKey: "duration",
-    header: "Duration",
+    header: dict.duration,
     cell: ({ getValue }) => {
       const duration = getValue() as number | 0;
       return formatDuration(duration);
@@ -51,10 +54,10 @@ export const sessionsColumns: ColumnDef<DevSession>[] = [
   },
   {
     accessorKey: "pauses",
-    header: "Break",
+    header: dict.break.label,
     cell: ({ getValue }) => {
       const breaks = getValue() as Pause[] | undefined;
-      return <PausesModal pauses={breaks} />;
+      return <PausesModal pauses={breaks} dict={dict.break} />;
     },
   },
 ];

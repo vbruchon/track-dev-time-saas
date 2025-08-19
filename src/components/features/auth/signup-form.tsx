@@ -20,24 +20,36 @@ import z from "zod";
 import { signUp } from "@/lib/auth-client";
 import { useState } from "react";
 
-const SignUpFormSchema = z.object({
-  email: z.string().email(),
-  name: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z
-    .string()
-    .min(8, { message: "password must be at least 8 characters" }),
-});
+type SignUpFormDict = {
+  labels: { name: string; email: string; password: string };
+  placeholders: { name: string; email: string; password: string };
+  errors: {
+    nameTooShort: string;
+    emailInvalid: string;
+    passwordTooShort: string;
+  };
+  submit: string;
+};
 
-type SignUpFormSchemaType = z.infer<typeof SignUpFormSchema>;
+const SignUpFormSchema = (dictForm: SignUpFormDict) =>
+  z.object({
+    email: z.string().email({ message: dictForm.errors.emailInvalid }),
+    name: z.string().min(2, { message: dictForm.errors.nameTooShort }),
+    password: z.string().min(8, { message: dictForm.errors.passwordTooShort }),
+  });
 
-export function SignUpForm() {
+type SignUpFormSchemaType = z.infer<ReturnType<typeof SignUpFormSchema>>;
+
+interface SignUpFormProps {
+  dictForm: SignUpFormDict;
+}
+
+export function SignUpForm({ dictForm }: SignUpFormProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const form = useForm<SignUpFormSchemaType>({
-    resolver: zodResolver(SignUpFormSchema),
+    resolver: zodResolver(SignUpFormSchema(dictForm)),
     defaultValues: {
       name: "",
       email: "",
@@ -78,10 +90,10 @@ export function SignUpForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>{dictForm.labels.name}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Your user name"
+                  placeholder={dictForm.placeholders.name}
                   disabled={loading}
                   aria-busy={loading}
                   {...field}
@@ -96,10 +108,10 @@ export function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{dictForm.labels.email}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="example@email.com"
+                  placeholder={dictForm.placeholders.email}
                   disabled={loading}
                   aria-busy={loading}
                   {...field}
@@ -115,7 +127,7 @@ export function SignUpForm() {
           form={form}
           mode="signup"
         />
-        <LoadingButton loading={loading}>Sign Up</LoadingButton>
+        <LoadingButton loading={loading}>{dictForm.submit}</LoadingButton>
       </form>
     </Form>
   );

@@ -1,21 +1,18 @@
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Info } from "lucide-react";
 
-export function ApiKeyInfoAlert() {
+export function ApiKeyInfoAlert({
+  content,
+}: {
+  content: { title: string; description: string };
+}) {
   return (
     <Alert className="my-4 flex items-center gap-4 border border-destructive/50  shadow-md p-4 rounded-lg">
       <Info className="flex-shrink-0" />
       <div>
-        <AlertTitle className="font-semibold">
-          Authentication reminder
-        </AlertTitle>
+        <AlertTitle className="font-semibold">{content.title}</AlertTitle>
         <AlertDescription className="mt-1 text-sm leading-relaxed text-foreground">
-          <span>
-            This step <strong>only needs to be done once</strong>, or{" "}
-            <strong>each time you regenerate your API key</strong>. The API key
-            is stored globally on your computer and used automatically by the
-            CLI.
-          </span>
+          <span>{content.description}</span>
         </AlertDescription>
       </div>
     </Alert>

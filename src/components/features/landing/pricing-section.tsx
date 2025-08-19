@@ -4,11 +4,27 @@ import { motion } from "framer-motion";
 import { PricingCard } from "../dashboard/subscribe/pricing-card";
 import { LandingSectionWrapper } from "./landing-section-wrapper";
 
-export function PricingSection() {
+type PricingFeatures = {
+  title: string;
+  price: number;
+  billingInterval: "month" | "year";
+  showButton: boolean;
+  features: string[];
+};
+
+type PricingContent = {
+  content: {
+    badge: string;
+    title: string;
+    description: string;
+    items: PricingFeatures[];
+  };
+};
+export function PricingSection({ content }: PricingContent) {
   return (
     <LandingSectionWrapper
-      title="Simple, transparent pricing"
-      badge="Pricing"
+      title={content.title}
+      badge={content.badge}
       id="pricing"
     >
       <motion.p
@@ -18,8 +34,7 @@ export function PricingSection() {
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        Start with a 7-day free trial. No credit card required. Cancel anytime.
-        Explore all features. Upgrade later if you like it.
+        {content.description}
       </motion.p>
 
       <motion.div
@@ -29,19 +44,16 @@ export function PricingSection() {
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <PricingCard
-          heading="Pro Monthly"
-          price={7}
-          billingInterval="month"
-          showButton={false}
-        />
-        <PricingCard
-          heading="Pro Yearly"
-          price={70}
-          billingInterval="year"
-          discount={17}
-          showButton={false}
-        />
+        {content.items.map((item) => (
+          <PricingCard
+            key={item.billingInterval}
+            heading={item.title}
+            price={item.price}
+            billingInterval={item.billingInterval}
+            showButton={false}
+            features={item.features}
+          />
+        ))}
       </motion.div>
     </LandingSectionWrapper>
   );

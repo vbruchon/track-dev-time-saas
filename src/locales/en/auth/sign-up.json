@@ -1,0 +1,29 @@
+{
+  "title": "Sign up Track-dev-time",
+  "description": "We just need a few details to get you started.",
+  "or": "OR",
+  "alreadyHaveAccount": "Already have an account?",
+  "signIn": "Sign In.",
+  "continueWith": {
+    "github": "Continue with GitHub",
+    "google": "Continue with Google"
+  },
+  "form": {
+    "labels": {
+      "name": "Username",
+      "email": "Email",
+      "password": "Password"
+    },
+    "placeholders": {
+      "name": "Your user name",
+      "email": "example@email.com",
+      "password": "Your password"
+    },
+    "errors": {
+      "nameTooShort": "Username must be at least 2 characters.",
+      "emailInvalid": "Please enter a valid email.",
+      "passwordTooShort": "Password must be at least 8 characters."
+    },
+    "submit": "Sign Up"
+  }
+}

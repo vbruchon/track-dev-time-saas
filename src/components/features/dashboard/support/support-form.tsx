@@ -19,7 +19,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-export const SupportForm = () => {
+type SupportFormPropsType = {
+  label: string;
+  placeholder: string;
+  textButton: string;
+  toastMessages: {
+    success: string;
+    error: string;
+  };
+};
+
+export const SupportForm = ({
+  label,
+  placeholder,
+  textButton,
+  toastMessages,
+}: SupportFormPropsType) => {
   const form = useForm<SupportFormSchemaType>({
     resolver: zodResolver(supportFormSchema),
     defaultValues: {
@@ -30,10 +45,10 @@ export const SupportForm = () => {
   const onSubmit = async (values: SupportFormSchemaType) => {
     try {
       await sendSupportMessage(values);
-      toast.success("Thanks! Your message has been sent.");
+      toast.success(toastMessages.success);
       form.reset();
     } catch {
-      toast.error("An error occurred while sending your message.");
+      toast.error(toastMessages.error);
     }
   };
 
@@ -45,11 +60,11 @@ export const SupportForm = () => {
           name="supportMessage"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Your message</FormLabel>
+              <FormLabel>{label}</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder="Describe your issue or question in detail..."
+                  placeholder={placeholder}
                   className="min-h-[120px]"
                 />
               </FormControl>
@@ -59,7 +74,7 @@ export const SupportForm = () => {
         />
         <div className="flex justify-end">
           <LoadingButton type="submit" loading={form.formState.isSubmitting}>
-            Send message
+            {textButton}
           </LoadingButton>
         </div>
       </form>
