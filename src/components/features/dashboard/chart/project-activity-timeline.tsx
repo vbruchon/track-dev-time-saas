@@ -31,6 +31,7 @@ type Props = {
 
 export const ProjectActivityTimeline = ({ data, categories }: Props) => {
   const hasData = data.length > 0;
+  console.log({ data });
 
   // fallback data pour que Recharts n'explose pas
   const fallbackData = [{ date: "N/A" }];
@@ -48,7 +49,7 @@ export const ProjectActivityTimeline = ({ data, categories }: Props) => {
           <Tooltip
             content={
               <CustomTooltip
-                valueFormatter={(value) => formatDuration(value * 3600)}
+                valueFormatter={(value) => formatDuration(value)}
               />
             }
             cursor={{ fill: "var(--chart-1)", opacity: 0.2 }}

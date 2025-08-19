@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
-import { magicLink } from "better-auth/plugins";
+import { admin, magicLink } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { resend } from "./resend";
 import { stripe } from "@better-auth/stripe";
@@ -107,6 +107,7 @@ export const auth = betterAuth({
         ],
       },
     }),
+    admin(),
     nextCookies(),
   ],
 });
