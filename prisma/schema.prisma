@@ -23,11 +23,17 @@ model User {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  accounts Account[]
-  sessions Session[]
-  projects Project[]
+  accounts      Account[]
+  sessions      Session[]
+  projects      Project[]
+  subscriptions Subscription[] @relation("UserSubscriptions", fields: [], references: [])
 
   stripeCustomerId String? @unique
+
+  role       String    @default("user")
+  banned     Boolean?
+  banReason  String?
+  banExpires DateTime?
 
   @@map("user")
 }
@@ -106,6 +112,8 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  impersonatedBy String?
+
   @@unique([token])
   @@map("session")
 }
@@ -158,4 +166,8 @@ model Subscription {
   seats                Int?
   trialStart           DateTime?
   trialEnd             DateTime?
+  user                 User             @relation("UserSubscriptions", fields: [referenceId], references: [id])
+  userId               String?
+
+  @@map("subscription")
 }

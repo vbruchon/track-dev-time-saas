@@ -20,6 +20,7 @@ export function SidebarMenuLinkItem({
 }: SidebarMenuItemProps) {
   const LucideIcon = Icons.icons[icon as keyof typeof Icons.icons];
   const pathname = usePathname();
+  console.log(Object.keys(Icons)); // liste toutes les icônes disponibles
 
   return (
     <SidebarMenuItem>

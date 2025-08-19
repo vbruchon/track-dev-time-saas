@@ -14,6 +14,7 @@ import { DashboardSidebarHeader } from "./sidebar-header";
 import { SidebarMenuItemProps, SidebarMenuLinkItem } from "./menu-link-item";
 import { getUser } from "@/lib/auth-session";
 import { UserMenu } from "./user-menu";
+import { NavMenuAdmin } from "../admin/nav-menu-admin";
 
 type SidebarDict = {
   application: string;
@@ -79,6 +80,7 @@ export const DashboardSidebar = async ({
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        {user?.role === "admin" && <NavMenuAdmin />}
         <SidebarGroup className="mt-auto">
           <SidebarGroupLabel>{dict.help}</SidebarGroupLabel>
           <SidebarGroupContent>

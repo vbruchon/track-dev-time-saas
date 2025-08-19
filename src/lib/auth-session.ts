@@ -24,6 +24,26 @@ export const getUser = async () => {
 
 export const getRequiredUser = async ({ redirectToSubscribe = true } = {}) => {
   const userSession = await getUser();
+  if (!userSession) unauthorized();
+
+  const user = await prisma.user.findUnique({ where: { id: userSession.id } });
+  if (!user) unauthorized();
+
+  const userSubscription = await getUserSubscription(user.id);
+  const isPro = userSubscription?.status === "active";
+  const isInTrial = addDays(user.createdAt, 7) > new Date();
+
+  if (user.role?.toLowerCase() === "admin") return user;
+
+  if (!isPro && !isInTrial && redirectToSubscribe) {
+    return redirect("/subscribe");
+  }
+
+  return user;
+};
+
+export const getRequiredAdminUser = async () => {
+  const userSession = await getUser();
 
   if (!userSession) unauthorized();
 
@@ -33,14 +53,7 @@ export const getRequiredUser = async ({ redirectToSubscribe = true } = {}) => {
 
   if (!user) unauthorized();
 
-  const userSubscription = await getUserSubscription(user.id);
-  const isPro = userSubscription?.status === "active";
-  const isInTrial = addDays(user.createdAt, 7) > new Date();
-
-  if (!isPro && !isInTrial && redirectToSubscribe) {
-    return redirect("/subscribe");
-  }
-
+  if (user.role !== "admin") unauthorized();
   return user;
 };
 
