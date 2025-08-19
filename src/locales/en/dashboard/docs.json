@@ -1,0 +1,28 @@
+{
+  "cliCommands": [
+    {
+      "command": "track-dev-time setup",
+      "description": "Configure the project to start tracking automatically"
+    },
+    {
+      "command": "track-dev-time auth",
+      "description": "Link CLI to your SaaS account via API key"
+    },
+    {
+      "command": "track-dev-time sync",
+      "description": "Manually sync local sessions to the SaaS dashboard"
+    },
+    {
+      "command": "track-dev-time list",
+      "description": "Display all your tracked sessions in a human-readable format"
+    },
+    {
+      "command": "track-dev-time uninstall",
+      "description": "Remove tracking setup from the project"
+    }
+  ],
+  "apiKeyInfoAlert": {
+    "title": "Authentication reminder",
+    "description": "This step only needs to be done once, or each time you regenerate your API key. The API key is stored globally on your computer and used automatically by the CLI."
+  }
+}

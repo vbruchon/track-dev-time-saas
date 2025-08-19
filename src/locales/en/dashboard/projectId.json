@@ -1,0 +1,90 @@
+{
+  "projectHeader": {
+    "categoriesLabel": "Categories",
+    "technologiesLabel": "Technologies",
+    "addTechnology": "Add technology",
+    "createdAt": "Created at",
+    "lastSessionAt": "Last session at",
+    "deleteButton": {
+      "buttonText": "Delete project",
+      "dialogTitle": "Final confirmation",
+      "dialogDescription": "This action cannot be undone. To confirm, please enter the project name",
+      "dialogLabel": "Project name",
+      "placeholder": "Type the project name to confirm",
+      "dialogCancel": "Cancel",
+      "dialogLoading": "Deleting ...",
+      "dialogDelete": "Delete"
+    },
+    "manageCategories": "Manage categories",
+    "manageTechnologies": "Manage technologies"
+  },
+  "projectStats": {
+    "title": "General Stats",
+    "productivityRatioTooltip": "Productivity ratio represents your effective coding time compared to total tracked time.",
+    "totalSessions": "Total sessions",
+    "totalSessionTime": "Total session time",
+    "averageSessionTime": "Average session time",
+    "longestSessionTime": "Longest session time",
+    "averagePausesPerSession": "Average pauses per session",
+    "totalPauseTime": "Total pause time",
+    "averagePauseTime": "Average pause time",
+    "productivityRatio": "Productivity ratio"
+  },
+  "projectCharts": {
+    "title": "Time tracking visualization",
+    "projectTimeSpent": {
+      "title": "Project Time Spent",
+      "timeRangeTabs": {
+        "day": "Day",
+        "week": "Week",
+        "month": "Month",
+        "year": "Year"
+      },
+      "hoursLabel": "Hours",
+      "tooltipLabel": "Time spent"
+    },
+    "sessionsPerWeekday": {
+      "title": "Day when you code (This Week)",
+      "labels": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      }
+    },
+    "sessionsPeriod": {
+      "title": "Period when you code (This Week)",
+      "labels": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night"
+      }
+    }
+  },
+  "projectSessions": {
+    "title": "Sessions List",
+    "date": "Date",
+    "startedAt": "Started At",
+    "endedAt": "Ended At",
+    "duration": "Duration",
+    "break": {
+      "label": "Break",
+      "title": "Breaks List",
+      "noFound": "No breaks found",
+      "date": "Date",
+      "startedAt": "Started At",
+      "endedAt": "Ended At",
+      "duration": "Duration",
+      "next": "Suivant",
+      "previous": "Précédent"
+    },
+    "pagination": {
+      "next": "Suivant",
+      "previous": "Précédent"
+    }
+  }
+}

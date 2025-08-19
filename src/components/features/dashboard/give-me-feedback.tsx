@@ -13,7 +13,18 @@ import React from "react";
 import { FeedbackForm } from "./feedback-form";
 import { useState } from "react";
 
-export const GiveMeFeedback = () => {
+type GiveMeFeedbackProps = {
+  dialogTitle: string;
+  form: {
+    label: string;
+    description: string;
+    placeholder: string;
+    buttonText: string;
+    toast: { success: string; error: string };
+  };
+};
+
+export const GiveMeFeedback = ({ dialogTitle, form }: GiveMeFeedbackProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -29,9 +40,9 @@ export const GiveMeFeedback = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Give Feedback</DialogTitle>
+          <DialogTitle>{dialogTitle}</DialogTitle>
         </DialogHeader>
-        <FeedbackForm onSuccess={() => setOpen(false)} />
+        <FeedbackForm content={form} onSuccess={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   );

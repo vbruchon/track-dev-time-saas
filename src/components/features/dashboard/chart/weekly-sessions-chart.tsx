@@ -20,21 +20,15 @@ export const WeeklySessionsChart = ({ data }: WeeklySessionsChartProps) => {
       <BarChart data={data}>
         <XAxis dataKey="day" />
         <YAxis allowDecimals={false} />
-        {/* <Tooltip
-          formatter={(value: number, name: string) => [
-            value,
-            name === "count" ? "sessions" : name,
-          ]}
-        /> */}
         <Tooltip
           content={
             <CustomTooltip
               valueFormatter={(value) => `${value}`}
               nameMap={{ count: "Sessions" }}
+              showLabel={false}
             />
           }
         />
-
         <Bar dataKey="count" fill="var(--chart-1)" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>

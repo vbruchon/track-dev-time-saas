@@ -14,15 +14,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 type AuthButtonProps = {
   user: User;
   className?: string;
+  lang: string;
 };
 
-export const AuthButton = ({ user, className }: AuthButtonProps) => {
+export const AuthButton = ({ user, className, lang }: AuthButtonProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={"outline"} className={className}>
           <div className="flex items-center gap-2">
-            <Avatar>
+            <Avatar className="size-6">
               <AvatarImage src={user?.image ?? ""} alt="User avatar" />
               <AvatarFallback>{user?.name[0] ?? user?.email[0]}</AvatarFallback>
             </Avatar>
@@ -38,7 +39,7 @@ export const AuthButton = ({ user, className }: AuthButtonProps) => {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="w-full">
-          <LogoutButton />
+          <LogoutButton lang={lang} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,0 +1,90 @@
+{
+  "projectHeader": {
+    "categoriesLabel": "Catégories",
+    "technologiesLabel": "Technologies",
+    "addTechnology": "Ajouter une technologie",
+    "createdAt": "Créé le",
+    "lastSessionAt": "Dernière session le",
+    "deleteButton": {
+      "buttonText": "Supprimer le projet",
+      "dialogTitle": "Confirmation Final",
+      "dialogDescription": "Cette action est irréversible. Pour confirmer, veuillez saisir le nom du projet",
+      "dialogLabel": "Nom du projet",
+      "placeholder": "Tapez le nom du projet pour confirmer",
+      "dialogCancel": "Annuler",
+      "dialogLoading": "Suppression en cours...",
+      "dialogDelete": "Supprimer"
+    },
+    "manageCategories": "Gérer les catégories",
+    "manageTechnologies": "Gérer les technologies"
+  },
+  "projectStats": {
+    "title": "Stats Générales",
+    "productivityRatioTooltip": "Le taux de productivité représente votre temps de codage effectif par rapport au temps total suivi.",
+    "totalSessions": "Nombre total de sessions",
+    "totalSessionTime": "Durée totale des sessions",
+    "averageSessionTime": "Durée moyenne des sessions",
+    "longestSessionTime": "Durée de la plus longue session",
+    "averagePausesPerSession": "Nombre moyen de pauses par session",
+    "totalPauseTime": "Durée totale des pauses",
+    "averagePauseTime": "Durée moyenne des pauses",
+    "productivityRatio": "Taux de productivité"
+  },
+  "projectCharts": {
+    "title": "Visualisation du suivi du temps",
+    "projectTimeSpent": {
+      "title": "Temps passé sur le projet",
+      "timeRangeTabs": {
+        "day": "Jour",
+        "week": "Semaine",
+        "month": "Mois",
+        "year": "Année"
+      },
+      "hoursLabel": "Heures",
+      "tooltipLabel": "Temps passé"
+    },
+    "sessionsPerWeekday": {
+      "title": "Jour où vous codez (cette semaine)",
+      "labels": {
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi",
+        "sunday": "Dimanche"
+      }
+    },
+    "sessionsPeriod": {
+      "title": "Période où vous codez (cette semaine)",
+      "labels": {
+        "morning": "Matin",
+        "afternoon": "Après-midi",
+        "evening": "Soirée",
+        "night": "Nuit"
+      }
+    }
+  },
+  "projectSessions": {
+    "title": "Liste des Sessions",
+    "date": "Date",
+    "startedAt": "Début",
+    "endedAt": "Fin",
+    "duration": "Durée",
+    "break": {
+      "label": "Pause",
+      "title": "Liste des temps de pause",
+      "noFound": "Aucune pauses trouvée",
+      "date": "Date",
+      "startedAt": "Début",
+      "endedAt": "Fin",
+      "duration": "Durée",
+      "next": "Suivant",
+      "previous": "Précédent"
+    },
+    "pagination": {
+      "next": "Suivant",
+      "previous": "Précédent"
+    }
+  }
+}

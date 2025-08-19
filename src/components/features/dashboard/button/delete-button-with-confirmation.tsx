@@ -19,15 +19,18 @@ import { deleteProject } from "@/utils/[projectId]/project.action";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { ProjectHeaderDict } from "../projects/[projectId]/project-header";
 
 type DeleteButtonWithConfirmationProps = {
   name: string;
   projectId: string;
+  dict: ProjectHeaderDict;
 };
 
 export const DeleteButtonWithConfirmation = ({
   name,
   projectId,
+  dict,
 }: DeleteButtonWithConfirmationProps) => {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -43,7 +46,7 @@ export const DeleteButtonWithConfirmation = ({
             strokeWidth={2}
             aria-hidden="true"
           />
-          Delete Project
+          {dict.deleteButton.buttonText}
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -56,21 +59,24 @@ export const DeleteButtonWithConfirmation = ({
           </div>
           <DialogHeader>
             <DialogTitle className="sm:text-center">
-              Final confirmation
+              {dict.deleteButton.dialogTitle}
             </DialogTitle>
             <DialogDescription className="sm:text-center">
-              This action cannot be undone. To confirm, please enter the project
-              name <span className="text-foreground">{name}</span>.
+              {dict.deleteButton.dialogDescription}{" "}
+              <span className="text-foreground">{name}</span>.
             </DialogDescription>
           </DialogHeader>
         </div>
         <form className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor={"project-name"}>Project name</Label>
+            <Label htmlFor={"project-name"}>
+              {" "}
+              {dict.deleteButton.dialogLabel}
+            </Label>
             <Input
               id="project-name"
               type="text"
-              placeholder="Type the project name to confirm"
+              placeholder={dict.deleteButton.placeholder}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className={cn(
@@ -83,7 +89,7 @@ export const DeleteButtonWithConfirmation = ({
           <DialogFooter>
             <DialogClose asChild>
               <Button type="button" variant="outline" className="flex-1">
-                Cancel
+                {dict.deleteButton.dialogCancel}
               </Button>
             </DialogClose>
             <Button
@@ -104,7 +110,9 @@ export const DeleteButtonWithConfirmation = ({
                 }
               }}
             >
-              {loading ? "Deleting..." : "Delete"}
+              {loading
+                ? dict.deleteButton.dialogLoading
+                : dict.deleteButton.dialogDelete}
             </Button>
           </DialogFooter>
         </form>

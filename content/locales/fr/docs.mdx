@@ -1,0 +1,171 @@
+# Documentation
+
+track-dev-time est un outil complet conçu pour suivre automatiquement vos sessions de développement et fournir des analyses détaillées via un tableau de bord SaaS performant.
+
+## Introduction
+
+track-dev-time combine une expérience CLI fluide avec un tableau de bord cloud pour aider les développeurs à suivre leurs habitudes de codage sans effort.
+
+- **Suivi automatique des sessions :** Dès que vous démarrez votre environnement de développement (par exemple `npm run dev`), la CLI suit automatiquement vos sessions de codage sans intervention manuelle.
+- **Gestion intelligente des sessions :** Elle gère le démarrage, la pause et l’arrêt des sessions selon votre flux de travail.
+- **Synchronisation des données et analytics :** Les données des sessions sont sauvegardées localement et synchronisées avec la plateforme SaaS, où vous pouvez consulter des statistiques détaillées, des tendances et des conseils motivants pour améliorer votre productivité.
+
+Cet outil est idéal pour les développeurs souhaitant comprendre comment ils passent leur temps à coder, identifier des schémas de productivité et rester motivés grâce à des objectifs et analyses personnalisés.
+
+## Fonctionnalités
+
+- Suivi automatique des sessions au démarrage du serveur dev
+- Gestion intelligente de la pause/reprise des sessions
+- Stockage local des sessions en JSON avec synchronisation automatique vers le SaaS
+- Authentification sécurisée via clé API
+- Synchronisation entre projets
+- Tableau de bord avec analyses, tendances et objectifs motivants
+
+## Installation
+
+### Prérequis
+
+- Node.js (v14 ou supérieur)
+- npm ou yarn
+- Connexion internet active pour synchroniser les données avec le tableau de bord SaaS
+
+### Installation du CLI
+
+Vous pouvez installer **track-dev-time** avec l’un des gestionnaires de packages suivants :
+
+**npm**
+
+```bash
+  npm install track-dev-time --save-dev
+```
+
+**pnpm**
+
+```bash
+  pnpm add -D track-dev-time
+```
+
+**yarn**
+
+```bash
+  yarn add track-dev-time --dev
+```
+
+### Configuration
+
+Une fois installé, lancez la commande de configuration pour configurer automatiquement votre projet :
+**npm**
+
+```bash
+  npx track-dev-time setup
+```
+
+**pnpm**
+
+```bash
+pnpm dlx track-dev-time setup
+```
+
+**yarn**
+
+```bash
+yarn track-dev-time setup
+```
+
+Cela va :
+
+- Créer automatiquement un fichier `.track-dev-time/config.json` avec les valeurs par défaut.
+- Mettre à jour votre `package.json` pour exécuter le tracker et le serveur dev en parallèle.
+- Ajouter `.track-dev-time/` à votre `.gitignore` pour exclure les fichiers de session du contrôle de version.
+- Proposer d’installer `concurrently` si ce n’est pas déjà fait.
+
+ℹ️ Pour activer le suivi automatique pendant que votre serveur dev tourne, votre projet doit exécuter les deux tâches en parallèle (serveur dev + tracker).
+track-dev-time recommande d’utiliser `concurrently` à cet effet.
+
+Pendant la configuration, la CLI détecte si concurrently est installé et propose de l’installer automatiquement si nécessaire.
+
+Vous pouvez utiliser un autre gestionnaire de processus (comme `npm-run-all`, `turbo`, etc.), mais vous devrez configurer manuellement l’exécution parallèle du tracker et du serveur.
+
+Fichier de configuration
+
+Le fichier de config se trouve dans le dossier caché `.track-dev-time` à la racine du projet :
+`.track-dev-time/config.json`
+
+Contenu par défaut
+
+Lors du premier lancement ou lors de l’exécution de la commande setup, un fichier `config.json` est créé automatiquement avec les valeurs suivantes :
+
+```json
+{
+  "inactivityTimeoutMs": 900000,
+  "autoResumeSessionWindowMs": 300000
+}
+```
+
+- **inactivityTimeoutMs** : Temps d’inactivité en millisecondes avant que la session ne soit automatiquement mise en pause. Par défaut : 900 000 ms = 15 minutes.
+- **autoResumeSessionWindowMs** : Fenêtre de temps en millisecondes pour reprendre automatiquement une session précédente si relancée dans ce délai. Par défaut : 300 000 ms = 5 minutes.
+
+### Modification de la configuration
+
+Vous pouvez modifier ces valeurs en éditant manuellement le fichier config.json avec votre éditeur de texte préféré.
+
+Par exemple, pour réduire le timeout d’inactivité à 5 minutes :
+
+```json
+{
+  "inactivityTimeoutMs": 300000,
+  "autoResumeSessionWindowMs": 300000
+}
+```
+
+### Application des changements
+
+Les nouvelles valeurs seront appliquées dès que la CLI lira à nouveau le fichier de configuration, généralement au démarrage ou lors de l’exécution d’une commande.
+
+### Fonctionnement
+
+Une fois le package installé et configuré avec la commande `setup`, track-dev-time s’intègre automatiquement à votre flux de travail. Chaque fois que vous exécutez le script de développement de votre projet, le suivi du temps est lancé en parallèle avec votre serveur.
+
+## Connexion du CLI au tableau de bord
+
+Pour synchroniser vos sessions locales avec le tableau de bord SaaS de track-dev-time, vous devez lier votre installation CLI à votre compte.
+
+### Étape 1 : Obtenir votre clé API
+
+<ApiKeyForm />
+
+### Étape 2 : Authentifier la CLI
+
+Dans votre terminal, lancez la commande suivante depuis le répertoire de votre projet :
+
+```bash
+track-dev-time auth --apikey <yourApiKey>
+```
+
+La clé API est stockée globalement sur votre ordinateur. Chaque fois qu’une session doit être envoyée, la CLI vérifie automatiquement la clé stockée.
+
+<ApiKeyInfoAlert />
+
+## Utilisation du CLI avant l’inscription sur le SaaS
+
+Si vous utilisez la CLI localement avant de vous inscrire sur le tableau de bord, vous pouvez synchroniser vos projets et sessions ultérieurement. Lancez la commande suivante dans chaque projet suivi :
+
+```bash
+track-dev-time sync
+```
+
+## Commandes CLI
+
+<CommandsCliTable />
+
+## Utilisation avancée du CLI
+
+Cette documentation couvre l’intégration du CLI avec le tableau de bord SaaS.
+
+Pour une utilisation détaillée, une configuration avancée et toutes les commandes disponibles, consultez la documentation dédiée à la CLI :
+
+👉 [track-dev-time CLI](https://www.npmjs.com/package/track-dev-time)
+
+## FAQ
+
+<FAQDocs />

@@ -12,9 +12,10 @@ import { ApiKeyDocsField } from "./api-key-docs-field";
 
 type ApiKeyFormProps = {
   user: User;
+  lang: string;
 };
 
-export const ApiKeyForm = ({ user }: ApiKeyFormProps) => {
+export const ApiKeyForm = ({ user, lang }: ApiKeyFormProps) => {
   const form = useForm<ApiKeyFormSchemaType>({
     resolver: zodResolver(apiKeyFormSchema),
     defaultValues: {
@@ -29,6 +30,7 @@ export const ApiKeyForm = ({ user }: ApiKeyFormProps) => {
           <ApiKeyDocsField
             control={form.control}
             initialApiKey={user.apiKey ?? ""}
+            lang={lang}
           />
         </form>
       </Form>

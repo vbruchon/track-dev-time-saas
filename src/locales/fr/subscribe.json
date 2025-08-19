@@ -1,0 +1,15 @@
+{
+  "title": "🚀 Passez à Pro",
+  "trialEnded": "Votre essai gratuit de 7 jours est terminé. Choisissez un plan pour continuer à utiliser Track Dev Time.",
+  "helpText": "Besoin d'aide ?",
+  "contactSupport": "Contacter le support",
+  "pricingSection": {
+    "monthlyLabel": "Mensuel",
+    "yearlyLabel": "Annuel",
+    "features": [
+      "Suivi illimité",
+      "Tableau de bord & stats",
+      "Support prioritaire"
+    ]
+  }
+}

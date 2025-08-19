@@ -1,0 +1,58 @@
+{
+  "account": {
+    "title": "Account Settings",
+    "accountForm": {
+      "imageUrl": {
+        "label": "Avatar URL",
+        "placeholder": "https://google.image.com"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "verified": "Your email is verified",
+        "unverified": "Your email is not verified",
+        "verifyBadge": "Verify your email",
+        "toast": {
+          "success": "Verification email sent.",
+          "error": "Failed to send verification email."
+        }
+      },
+      "weeklyGoal": {
+        "label": "Your Weekly Goal (hours)",
+        "placeholder": "Ex: 15"
+      },
+      "apiKey": {
+        "label": "API Key",
+        "alertTitle": "You need to generate your API key to link your dashboard with your CLI.",
+        "description": "This key is stored globally on your computer and used automatically by the CLI."
+      },
+      "buttons": {
+        "saveChanges": "Save changes"
+      },
+      "toast": {
+        "success": "Account updated",
+        "error": "Failed to update account"
+      }
+    }
+  },
+  "subscription": {
+    "title": "Your subscription",
+    "subscriptionInfo": {
+      "freeTrial": "You are currently on the <strong>free trial</strong>.",
+      "upgradeButton": "Upgrade to Pro",
+      "plans": {
+        "pro_monthly": "PRO (monthly)",
+        "pro_yearly": "PRO (yearly)"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "nextRenewal": "Next renewal: <strong>{{date}}</strong>",
+      "manageButton": "Manage subscription"
+    }
+  }
+}

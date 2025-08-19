@@ -1,46 +1,70 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { NavMenuItemProps, NavMenuItem } from "./nav-menu-item";
 import { cn } from "@/lib/utils";
 
 type NavMenuProps = {
+  items?: string[];
   onLinkClick?: () => void;
   footer?: boolean;
 };
 
-export const NavMenu = ({ onLinkClick, footer = false }: NavMenuProps) => {
+export const NavMenu = ({
+  items = [],
+  onLinkClick,
+  footer = false,
+}: NavMenuProps) => {
   const [activeHash, setActiveHash] = useState<string>("");
 
   useEffect(() => {
     const updateHash = () => {
       setActiveHash(window.location.hash || "#");
     };
-
     updateHash();
-
     window.addEventListener("hashchange", updateHash);
-
-    return () => {
-      window.removeEventListener("hashchange", updateHash);
-    };
+    return () => window.removeEventListener("hashchange", updateHash);
   }, []);
 
-  // Items principaux
-  const mainItems: NavMenuItemProps[] = [
-    { href: "/", label: "Home" },
-    { href: "#features", label: "Features" },
-    { href: "#pricing", label: "Pricing" },
-    { href: "#faq", label: "FAQ" },
-  ];
+  const labelToHref = (label: string) => {
+    if (footer) {
+      switch (label) {
+        case "Legal Notice":
+        case "Mentions légales":
+          return "/legal-notice";
+        case "Terms and Conditions":
+        case "Conditions générales":
+          return "/cgv";
+        case "Privacy Policy":
+        case "Politique de confidentialité":
+          return "/privacy-policy";
+        default:
+          return "#";
+      }
+    } else {
+      // Main nav
+      switch (label) {
+        case "Home":
+        case "Accueil":
+          return "/";
+        case "Features":
+        case "Fonctionnalités":
+          return "#features";
+        case "Pricing":
+        case "Prix":
+          return "#pricing";
+        case "FAQ":
+          return "#faq";
+        default:
+          return "#";
+      }
+    }
+  };
 
-  // Items spécifiques au footer
-  const footerItems: NavMenuItemProps[] = [
-    { href: "/mentions-legales", label: "Mentions légales" },
-    { href: "/cgv", label: "Terms and Conditions" },
-    { href: "/privacy-policy", label: "Privacy Policy" },
-  ];
-
-  const items = footer ? footerItems : mainItems;
+  const navItems: NavMenuItemProps[] = items.map((label) => ({
+    label,
+    href: labelToHref(label),
+  }));
 
   return (
     <ul
@@ -48,9 +72,9 @@ export const NavMenu = ({ onLinkClick, footer = false }: NavMenuProps) => {
         "flex md:flex-row items-start md:mt-0 md:items-center gap-4",
         footer ? "flex-row flex-wrap" : "flex-col mt-12"
       )}
-      aria-label="Main navigation"
+      aria-label={footer ? "Footer navigation" : "Main navigation"}
     >
-      {items.map((item) => (
+      {navItems.map((item) => (
         <NavMenuItem
           key={item.label}
           href={item.href}
@@ -58,9 +82,7 @@ export const NavMenu = ({ onLinkClick, footer = false }: NavMenuProps) => {
           isActive={
             item.href === "/" ? activeHash === "#" : item.href === activeHash
           }
-          onClick={() => {
-            if (onLinkClick) onLinkClick();
-          }}
+          onClick={() => onLinkClick?.()}
         />
       ))}
     </ul>

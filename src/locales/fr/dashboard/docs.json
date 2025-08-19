@@ -1,0 +1,28 @@
+{
+  "cliCommands": [
+    {
+      "command": "track-dev-time setup",
+      "description": "Configurer le projet pour démarrer le suivi automatiquement"
+    },
+    {
+      "command": "track-dev-time auth",
+      "description": "Lier le CLI à votre compte SaaS via une clé API"
+    },
+    {
+      "command": "track-dev-time sync",
+      "description": "Synchroniser manuellement les sessions locales avec le tableau de bord SaaS"
+    },
+    {
+      "command": "track-dev-time list",
+      "description": "Afficher toutes vos sessions suivies dans un format lisible"
+    },
+    {
+      "command": "track-dev-time uninstall",
+      "description": "Supprimer la configuration de suivi du projet"
+    }
+  ],
+  "apiKeyInfoAlert": {
+    "title": "Rappel d'authentification",
+    "description": "Cette étape n’a besoin d’être effectuée qu’une seule fois, ou à chaque fois que vous régénérez votre clé API. La clé API est stockée globalement sur votre ordinateur et utilisée automatiquement par la CLI."
+  }
+}

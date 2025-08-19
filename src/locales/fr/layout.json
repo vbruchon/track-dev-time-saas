@@ -1,0 +1,11 @@
+{
+  "header": { "nav": ["Accueil", "Fonctionnalités", "Prix", "FAQ"] },
+  "footer": {
+    "nav": [
+      "Mentions légales",
+      "Conditions générales",
+      "Politique de confidentialité"
+    ],
+    "copyright": "Tous droits réservés."
+  }
+}

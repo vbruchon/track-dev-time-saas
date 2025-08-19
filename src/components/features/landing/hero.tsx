@@ -6,7 +6,7 @@ import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
-import { Badge } from "@/components/ui/badge";
+import { BadgeBorderAnimated } from "./badge-border-animated";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -30,11 +30,24 @@ const imageFadeIn = {
   },
 };
 
-export const Hero = () => {
+type HeroPropsType = {
+  content: {
+    badge: string;
+    title: string;
+    paragraph: {
+      highlight: string;
+      text: string;
+    };
+    cta: string;
+    dashboardImageAlt: string;
+  };
+};
+
+export const Hero = ({ content }: HeroPropsType) => {
   return (
     <>
       <div className="flex flex-col items-center w-full max-w-4xl text-center space-y-6">
-        <Badge variant={"outline"}> Welcome to Track Dev Time</Badge>
+        <BadgeBorderAnimated>{content.badge}</BadgeBorderAnimated>
         <motion.h1
           variants={fadeUp}
           initial="hidden"
@@ -42,7 +55,7 @@ export const Hero = () => {
           className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
         >
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-ring to-primary">
-            Focus on your code, we track your time.
+            {content.title}
           </span>
         </motion.h1>
 
@@ -53,13 +66,8 @@ export const Hero = () => {
           animate="show"
           className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl"
         >
-          <span className="font-semibold">
-            Tired of forgetting to start your timer?
-          </span>{" "}
-          With Track Dev Time, you don’t have to think about it. Your dev time
-          is tracked automatically — no buttons, no timers, no distractions.
-          Forget vague estimates. Just clear, accurate sessions based on real
-          work, right from your editor.
+          <span className="font-semibold">{content.paragraph.highlight}</span>{" "}
+          {content.paragraph.text}
         </motion.p>
 
         <motion.div
@@ -73,7 +81,7 @@ export const Hero = () => {
             href="/sign-up"
             className={cn(buttonVariants({ size: "lg", variant: "cta" }))}
           >
-            Start your free trial
+            {content.cta}
           </Link>
         </motion.div>
       </div>
@@ -98,7 +106,7 @@ export const Hero = () => {
           <>
             <Image
               src="/dashboard-screen.png"
-              alt="Track Dev Time dashboard"
+              alt={content.dashboardImageAlt}
               width={1200}
               height={800}
               className="dark:hidden block w-full h-auto rounded-xl shadow-lg z-10  

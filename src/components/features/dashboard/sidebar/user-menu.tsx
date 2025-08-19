@@ -17,10 +17,10 @@ import {
 import { ThemeToggleMenu } from "@/components/features/theme/theme-toggle-menu";
 import Link from "next/link";
 
-export const UserMenu = ({ user }: { user: User }) => {
+export const UserMenu = ({ user, lang }: { user: User; lang: string }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="inline-flex items-center w-full p-2 rounded-xl hover:bg-sidebar-accent ">
+      <DropdownMenuTrigger className="inline-flex items-center w-full p-2 rounded-xl hover:bg-sidebar-accent hover:cursor-pointer ">
         <UserAvatar user={user} />
         <ChevronsUpDown className="ml-auto size-4" />
       </DropdownMenuTrigger>
@@ -45,7 +45,7 @@ export const UserMenu = ({ user }: { user: User }) => {
         <DropdownMenuItem className="!hover:bg-sidebar-accent" asChild>
           <Link href={"/dashboard/account"}>
             <UserIcon className="mr-2 size-5 hover:text-muted-foreground" />
-            Account
+            {lang === "fr" ? "Compte" : "Account"}
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
@@ -53,7 +53,7 @@ export const UserMenu = ({ user }: { user: User }) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <LogoutButton className="w-full" />
+          <LogoutButton lang={lang} className="w-full" />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

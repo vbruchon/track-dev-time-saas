@@ -1,9 +1,9 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { BadgeBorderAnimated } from "./badge-border-animated";
 
 export type LandingSectionWrapperProps = {
   id?: string;
@@ -25,7 +25,7 @@ export const LandingSectionWrapper = ({
       <div className={cn("container mx-auto px-4 text-center", className)}>
         {badge && (
           <div className="my-6">
-            <Badge variant={"outline"}>{badge}</Badge>
+            <BadgeBorderAnimated>{badge}</BadgeBorderAnimated>
           </div>
         )}
         <motion.h2

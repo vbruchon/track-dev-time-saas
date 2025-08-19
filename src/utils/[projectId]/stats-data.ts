@@ -9,7 +9,23 @@ type StatItem = {
   format?: string;
 };
 
-export function getStatsData(stats: ProjectStats): StatItem[] {
+export type ProjectStatsDict = {
+  title: string;
+  productivityRatioTooltip: string;
+  totalSessions: string;
+  totalSessionTime: string;
+  averageSessionTime: string;
+  longestSessionTime: string;
+  averagePausesPerSession: string;
+  totalPauseTime: string;
+  averagePauseTime: string;
+  productivityRatio: string;
+};
+
+export function getStatsData(
+  stats: ProjectStats,
+  dict: ProjectStatsDict
+): StatItem[] {
   const {
     totalSessionsCount,
     totalSessionDuration,
@@ -22,48 +38,44 @@ export function getStatsData(stats: ProjectStats): StatItem[] {
   } = stats;
 
   return [
+    { label: dict.totalSessions, value: totalSessionsCount, icon: Code2 },
     {
-      label: "Total sessions",
-      value: totalSessionsCount,
-      icon: Code2,
-    },
-    {
-      label: "Total session time",
+      label: dict.totalSessionTime,
       value: totalSessionDuration,
       icon: Clock,
       format: "duration",
     },
     {
-      label: "Average session time",
+      label: dict.averageSessionTime,
       value: averageSessionDuration,
       icon: Clock,
       format: "duration",
     },
     {
-      label: "Longest session time",
+      label: dict.longestSessionTime,
       value: longestSessionDuration,
       icon: Clock,
       format: "duration",
     },
     {
-      label: "Average pauses per session",
+      label: dict.averagePausesPerSession,
       value: averagePausesPerSession,
       icon: PauseCircle,
     },
     {
-      label: "Total pause time",
+      label: dict.totalPauseTime,
       value: totalPauseDuration,
       icon: Clock10,
       format: "duration",
     },
     {
-      label: "Average pause time",
+      label: dict.averagePauseTime,
       value: averagePausesDuration,
       icon: PauseCircle,
       format: "duration",
     },
     {
-      label: "Productivity ratio",
+      label: dict.productivityRatio,
       value: productivityRatio,
       icon: Activity,
       format: "percent",

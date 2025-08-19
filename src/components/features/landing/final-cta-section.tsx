@@ -5,12 +5,18 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { LandingSectionWrapper } from "./landing-section-wrapper";
 
-export function FinalCtaSection() {
+type FinalCtaContent = {
+  content: {
+    title: string;
+    paragraph: string;
+    cta: string;
+    href: string;
+  };
+};
+
+export function FinalCtaSection({ content }: FinalCtaContent) {
   return (
-    <LandingSectionWrapper
-      title="Ready to track your dev time effortlessly ?"
-      className="max-w-4xl"
-    >
+    <LandingSectionWrapper title={content.title} className="max-w-4xl">
       <>
         <motion.p
           className="text-muted-foreground mb-8 text-lg"
@@ -19,9 +25,7 @@ export function FinalCtaSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Start your 7-day free trial and experience what automated time
-          tracking feels like <br />
-          no card, no stress, just results.
+          {content.paragraph}
         </motion.p>
 
         <motion.div
@@ -30,9 +34,9 @@ export function FinalCtaSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <Link href="/auth/register">
-            <Button size="lg" variant={"cta"} className="text-base px-8 py-6">
-              Start your free trial
+          <Link href={content.href}>
+            <Button size="lg" variant="cta" className="text-base px-8 py-6">
+              {content.cta}
             </Button>
           </Link>
         </motion.div>

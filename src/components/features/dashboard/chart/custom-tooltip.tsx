@@ -5,6 +5,7 @@ type Props = {
   valueFormatter?: (value: number) => string;
   nameMap?: Record<string, string>;
   labelClassName?: string;
+  showLabel?: boolean;
 };
 
 export function CustomTooltip({
@@ -14,12 +15,13 @@ export function CustomTooltip({
   valueFormatter = (v) => `${v}`,
   nameMap = {},
   labelClassName,
+  showLabel = true,
 }: TooltipProps<number, string> & Props) {
   if (!active || !payload || payload.length === 0) return null;
 
   return (
     <div className="rounded-md bg-popover p-4 shadow-lg border w-fit">
-      {label && (
+      {showLabel && label && (
         <p className={cn("text-sm font-medium mb-2", labelClassName)}>
           {label}
         </p>

@@ -5,7 +5,24 @@ import { getUserId } from "@/lib/auth-session";
 import { getProductivityOverview } from "@/lib/queries/dashboard/dev-sessions/get-productivity-overview";
 import { StatCard } from "../stat-card";
 
-export const ProductivityOverview = async () => {
+type ProductivityDict = {
+  title: string;
+  stats: {
+    timeToday: string;
+    timeThisWeek: string;
+    changeVsLastWeek: string;
+    sessionsThisWeek: string;
+    lastProjectActive: string;
+  };
+};
+
+type ProductivityOverviewProps = {
+  dict: ProductivityDict;
+};
+
+export const ProductivityOverview = async ({
+  dict,
+}: ProductivityOverviewProps) => {
   const userId = await getUserId();
   const {
     daylyTotal,
@@ -22,28 +39,29 @@ export const ProductivityOverview = async () => {
 
   const stats = [
     {
-      title: "Time Today",
+      title: dict.stats.timeToday,
       value: formatDuration(daylyTotal),
     },
     {
-      title: "Time This Week",
+      title: dict.stats.timeThisWeek,
       value: formatDuration(weeklyTotal),
     },
     {
-      title: "Change vs. Last Week",
+      title: dict.stats.changeVsLastWeek,
       value: label,
     },
     {
-      title: "Sessions This Week",
+      title: dict.stats.sessionsThisWeek,
       value: countWeeklySessions,
     },
     {
-      title: "Last Project Active",
+      title: dict.stats.lastProjectActive,
       value: lastProject ?? "—",
     },
   ];
+
   return (
-    <SectionWrapper title="Productivity Overview" icon={<Timer />}>
+    <SectionWrapper title={dict.title} icon={<Timer />}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {stats.map((stat, index) => (
           <StatCard key={index} title={stat.title} value={stat.value} />

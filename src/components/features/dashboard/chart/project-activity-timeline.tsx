@@ -13,10 +13,10 @@ import { CustomTooltip } from "./custom-tooltip";
 
 const COLORS = [
   "var(--chart-1)",
-  "var(--chart-2)",
-  "var(--chart-3)",
-  "var(--chart-4)",
   "var(--chart-5)",
+  "var(--chart-3)",
+  "var(--chart-2)",
+  "var(--chart-4)",
 ];
 
 export type ChartDataPoint = {
@@ -51,6 +51,7 @@ export const ProjectActivityTimeline = ({ data, categories }: Props) => {
                 valueFormatter={(value) => formatDuration(value * 3600)}
               />
             }
+            cursor={{ fill: "var(--chart-1)", opacity: 0.2 }}
           />
 
           <Legend />

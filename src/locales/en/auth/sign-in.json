@@ -1,0 +1,34 @@
+{
+  "title": "Sign in to Track Dev Time",
+  "toggleMagicLink": {
+    "enable": "Login with password",
+    "disable": "Login with magic link instead"
+  },
+  "or": "OR",
+  "noAccount": "No account?",
+  "signUp": "Sign Up.",
+  "continueWith": {
+    "github": "Continue with GitHub",
+    "google": "Continue with Google"
+  },
+  "verifiy": {
+    "title": "Please check your email!",
+    "content": " We just sent you a confirmation email. Please click the link to continue."
+  },
+  "reset": {
+    "tokenRequest": {
+      "title": "Reset your password",
+      "description": "Enter your email to receive a token to reset your password.",
+      "labels": { "email": "Email" },
+      "placeholders": { "email": "example@email.com" },
+      "submit": "Receive token"
+    },
+    "passwordReset": {
+      "title": "Reset your password",
+      "description": "You can now create a new password",
+      "labels": { "password": "Password" },
+      "placeholders": { "password": "Enter your password" },
+      "submit": "Reset password"
+    }
+  }
+}

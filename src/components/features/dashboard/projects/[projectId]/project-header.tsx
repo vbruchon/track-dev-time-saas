@@ -5,6 +5,26 @@ import { Badge } from "@/components/ui/badge";
 import { ManageCategoryDialog } from "./manage-category-dialog";
 import { ManageTechnologyDialog } from "./manage-technology-dialog";
 
+export type ProjectHeaderDict = {
+  categoriesLabel: string;
+  technologiesLabel: string;
+  addTechnology: string;
+  createdAt: string;
+  lastSessionAt: string;
+  deleteButton: {
+    buttonText: string;
+    dialogTitle: string;
+    dialogDescription: string;
+    dialogLabel: string;
+    placeholder: string;
+    dialogCancel: string;
+    dialogLoading: string;
+    dialogDelete: string;
+  };
+  manageCategories: string;
+  manageTechnologies: string;
+};
+
 type ProjectHeaderProps = {
   projectName: string;
   projectId: string;
@@ -12,6 +32,7 @@ type ProjectHeaderProps = {
   lastSession: DevSession | null;
   technologies: Technology[];
   categories: Category[];
+  dict: ProjectHeaderDict;
 };
 
 export const ProjectHeader = async ({
@@ -21,6 +42,7 @@ export const ProjectHeader = async ({
   lastSession,
   technologies,
   categories,
+  dict,
 }: ProjectHeaderProps) => {
   return (
     <div className="mb-6 space-y-4">
@@ -29,18 +51,19 @@ export const ProjectHeader = async ({
         <DeleteButtonWithConfirmation
           name={projectName}
           projectId={projectId}
+          dict={dict}
         />
       </div>
 
       <div className="flex items-center gap-6 p-2">
         <p className="text-sm inline-flex items-center gap-2">
-          <Calendar className="size-5" /> Created at{" "}
+          <Calendar className="size-5" /> {dict.createdAt}{" "}
           {createdAt.toLocaleDateString()}
         </p>
         {lastSession && (
           <p className="text-sm inline-flex items-center gap-2">
-            <Code2 className="size-5" />
-            Last session at {lastSession.startedAt.toLocaleDateString()}
+            <Code2 className="size-5" /> {dict.lastSessionAt}{" "}
+            {lastSession?.startedAt.toLocaleDateString()}
           </p>
         )}
       </div>
@@ -48,7 +71,7 @@ export const ProjectHeader = async ({
         {/* Categories */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 text-sm">
-            Categories:
+            {dict.categoriesLabel}:
             {categories.length > 0 && (
               <div className="flex flex-wrap items-center gap-2">
                 {categories.map((cat) => (
@@ -68,7 +91,7 @@ export const ProjectHeader = async ({
         {/* Technologies */}
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 text-sm">
-            Technologies:
+            {dict.technologiesLabel}:
             {technologies.length > 0 ? (
               <div className="flex flex-wrap items-center gap-2">
                 {technologies.map((tech) => (
@@ -82,7 +105,7 @@ export const ProjectHeader = async ({
                 ))}
               </div>
             ) : (
-              <p>Add technology</p>
+              <p>{dict.addTechnology}</p>
             )}
           </div>
           <ManageTechnologyDialog

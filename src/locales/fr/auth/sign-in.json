@@ -1,0 +1,34 @@
+{
+  "title": "Se connecter à Track Dev Time",
+  "toggleMagicLink": {
+    "enable": "Se connecter avec mot de passe",
+    "disable": "Se connecter avec le lien magique"
+  },
+  "or": "OU",
+  "noAccount": "Pas de compte ?",
+  "signUp": "Inscrivez-vous.",
+  "continueWith": {
+    "github": "Continuer avec GitHub",
+    "google": "Continuer avec Google"
+  },
+  "verify": {
+    "title": "Veuillez vérifier votre e-mail !",
+    "content": "Nous venons de vous envoyer un e-mail de confirmation. Veuillez cliquer sur le lien pour continuer."
+  },
+  "reset": {
+    "tokenRequest": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Entrez votre email pour recevoir un token afin de réinitialiser votre mot de passe.",
+      "labels": { "email": "Email" },
+      "placeholders": { "email": "exemple@email.fr" },
+      "submit": "Recevoir le token"
+    },
+    "passwordReset": {
+      "title": "Réinitialisez votre mot de passe",
+      "description": "Vous pouvez maintenant créer un nouveau mot de passe",
+      "labels": { "password": "Mot de passe" },
+      "placeholders": { "password": "Entrez votre mot de passe" },
+      "submit": "Réinitialiser le mot de passe"
+    }
+  }
+}

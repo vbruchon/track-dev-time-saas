@@ -1,0 +1,116 @@
+{
+  "helloSection": {
+    "hello": {
+      "greeting": "👋 Bonjour ",
+      "howToStartTracking": "Comment commencer à tracker"
+    },
+    "subscriptionStatus": {
+      "trial": "Essai -  ",
+      "daysLeft": "jour(s) restant(s)",
+      "upgradeNow": "Passer à l’abonnement",
+      "inPlan": "Vous êtes dans"
+    },
+    "motivationMessage": {
+      "noCoding": "Vous n'avez pas encore codé aujourd'hui. Il est temps de s’y mettre ! 💪",
+      "shortSession1": "Une courte session de ",
+      "shortSession2": "aujourd'hui. Bon échauffement ! 👌",
+      "productiveSession1": "Vous avez été productif avec {duration} de code aujourd'hui. 🔥 Continuez comme ça !",
+      "productiveSession2": "de code aujourd'hui. 🔥 Continuez comme ça !",
+      "longSession1": "Impressionnant ! Vous avez codé pendant ",
+      "longSession2": " aujourd'hui. Vraiment top. 🚀"
+    },
+    "weeklyGoal": {
+      "label": "Objectif hebdomadaire"
+    }
+  },
+  "productivity": {
+    "title": "Aperçu de Productivité",
+    "stats": {
+      "timeToday": "Temps Aujourd'hui",
+      "timeThisWeek": "Temps Cette Semaine",
+      "changeVsLastWeek": "Évolution vs. Semaine Dernière",
+      "sessionsThisWeek": "Sessions Cette Semaine",
+      "lastProjectActive": "Dernier Projet Actif"
+    }
+  },
+  "sessions": {
+    "title": "Aperçu des Sessions",
+    "stats": {
+      "averageSession": "Durée moyenne des sessions",
+      "longestSession": "Session la plus longue",
+      "breaksThisWeek": "Pauses cette semaine",
+      "averageBreak": "Durée moyenne des pauses"
+    },
+    "charts": {
+      "sessionsPerDay": "Sessions par jour (Cette semaine)",
+      "codingPeriod": "Périodes de codage (Cette semaine)",
+      "dayLabels": ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+      "periodLabels": {
+        "morning": "Matin",
+        "afternoon": "Après-midi",
+        "evening": "Soirée",
+        "night": "Nuit"
+      }
+    },
+    "recentSessions": {
+      "title": "Sessions récentes",
+      "table": {
+        "date": "Date",
+        "startedAt": "Début",
+        "endedAt": "Fin",
+        "project": "Projet",
+        "duration": "Durée",
+        "actions": "Actions"
+      }
+    },
+    "pauses": {
+      "label": "Pause(s)",
+      "title": "Liste des pauses",
+      "noFound": "Aucune pause trouvée",
+      "date": "Date",
+      "startedAt": "Début",
+      "endedAt": "Fin",
+      "duration": "Durée",
+      "next": "Suivant",
+      "previous": "Précédent"
+    }
+  },
+  "projects": {
+    "title": "Aperçu des projets",
+    "highlights": {
+      "topProject": "Meilleur projet",
+      "lastProjectCreated": "Dernier projet créé",
+      "period": {
+        "weekly": "Cette semaine",
+        "monthly": "Ce mois-ci",
+        "global": "Globalement"
+      },
+      "totalTime": "Temps total",
+      "sessions": "Sessions",
+      "lastSession": "Dernière session",
+      "createdAt": "Créé le",
+      "noProjectData": "Aucune donnée de projet",
+      "noProjectCreated": "Aucun projet créé pour le moment"
+    },
+    "charts": {
+      "timeByCategoryWeekly": "Temps passé par catégorie de projet (Cette semaine)",
+      "timeByCategoryMonthly": "Temps passé par catégorie de projet (Ce mois)",
+      "timeByCategoryGlobal": "Temps passé par catégorie de projet (Globalement)",
+      "countProjectsByTechnology": "Nombre de projets par technologie"
+    },
+
+    "projectTable": {
+      "title": "Vos Projests",
+      "name": "Nom",
+      "createdAt": "Créé le",
+      "updatedAt": "Mis à jour le",
+      "sessions": "Sessions",
+      "avgDuration": "Durée moyenne",
+      "totalTime": "Temps total",
+      "actions": "Action",
+      "topProjectBadge": "Top Projet",
+      "next": "Suivant",
+      "previous": "Précédent"
+    }
+  }
+}

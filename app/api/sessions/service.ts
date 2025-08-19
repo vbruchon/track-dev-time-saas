@@ -50,23 +50,21 @@ const syncNewPausesForSession = async (
   sessionId: string,
   pauses: PauseSchemaType[]
 ) => {
-  // Récupère les pauses déjà existantes dans la BDD pour cette session
   const exisitingPauses = await prisma.pause.findMany({
     where: {
       sessionId,
     },
     select: { startedAt: true },
   });
-  // On crée un Set (structure rapide pour rechercher des valeurs)
-  // Ce Set contient toutes les dates `startedAt` déjà présentes en base
+
   const existingStartSet = new Set(
     exisitingPauses.map((pause) => pause.startedAt.toISOString())
   );
-  // Filtre la liste des pauses reçues pour garder uniquement celles qui ne sont pas en base
+
   const newPauses = pauses.filter(
     (pause) => !existingStartSet.has(new Date(pause.start).toISOString())
   );
-  // S'il y a de nouvelles pauses à créer, on les insère en une seule requête
+
   if (newPauses.length > 0) {
     await prisma.pause.createMany({
       data: newPauses.map((pause) => ({

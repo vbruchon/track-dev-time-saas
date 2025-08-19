@@ -22,7 +22,8 @@
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.9276 0.0058 264.5313);
   --input: oklch(0.9276 0.0058 264.5313);
-  --ring: oklch(0.7227 0.192 149.5793);
+  --ring: oklch(0.78 0.45 149.5793); /* un peu plus clair et plus saturé */
+
   --chart-1: oklch(0.7227 0.192 149.5793);
   --chart-2: oklch(0.6959 0.1491 162.4796);
   --chart-3: oklch(0.596 0.1274 163.2254);

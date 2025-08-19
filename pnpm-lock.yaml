@@ -78,11 +78,14 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       framer-motion:
-        specifier: ^12.18.1
+        specifier: ^12.23.12
         version: 12.23.12(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       lucide-react:
         specifier: ^0.515.0
         version: 0.515.0(react@19.1.1)
+      motion:
+        specifier: ^12.23.12
+        version: 12.23.12(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       next:
         specifier: 15.3.3
         version: 15.3.3(@babel/core@7.26.10)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -122,6 +125,9 @@ importers:
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
+      tailwind-variants:
+        specifier: ^2.1.0
+        version: 2.1.0(tailwind-merge@3.3.1)(tailwindcss@4.1.11)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -169,8 +175,8 @@ importers:
         specifier: ^4
         version: 4.1.11
       track-dev-time:
-        specifier: ^2.0.5
-        version: 2.0.5
+        specifier: ^2.0.6
+        version: 2.0.6
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@24.2.1)(typescript@5.9.2)
@@ -184,7 +190,7 @@ importers:
         specifier: ^4.20.3
         version: 4.20.3
       tw-animate-css:
-        specifier: ^1.3.4
+        specifier: ^1.3.6
         version: 1.3.6
       typescript:
         specifier: ^5.9.2
@@ -4131,6 +4137,20 @@ packages:
   motion-utils@12.23.6:
     resolution: {integrity: sha512-eAWoPgr4eFEOFfg2WjIsMoqJTW6Z8MTUCgn/GZ3VRpClWBdnbjryiA3ZSNLyxCTmCQx4RmYX6jX1iWHbenUPNQ==}
 
+  motion@12.23.12:
+    resolution: {integrity: sha512-8jCD8uW5GD1csOoqh1WhH1A6j5APHVE15nuBkFeRiMzYBdRwyAHmSP/oXSuW0WJPZRXTFdBoG4hY9TFWNhhwng==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
@@ -5025,6 +5045,16 @@ packages:
   tailwind-merge@3.3.1:
     resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
 
+  tailwind-variants@2.1.0:
+    resolution: {integrity: sha512-82m0eRex0z6A3GpvfoTCpHr+wWJmbecfVZfP3mqLoDxeya5tN4mYJQZwa5Aw1hRZTedwpu1D2JizYenoEdyD8w==}
+    engines: {node: '>=16.x', pnpm: '>=7.x'}
+    peerDependencies:
+      tailwind-merge: '>=3.0.0'
+      tailwindcss: '*'
+    peerDependenciesMeta:
+      tailwind-merge:
+        optional: true
+
   tailwindcss@3.4.0:
     resolution: {integrity: sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==}
     engines: {node: '>=14.0.0'}
@@ -5086,8 +5116,8 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  track-dev-time@2.0.5:
-    resolution: {integrity: sha512-bopaDJ6A3vF3EtHxUXxC+qm/RjvcVEDeOYP/9HiOuzo7VNgGfhO/VrjXghohkxDdn7NanEqNKMFwZohym1TQVQ==}
+  track-dev-time@2.0.6:
+    resolution: {integrity: sha512-O9XLgg/w4NyGym5LCb7fr85EfhY/ZvWGy3KX+3PqzsyRRLCrhhTlsqqAfgXASSdESl4TsxBDtdk7unIuKuFhqA==}
     hasBin: true
 
   tree-kill@1.2.2:
@@ -9735,6 +9765,14 @@ snapshots:
 
   motion-utils@12.23.6: {}
 
+  motion@12.23.12(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
+    dependencies:
+      framer-motion: 12.23.12(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 19.1.1
+      react-dom: 19.1.1(react@19.1.1)
+
   ms@2.1.3: {}
 
   mylas@2.1.13: {}
@@ -10863,6 +10901,12 @@ snapshots:
 
   tailwind-merge@3.3.1: {}
 
+  tailwind-variants@2.1.0(tailwind-merge@3.3.1)(tailwindcss@4.1.11):
+    dependencies:
+      tailwindcss: 4.1.11
+    optionalDependencies:
+      tailwind-merge: 3.3.1
+
   tailwindcss@3.4.0(ts-node@10.9.2(@types/node@24.2.1)(typescript@5.9.2)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
@@ -10944,7 +10988,7 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
-  track-dev-time@2.0.5:
+  track-dev-time@2.0.6:
     dependencies:
       chalk: 5.5.0
       chokidar: 4.0.3

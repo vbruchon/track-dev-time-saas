@@ -7,17 +7,20 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { HelloProps } from "./hello";
 
 type SubscriptionStatusProps = {
   trialActive: boolean;
   isSubscribed: boolean;
   subscriptionText: string;
+  dict: HelloProps["dict"];
 };
 
 export function SubscriptionStatus({
   trialActive,
   isSubscribed,
   subscriptionText,
+  dict,
 }: SubscriptionStatusProps) {
   return (
     <>
@@ -28,7 +31,7 @@ export function SubscriptionStatus({
             href="/subscribe"
             className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
           >
-            Upgrade now
+            {dict.subscriptionStatus.upgradeNow}
           </Link>
         </div>
       )}
@@ -38,7 +41,9 @@ export function SubscriptionStatus({
           <TooltipTrigger>
             <span className="text-4xl">🚀</span>
           </TooltipTrigger>
-          <TooltipContent>You&apos;re in {subscriptionText}</TooltipContent>
+          <TooltipContent>
+            {dict.subscriptionStatus.inPlan} {subscriptionText}
+          </TooltipContent>
         </Tooltip>
       )}
     </>

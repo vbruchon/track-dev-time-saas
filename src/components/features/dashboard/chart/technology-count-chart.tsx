@@ -50,6 +50,7 @@ export const TechnologyCountChart = ({ data }: Props) => {
                 labelClassName="text-primary font-semibold"
               />
             }
+            cursor={{ fill: "var(--chart-1)", opacity: 0.2 }}
           />
           <Bar dataKey="count" fill="#8884d8" barSize={20}>
             {(hasData ? data : fallbackData).map((entry, index) => (

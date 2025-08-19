@@ -8,7 +8,16 @@ import { cn } from "@/lib/utils";
 
 type BillingInterval = "month" | "year";
 
-export const PricingSection = () => {
+type PricingSectionProps = {
+  monthlyLabel: string;
+  yearlyLabel: string;
+  features: string[];
+};
+export const PricingSection = ({
+  monthlyLabel,
+  yearlyLabel,
+  features,
+}: PricingSectionProps) => {
   const [billing, setBilling] = useState<BillingInterval>("month");
 
   return (
@@ -23,7 +32,7 @@ export const PricingSection = () => {
               : "text-muted-foreground"
           )}
         >
-          Monthly
+          {monthlyLabel}
         </Label>
 
         <Switch
@@ -41,7 +50,7 @@ export const PricingSection = () => {
               : "text-muted-foreground"
           )}
         >
-          Yearly
+          {yearlyLabel}
         </Label>
       </div>
 
@@ -52,6 +61,7 @@ export const PricingSection = () => {
           price={billing === "month" ? 7 : 70}
           discount={billing === "year" ? 17 : undefined}
           billingInterval={billing}
+          features={features}
         />
       </div>
     </section>

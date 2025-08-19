@@ -5,11 +5,21 @@ import { toast } from "sonner";
 export type VerifyEmailButtonProps = {
   isVerified: boolean;
   email: string;
+  dict: {
+    verified: string;
+    unverified: string;
+    verifyBadge: string;
+    toast: {
+      success: string;
+      error: string;
+    };
+  };
 };
 
 export const VerifyEmailButton = ({
   isVerified,
   email,
+  dict,
 }: VerifyEmailButtonProps) => {
   if (isVerified) return null;
 
@@ -23,13 +33,13 @@ export const VerifyEmailButton = ({
             email,
             callbackURL: "/dashboard",
           });
-          toast.success("Verification email sent.");
+          toast.success(dict.toast.success);
         } catch {
-          toast.error("Failed to send verification email.");
+          toast.error(dict.toast.error);
         }
       }}
     >
-      Verify your email
+      {dict.verifyBadge}
     </Badge>
   );
 };
