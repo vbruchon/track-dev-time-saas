@@ -17,8 +17,7 @@ interface EmailLayoutProps {
   preview: string;
 }
 
-const baseUrl = "http://localhost:3000";
-// process.env.NEXT_PUBLIC_APP_URL;
+const baseUrl = "https://track-dev-time.dev";
 export const EmailLayout = ({ children, preview }: EmailLayoutProps) => {
   return (
     <Tailwind
