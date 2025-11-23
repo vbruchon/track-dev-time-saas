@@ -90,7 +90,7 @@
     "title": "Prêt à suivre votre temps de dev sans effort ?",
     "paragraph": "Commencez votre essai gratuit de 7 jours et découvrez ce que ça fait de tracker automatiquement votre temps de développement. Pas de carte, pas de stress, juste des résultats.",
     "cta": "Commencez votre essai gratuit",
-    "href": "/auth/register"
+    "href": "/sign-up"
   },
   "faq": {
     "badge": "FAQ",
